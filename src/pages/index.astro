@@ -243,39 +243,54 @@
 }
 .countdown {
   display: flex;
-  gap: 0.55rem;
+  gap: 0.6rem;
   justify-content: center;
   margin-top: 1rem;
   flex-wrap: wrap;
 }
-@media (min-width: 768px) { .countdown { gap: 0.7rem; } }
-.cd-item {
-  min-width: 4.4rem;
-  text-align: center;
-  background: rgba(255,255,255,0.88);
-  border: 1.5px solid rgba(255,255,255,0.95);
-  border-radius: 10px;
-  padding: 0.7rem 0.55rem 0.55rem;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-  backdrop-filter: blur(6px);
-}
+
 @media (min-width: 768px) {
-  .cd-item { min-width: 5rem; padding: 0.85rem 0.7rem 0.65rem; }
+  .countdown {
+    gap: 0.75rem;
+  }
 }
+
+.cd-item {
+  min-width: 5.2rem;              /* lebih lebar → persegi panjang */
+  text-align: center;
+  background: rgba(255, 255, 255, 0.38);  /* lebih transparan */
+  border: none;                   /* hilangkan border */
+  border-radius: 12px;
+  padding: 0.75rem 1rem 0.6rem;   /* padding horizontal lebih besar */
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(10px);
+}
+
+@media (min-width: 768px) {
+  .cd-item {
+    min-width: 5.8rem;
+    padding: 0.9rem 1.15rem 0.7rem;
+  }
+}
+
 .cd-num {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.45rem, 4vw, 1.85rem);
-  font-weight: 500;
-  color: #3d3d3d;
+  font-family: Inter, system-ui, sans-serif;  /* font simple */
+  font-size: clamp(1.15rem, 3.2vw, 1.45rem);
+  font-weight: 400;                 /* ringan & clean */
+  letter-spacing: 0.02em;
+  color: #2c2c2c;
   line-height: 1.15;
 }
+
 .cd-label {
-  font-size: 9px;
-  letter-spacing: 0.14em;
-  text-transform: capitalize;
-  color: #8a8a8a;
-  margin-top: 0.25rem;
-}
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 8.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;       /* lebih rapi & estetik */
+  color: #6b6b6b;
+  margin-top: 0.3rem;
+  font-weight: 400;
+  }
     /* Salam section — soft beige so carousel sits on color boundary */
 .salam-section {
   background: #D9D0C4;
@@ -481,14 +496,15 @@
     }
     .person-label.bride-label { transform: rotate(180deg); }
 
-    .person-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      font-weight: 500;
-      font-style: italic;
-      margin-bottom: 0.5rem;
-      color: var(--elegant);
-    }
+.person-name {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.55rem;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.01em;
+  margin-bottom: 0.5rem;
+  color: #1e1e1e;
+}
     .person-parents {
       font-size: 13px;
       color: var(--muted);

@@ -1,0 +1,185 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #F8F5F0;
+  color: #2C2C2C;
+  overflow-x: hidden;
+}
+
+.font-serif {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* Cover transition */
+#cover {
+  transition: opacity 0.8s ease, visibility 0.8s ease, transform 0.8s ease;
+}
+
+#cover.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-30px);
+  pointer-events: none;
+}
+
+#main-content {
+  opacity: 0;
+  transition: opacity 1s ease 0.3s;
+}
+
+#main-content.visible {
+  opacity: 1;
+}
+
+/* Animation base - start invisible */
+.animate-on-scroll {
+  opacity: 0;
+}
+
+.animate-on-scroll.is-visible.fade-up {
+  animation: fadeInUp 0.9s ease-out forwards;
+}
+
+.animate-on-scroll.is-visible.fade-down {
+  animation: fadeInDown 0.9s ease-out forwards;
+}
+
+.animate-on-scroll.is-visible.fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-on-scroll.is-visible.zoom-in {
+  animation: zoomIn 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Delay utilities */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-700 { animation-delay: 0.7s; }
+
+/* Circular photo */
+.photo-circle {
+  border-radius: 50%;
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+}
+
+/* Soft rounded */
+.rounded-soft {
+  border-radius: 12px;
+}
+
+/* Audio button */
+.audio-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 50;
+  width: 48px;
+  height: 48px;
+  border-radius: 9999px;
+  background: rgba(44, 44, 44, 0.85);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.audio-btn:hover {
+  transform: scale(1.08);
+  background: rgba(44, 44, 44, 1);
+}
+
+/* Countdown box */
+.countdown-item {
+  min-width: 70px;
+}
+
+/* Gallery grid */
+.gallery-grid img {
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.03);
+  filter: brightness(1.05);
+}
+
+/* Section spacing */
+.section-padding {
+  padding-top: 4.5rem;
+  padding-bottom: 4.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+/* Button elegant */
+.btn-elegant {
+  @apply px-8 py-3 border border-elegant text-elegant tracking-widest uppercase text-sm font-medium transition-all duration-300;
+}
+
+.btn-elegant:hover {
+  @apply bg-elegant text-cream;
+}
+
+/* Form input */
+.form-input {
+  @apply w-full px-4 py-3 bg-white/80 border border-soft rounded-soft text-elegant placeholder:text-muted/60 focus:outline-none focus:border-accent transition;
+}

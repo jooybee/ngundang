@@ -1,0 +1,1400 @@
+---
+// Minimalist Elegant 01 Clone - Improved match to reference
+---
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Wedding of Tiara & Jati</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #F7F3EE;
+      --soft: #EFEAE3;
+      --elegant: #1E1E1E;
+      --muted: #7A736C;
+      --accent: #9A7B5A;
+      --light: #FFFFFF;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--cream);
+      color: var(--elegant);
+      overflow-x: hidden;
+      font-size: 15px;
+      line-height: 1.75;
+      font-weight: 300;
+    }
+    .font-serif { font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif; }
+    .font-corm { font-family: 'Cormorant Garamond', Georgia, serif; }
+
+    /* ========== COVER – SPLIT SCREEN ========== */
+#cover {
+  position: fixed; inset: 0; z-index: 50;
+  display: flex;
+  transition: opacity 0.9s ease, visibility 0.9s ease;
+}
+#cover.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+
+.cover-panel {
+  position: relative;
+  flex: 1;
+  height: 100%;
+  overflow: hidden;
+}
+.cover-panel .panel-bg {
+  position: absolute; inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 8s ease;
+}
+.cover-panel:hover .panel-bg { transform: scale(1.04); }
+
+/* Left panel */
+.cover-left { flex: 1.15; }
+.cover-left .panel-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 40%, transparent 70%);
+}
+.cover-left .panel-content {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 2.5rem 2rem 3rem;
+  color: #fff;
+  z-index: 2;
+}
+.cover-left .label {
+  font-size: 10px; letter-spacing: 0.38em; text-transform: uppercase;
+  color: rgba(255,255,255,0.85); margin-bottom: 0.6rem; font-weight: 400;
+}
+.cover-left h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 400; letter-spacing: 0.03em; margin-bottom: 0.45rem;
+  line-height: 1.15;
+}
+.cover-left .date {
+  font-size: 12px; letter-spacing: 0.22em; color: rgba(255,255,255,0.8);
+}
+
+/* Right panel */
+.cover-right { flex: 0.85; }
+.cover-right .panel-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(247,243,238,0.55) 0%, rgba(247,243,238,0.75) 50%, rgba(247,243,238,0.88) 100%);
+}
+.cover-right .panel-content {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 2rem 1.5rem;
+  z-index: 2;
+}
+.cover-right .label {
+  font-size: 10px; letter-spacing: 0.38em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 0.85rem; font-weight: 400;
+}
+.cover-right h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.9rem, 4.5vw, 2.9rem);
+  font-weight: 400; letter-spacing: 0.03em; margin-bottom: 1.1rem;
+  color: var(--elegant);
+}
+.cover-right .guest-label {
+  font-size: 12px; color: var(--muted); margin-bottom: 0.25rem;
+}
+.cover-right .guest-name {
+  font-size: 15px; font-weight: 400; margin-bottom: 2rem; letter-spacing: 0.02em;
+  color: var(--elegant);
+}
+.btn-open {
+  display: inline-block; padding: 0.8rem 2.1rem;
+  background: #9A8B7A; color: #fff;
+  border: none; letter-spacing: 0.18em; text-transform: uppercase; font-size: 11px;
+  cursor: pointer; transition: all 0.35s; font-weight: 400;
+  border-radius: 2px;
+}
+.btn-open:hover { background: #7A6B5A; transform: translateY(-1px); }
+
+/* Mobile: hanya tampil panel kanan */
+@media (max-width: 768px) {
+  .cover-left { display: none; }
+  .cover-right { flex: 1; width: 100%; }
+  .cover-right h1 { font-size: clamp(1.8rem, 8vw, 2.4rem); }
+}
+
+    /* ========== MAIN ========== */
+    #main-content { opacity: 0; transition: opacity 1.1s ease 0.2s; }
+    #main-content.visible { opacity: 1; }
+
+    /* Animations */
+    .aos { opacity: 0; }
+    .aos.is-visible.fade-up { animation: fadeUp 1s ease-out forwards; }
+    .aos.is-visible.fade-down { animation: fadeDown 1s ease-out forwards; }
+    .aos.is-visible.fade-in { animation: fadeIn 0.9s ease-out forwards; }
+    .aos.is-visible.zoom-in { animation: zoomIn 0.9s ease-out forwards; }
+    .aos.is-visible.fade-left { animation: fadeLeft 1s ease-out forwards; }
+    .aos.is-visible.fade-right { animation: fadeRight 1s ease-out forwards; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(48px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeDown { from { opacity:0; transform:translateY(-48px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+    @keyframes zoomIn { from { opacity:0; transform:scale(0.9); } to { opacity:1; transform:scale(1); } }
+    @keyframes fadeLeft { from { opacity:0; transform:translateX(-40px); } to { opacity:1; transform:translateX(0); } }
+    @keyframes fadeRight { from { opacity:0; transform:translateX(40px); } to { opacity:1; transform:translateX(0); } }
+    .d1 { animation-delay: 0.15s; }
+    .d2 { animation-delay: 0.3s; }
+    .d3 { animation-delay: 0.45s; }
+    .d4 { animation-delay: 0.6s; }
+
+    /* Sections */
+    .section { padding: 5.5rem 1.5rem; }
+    @media (min-width: 768px) { .section { padding: 7rem 1.5rem; } }
+    .section-sm { padding: 4rem 1.5rem; }
+    .container { max-width: 720px; margin: 0 auto; }
+    .container-lg { max-width: 960px; margin: 0 auto; }
+    .text-center { text-align: center; }
+    .label {
+      font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.75rem; font-weight: 400;
+    }
+.heading {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.85rem, 4.5vw, 2.5rem);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.03em;
+  margin-bottom: 1.5rem;
+}
+    .body-text { font-size: 14.5px; color: var(--muted); line-height: 1.85; font-weight: 300; }
+    .btn {
+      display: inline-block; padding: 0.7rem 1.9rem;
+      border: 1px solid var(--elegant); color: var(--elegant);
+      letter-spacing: 0.18em; text-transform: uppercase; font-size: 10.5px;
+      background: transparent; cursor: pointer; transition: all 0.3s;
+      text-decoration: none; font-weight: 400;
+    }
+    .btn:hover { background: var(--elegant); color: var(--cream); }
+
+/* ========== HERO / COUNTDOWN ========== */
+.hero {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 6vh;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center 30%;
+  transition: opacity 1.8s ease;
+}
+/* slow horizontal slide track for hero images */
+.hero-slide-track {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  width: 100%;
+  transition: transform 2.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+  will-change: transform;
+}
+.hero-slide-track .hero-bg {
+  position: relative;
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  inset: auto;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.15) 0%,
+    rgba(0,0,0,0.08) 35%,
+    rgba(217,208,196,0.45) 70%,
+    rgba(217,208,196,0.88) 88%,
+    #D9D0C4 100%
+  );
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+.hero .label {
+  color: rgba(255,255,255,0.9) !important;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.25);
+}
+.hero .heading {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  color: #fff !important;
+  text-shadow: 0 2px 14px rgba(0,0,0,0.3);
+}
+.countdown {
+  display: flex;
+  gap: 0.55rem;
+  justify-content: center;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+@media (min-width: 768px) { .countdown { gap: 0.7rem; } }
+.cd-item {
+  min-width: 4.4rem;
+  text-align: center;
+  background: rgba(255,255,255,0.88);
+  border: 1.5px solid rgba(255,255,255,0.95);
+  border-radius: 10px;
+  padding: 0.7rem 0.55rem 0.55rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  backdrop-filter: blur(6px);
+}
+@media (min-width: 768px) {
+  .cd-item { min-width: 5rem; padding: 0.85rem 0.7rem 0.65rem; }
+}
+.cd-num {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.45rem, 4vw, 1.85rem);
+  font-weight: 500;
+  color: #3d3d3d;
+  line-height: 1.15;
+}
+.cd-label {
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: capitalize;
+  color: #8a8a8a;
+  margin-top: 0.25rem;
+}
+    /* Salam section — soft beige so carousel sits on color boundary */
+.salam-section {
+  background: #D9D0C4;
+  padding: 2.5rem 1.5rem 0 !important;
+  margin-bottom: 0;
+  position: relative;
+  z-index: 1;
+}
+.salam-section .container {
+  padding-bottom: 2rem;
+      }
+.salam-section .heading {
+  color: #fff;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.35rem, 4vw, 1.75rem);
+  letter-spacing: 0.04em;
+  margin-bottom: 0.5rem;
+}
+.salam-section .body-text {
+  color: rgba(255,255,255,0.92);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 14.5px;
+  line-height: 1.65;
+  font-weight: 400;
+  max-width: 32rem;
+  margin: 0 auto;
+}
+
+    /* custom appear animations */
+    @keyframes slideInFromRight {
+      from { opacity: 0; transform: translateX(28px) rotate(180deg); }
+      to   { opacity: 1; transform: translateX(0) rotate(180deg); }
+    }
+    @keyframes slideInFromLeft {
+      from { opacity: 0; transform: translateX(-28px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slideInFromBottom {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .anim-from-right {
+      opacity: 0;
+    }
+    .anim-from-right.in-view {
+      animation: slideInFromRight 0.9s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+    }
+    .anim-from-left {
+      opacity: 0;
+    }
+    .anim-from-left.in-view {
+      animation: slideInFromLeft 0.9s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+    }
+    .anim-from-bottom {
+      opacity: 0;
+    }
+    .anim-from-bottom.in-view {
+      animation: slideInFromBottom 0.85s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+    }
+    .anim-from-bottom.delay-1 { animation-delay: 0.12s; }
+    .anim-from-bottom.delay-2 { animation-delay: 0.24s; }
+    .anim-from-bottom.delay-3 { animation-delay: 0.36s; }
+
+    /* ========== BRIDE & GROOM ========== */
+    .bg-section {
+      background: #FFFFFF;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Dedicated Bride & Groom block — forced pure white */
+    .bride-groom-section {
+      background: #FFFFFF !important;
+      background-color: #FFFFFF !important;
+      position: relative;
+      overflow: visible;
+      width: 100%;
+      margin: 0;
+      padding: 0 1.5rem 5.5rem;
+      /* lower half of carousel + gap to "Bride & Groom" title */
+      padding-top: 8rem;
+    }
+    .bride-groom-title {
+      font-style: italic;
+      margin-top: 0.15rem;
+      margin-bottom: 2.75rem;
+      color: #1E1E1E;
+    }
+
+    /* Circular carousel — fully visible, straddling beige/white boundary */
+    .circle-carousel {
+      width: min(320px, 86vw);
+      margin: 0 auto;
+      position: relative;
+      z-index: 5;
+      /* midline of circles = brown/white boundary */
+      transform: translateY(50%);
+      overflow: hidden;
+    }
+    @media (min-width: 768px) {
+      .circle-carousel { width: 340px; }
+    }
+    .circle-carousel-track {
+      display: flex;
+      gap: 4px;
+      transition: transform 1.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+      will-change: transform;
+    }
+    .circle-carousel-track img {
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+      border: 3px solid #FFFFFF;
+      background: #FFFFFF;
+      opacity: 1;
+    }
+    @media (min-width: 768px) {
+    .circle-carousel {
+  width: min(300px, 84vw);
+  margin: 0.5rem auto 0;
+  position: relative;
+  z-index: 5;
+  transform: translateY(50%);
+  overflow: hidden;
+    }
+    }
+
+    /* Person block — fully centered */
+    .person-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 2.25rem;
+      width: 100%;
+    }
+    /* Photo centered; label farther from photo */
+    .person-photo-row {
+      display: grid;
+      grid-template-columns: 40px minmax(0, 1fr) 40px;
+      align-items: center;
+      column-gap: 14px;
+      width: min(420px, 96vw);
+      margin: 0 auto 1.35rem;
+    }
+    .person-photo-row .person-photo { grid-column: 2; justify-self: center; }
+    .person-photo-row .bride-label { grid-column: 3; justify-self: start; margin-left: 4px; }
+    .person-photo-row .groom-label { grid-column: 1; justify-self: end; margin-right: 4px; }
+    .person-photo {
+      width: min(320px, 86vw);
+      aspect-ratio: 1;
+      border-radius: 18px;
+      overflow: hidden;
+      position: relative;
+    }
+    /* Bride: thicker & wider shadow right + bottom */
+    [data-slider="bride"].person-photo {
+      box-shadow:
+        10px 12px 14px rgba(0,0,0,0.18),
+        20px 24px 32px rgba(0,0,0,0.14),
+        36px 42px 56px rgba(0,0,0,0.09),
+        52px 60px 88px rgba(0,0,0,0.05);
+    }
+    /* Groom: thicker & wider shadow left + bottom */
+    [data-slider="groom"].person-photo {
+      box-shadow:
+        -10px 12px 14px rgba(0,0,0,0.18),
+        -20px 24px 32px rgba(0,0,0,0.14),
+        -36px 42px 56px rgba(0,0,0,0.09),
+        -52px 60px 88px rgba(0,0,0,0.05);
+    }
+    @media (min-width: 768px) {
+      .person-photo { width: 340px; }
+    }
+    .person-photo .slide-track {
+      display: flex; height: 100%; width: 100%;
+      transition: transform 1.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+      will-change: transform;
+    }
+    .person-photo .slide-track img {
+      flex: 0 0 100%; width: 100%; height: 100%; object-fit: cover;
+    }
+
+    /* Vertical label — larger & more spaced from photo */
+    .person-label {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+      font-size: 28px;
+      letter-spacing: 0.12em;
+      color: #9A8B7A;
+      font-weight: 500;
+      white-space: nowrap;
+      line-height: 1;
+    }
+    @media (min-width: 768px) {
+      .person-label { font-size: 30px; letter-spacing: 0.14em; }
+    }
+    .person-label.bride-label { transform: rotate(180deg); }
+
+    .person-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      font-style: italic;
+      margin-bottom: 0.5rem;
+      color: var(--elegant);
+    }
+    .person-parents {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+      max-width: 280px;
+    }
+    .ig-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1.2rem;
+      border-radius: 999px;
+      background: #8B7355;
+      color: #fff;
+      font-size: 12.5px;
+      text-decoration: none;
+      font-weight: 400;
+      transition: background 0.25s, transform 0.2s;
+      box-shadow: 0 4px 12px rgba(139,115,85,0.25);
+    }
+    .ig-btn:hover { background: #6F5A42; transform: scale(1.03); }
+    .ig-btn svg { width: 14px; height: 14px; fill: currentColor; }
+
+    .person-and {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.5rem;
+      color: var(--muted);
+      text-align: center;
+      margin: 0.25rem 0 2.25rem;
+    }
+
+    /* Quote */
+    .quote-box {
+      max-width: 520px; margin: 2rem auto 0; text-align: center;
+      background: transparent;
+      padding: 0;
+    }
+    .quote-text {
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: 16px;
+      color: #4A453F !important;
+      line-height: 1.8; margin-bottom: 0.75rem;
+    }
+    .quote-source {
+      font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: #8B7355 !important;
+    }
+
+    /* Full-width brown quote band (like reference) */
+    .quote-band {
+      background: #C4B8A8;
+      padding: 3.25rem 1.5rem 2.25rem;
+      text-align: center;
+    }
+    .quote-band .quote-text {
+      color: rgba(255,255,255,0.95) !important;
+      max-width: 520px;
+      margin: 0 auto 0.85rem;
+      font-size: 15.5px;
+      line-height: 1.85;
+    }
+    .quote-band .quote-source {
+      color: rgba(255,255,255,0.85) !important;
+      letter-spacing: 0.2em;
+    }
+
+    /* ========== SAVE THE DATE ========== */
+    /* Save the Date — landscape 4:3, aligned with WE column */
+    .std-section {
+      background: #FFFFFF;
+      padding: 1.75rem 0 0; /* tighter to quote above */
+      text-align: center;
+    }
+    .std-section .heading {
+      padding: 0 1.25rem;
+      margin-bottom: 2.5rem; /* wider gap to photos */
+    }
+    .std-photos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.4rem;
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 0 1.15rem; /* side margin from phone edge */
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .std-photo {
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      background: #eee;
+      position: relative;
+    }
+    .std-photo img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      opacity: 0;
+      will-change: transform, opacity, clip-path;
+    }
+    .std-photo.left {
+      border-radius: 72px 6px 0 0;
+    }
+    .std-photo.right {
+      border-radius: 6px 6px 72px 0;
+    }
+    /* left: fade + rise from bottom */
+    .std-photo.left img {
+      transform: translateY(28px);
+    }
+    .std-photo.left.in-view img {
+      animation: stdFadeUp 1.6s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+    }
+    /* right: fade + settle from top */
+    .std-photo.right img {
+      transform: translateY(-28px);
+    }
+    .std-photo.right.in-view img {
+      animation: stdFadeDown 1.6s cubic-bezier(0.25, 0.1, 0.25, 1) 0.15s forwards;
+    }
+    @keyframes stdFadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes stdFadeDown {
+      from { opacity: 0; transform: translateY(-28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Wedding Event — full width, photo bg, vertical label, glass content */
+    .we-section {
+      position: relative;
+      overflow: hidden;
+      padding: 0;
+      background: #e8e2d9;
+    }
+    .we-bg-fade {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-size: cover;
+      background-position: center 20%;
+      opacity: 0.35;
+      filter: grayscale(0.15);
+      pointer-events: none;
+    }
+    .we-bg-fade::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        rgba(196,184,168,0.55) 0%,
+        rgba(255,255,255,0.75) 35%,
+        rgba(255,255,255,0.82) 100%
+      );
+    }
+    .we-inner {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      max-width: 520px;
+      margin: 0 auto;
+      min-height: 480px;
+      position: relative;
+      z-index: 2;
+      /* side inset so vertical bar not flush to screen */
+      width: calc(100% - 2.3rem);
+    }
+    .we-label-col {
+      background: #C4B8A8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 0;
+    }
+    .we-label-text {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 19px;
+      letter-spacing: 0.3em;
+      color: #FFFFFF;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .we-content {
+      padding: 2.4rem 1.5rem 3rem 1.55rem;
+      background: rgba(255,255,255,0.78);
+      backdrop-filter: blur(2px);
+      text-align: left;
+    }
+    .we-event { margin-bottom: 2.35rem; }
+    .we-event:last-child { margin-bottom: 0; }
+    .we-event .label {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 12px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #9A7B5A;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    .we-event .event-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.08rem;
+      font-weight: 500;
+      margin-bottom: 0.35rem;
+      color: #2C2C2C;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 1.4;
+    }
+    .we-event .event-time {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 0.6rem;
+      color: #3D3D3D;
+      letter-spacing: 0.06em;
+    }
+    .we-event .event-loc {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 15px;
+      color: #7A736C;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+    .we-event .btn {
+      display: inline-block;
+      background: #8B7355;
+      color: #fff;
+      padding: 0.58rem 1.3rem;
+      border-radius: 6px;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 13px;
+      text-decoration: none;
+      border: none;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    /* ========== EVENTS ========== */
+    .event-block { margin-bottom: 3.5rem; }
+    .event-block:last-child { margin-bottom: 0; }
+    .event-title { font-family: 'Playfair Display', serif; font-size: 1.35rem; margin-bottom: 0.4rem; }
+    .event-time { font-size: 14px; color: var(--muted); margin-bottom: 0.6rem; }
+    .event-loc { font-size: 13.5px; color: var(--muted); line-height: 1.7; margin-bottom: 1.25rem; }
+
+    /* ========== OUR STORY ========== */
+    .story-section { position: relative; overflow: hidden; }
+    .story-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background-size: cover; background-position: center;
+      transition: opacity 1.4s ease; opacity: 0.28;
+    }
+    .story-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(180deg, rgba(247,243,238,0.82) 0%, rgba(247,243,238,0.9) 100%);
+    }
+    .story-content { position: relative; z-index: 2; }
+    .story-layout {
+      display: grid; grid-template-columns: 1fr; gap: 2.5rem;
+      align-items: center;
+    }
+    @media (min-width: 768px) {
+      .story-layout { grid-template-columns: 1fr auto 1fr; gap: 2rem; }
+    }
+    .story-photos {
+      position: relative; width: 100%; max-width: 280px; height: 340px;
+      margin: 0 auto; border-radius: 8px; overflow: hidden;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.12);
+    }
+    .story-photos .slide-track {
+      display: flex; height: 100%; width: 100%;
+      transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .story-photos .slide-track img {
+      flex: 0 0 100%; width: 100%; height: 100%; object-fit: cover;
+    }
+    .story-vertical {
+      writing-mode: vertical-rl; text-orientation: mixed;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--muted); text-align: center;
+      display: none;
+    }
+    @media (min-width: 768px) {
+      .story-vertical { display: block; transform: rotate(180deg); }
+    }
+    .story-timeline { text-align: left; }
+    .story-item { margin-bottom: 2.25rem; }
+    .story-item:last-child { margin-bottom: 0; }
+    .story-date {
+      font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.3rem;
+    }
+    .story-title {
+      font-family: 'Playfair Display', serif; font-size: 1.15rem; margin-bottom: 0.4rem;
+    }
+    .story-desc { font-size: 13.5px; color: var(--muted); line-height: 1.75; }
+
+    /* ========== GALLERY ========== */
+    .gallery {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem;
+    }
+    @media (min-width: 768px) {
+      .gallery { grid-template-columns: 1fr 1fr 1fr; gap: 0.9rem; }
+    }
+    .gallery img {
+      width: 100%; height: 11rem; object-fit: cover; border-radius: 6px;
+      transition: transform 0.45s ease;
+    }
+    @media (min-width: 768px) { .gallery img { height: 15rem; } }
+    .gallery img:hover { transform: scale(1.03); }
+
+    /* ========== GIFT / FORMS ========== */
+    .card {
+      background: rgba(255,255,255,0.78); border-radius: 12px;
+      padding: 1.75rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+    .form-input {
+      width: 100%; padding: 0.8rem 1.1rem; background: rgba(255,255,255,0.9);
+      border: 1px solid #E5DFD6; border-radius: 10px; font-size: 14px;
+      color: var(--elegant); outline: none; transition: border 0.25s;
+      font-family: inherit; font-weight: 300;
+    }
+    .form-input:focus { border-color: var(--accent); }
+    .space-y > * + * { margin-top: 0.85rem; }
+    .wish-item {
+      background: rgba(255,255,255,0.65); border-radius: 10px;
+      padding: 1rem 1.15rem; font-size: 13.5px; text-align: left;
+    }
+
+    /* ========== FOOTER / CLOSING ========== */
+    .closing {
+      position: relative; overflow: hidden; text-align: center;
+      padding: 6.5rem 1.5rem 5rem;
+    }
+    .closing-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background-size: cover; background-position: center;
+      transition: opacity 1.5s ease; opacity: 0.32;
+    }
+    .closing-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(180deg, rgba(247,243,238,0.8) 0%, rgba(247,243,238,0.9) 100%);
+    }
+    .closing-content { position: relative; z-index: 2; max-width: 540px; margin: 0 auto; }
+    .closing-quote {
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: 15.5px; color: var(--muted); line-height: 1.85; margin-bottom: 0.75rem;
+    }
+    .closing-names {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.4rem); margin: 1.5rem 0 1rem;
+    }
+
+    /* Audio */
+    .audio-btn {
+      position: fixed; bottom: 22px; right: 22px; z-index: 60;
+      width: 46px; height: 46px; border-radius: 50%;
+      background: rgba(30,30,30,0.82); color: white; border: none;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.18); cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .audio-btn:hover { transform: scale(1.08); }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== COVER – SPLIT SCREEN ==================== -->
+<div id="cover">
+  <!-- LEFT PANEL -->
+  <div class="cover-panel cover-left">
+    <div class="panel-bg" style="background-image:url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=80')"></div>
+    <div class="panel-overlay"></div>
+    <div class="panel-content">
+      <p class="label">THE WEDDING OF</p>
+      <h1>Tiara & Jati</h1>
+      <p class="date">11 Juni 2027</p>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="cover-panel cover-right">
+    <div class="panel-bg" style="background-image:url('https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=1400&q=80')"></div>
+    <div class="panel-overlay"></div>
+    <div class="panel-content">
+      <p class="label">THE WEDDING OF</p>
+      <h1>Tiara & Jati</h1>
+      <p class="guest-label">Tamu Undangan</p>
+      <button id="openBtn" class="btn-open">Buka Undangan</button>
+    </div>
+  </div>
+</div>
+
+  <!-- ==================== MAIN ==================== -->
+  <div id="main-content">
+
+    <!-- HERO + COUNTDOWN -->
+    <section class="hero">
+      <div class="hero-slide-track" id="heroTrack">
+        <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=80')"></div>
+        <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1600&q=80')"></div>
+        <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=1600&q=80')"></div>
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p class="label aos fade-down">The Wedding of</p>
+        <h2 class="heading aos fade-up" style="font-size:clamp(2.2rem,6vw,3.2rem);margin-bottom:0.4rem">Tiara & Jati</h2>
+        <div class="countdown aos fade-up d2">
+          <div class="cd-item"><div class="cd-num" id="days">00</div><div class="cd-label">Days</div></div>
+          <div class="cd-item"><div class="cd-num" id="hours">00</div><div class="cd-label">Hours</div></div>
+          <div class="cd-item"><div class="cd-num" id="minutes">00</div><div class="cd-label">Minutes</div></div>
+          <div class="cd-item"><div class="cd-num" id="seconds">00</div><div class="cd-label">Seconds</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SALAM -->
+    <section class="section text-center salam-section">
+      <div class="container">
+        <h3 class="heading aos fade-down">Assalamu'alaikum wr wb</h3>
+        <p class="body-text aos fade-up">
+          Segala Puji Bagi Allah SWT yang telah menjadikan hambanya hidup berpasang-pasangan.
+          Dengan memohon Ridho, Rahmat, dan Berkah Allah SWT, kami bermaksud untuk mengundang
+          Saudara/i dalam acara pernikahan yang kami selenggarakan.
+        </p>
+      </div>
+
+      <!-- Circular carousel: 4 visible, step every 1.5s -->
+      <div class="circle-carousel aos fade-in">
+        <div class="circle-carousel-track" id="circleTrack">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&q=80" alt="" />
+          <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=200&h=200&fit=crop&q=80" alt="" />
+          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=200&h=200&fit=crop&q=80" alt="" />
+          <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=200&h=200&fit=crop&q=80" alt="" />
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&q=80" alt="" />
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop&q=80" alt="" />
+          <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=200&h=200&fit=crop&q=80" alt="" />
+          <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=200&h=200&fit=crop&q=80" alt="" />
+        </div>
+      </div>
+    </section>
+
+    <!-- BRIDE & GROOM -->
+    <section class="section bride-groom-section">
+      <div class="container" style="max-width:420px">
+        <h3 class="heading text-center aos fade-down bride-groom-title">Bride & Groom</h3>
+
+        <!-- THE BRIDE -->
+        <div class="person-block aos fade-up">
+          <div class="person-photo-row">
+            <div class="person-photo" data-slider="bride">
+              <div class="slide-track">
+                <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=600&h=600&fit=crop&q=80" alt="Bride 1" />
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=600&fit=crop&q=80" alt="Bride 2" />
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&h=600&fit=crop&q=80" alt="Bride 3" />
+              </div>
+            </div>
+            <span class="person-label bride-label anim-from-right">The Bride</span>
+          </div>
+          <h4 class="person-name anim-from-bottom">Tiara Terang Bintang, S.E</h4>
+          <p class="person-parents anim-from-bottom delay-1">Putri Pertama Bapak Sutan Antonio<br/>& Ibu Mawar Semerbak Pagi</p>
+          <a href="https://instagram.com/" class="ig-btn anim-from-bottom delay-2" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            @tiaraterang
+          </a>
+        </div>
+
+        <p class="person-and aos fade-in">and</p>
+
+        <!-- THE GROOM -->
+        <div class="person-block aos fade-up">
+          <div class="person-photo-row groom-row">
+            <span class="person-label groom-label anim-from-left">The Groom</span>
+            <div class="person-photo" data-slider="groom">
+              <div class="slide-track">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=600&fit=crop&q=80" alt="Groom 1" />
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&h=600&fit=crop&q=80" alt="Groom 2" />
+                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&h=600&fit=crop&q=80" alt="Groom 3" />
+              </div>
+            </div>
+          </div>
+          <h4 class="person-name anim-from-bottom">Jati Alamsyah</h4>
+          <p class="person-parents anim-from-bottom delay-1">Putra Pertama Bapak Sandi<br/>& Ibu Melati</p>
+          <a href="https://instagram.com/" class="ig-btn anim-from-bottom delay-2" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            @jatialam
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- QUOTE BAND -->
+    <section class="quote-band">
+      <p class="quote-text aos fade-up">
+        "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu
+        dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan
+        di antaramu rasa kasih dan sayang"
+      </p>
+      <p class="quote-source aos fade-up">AR-RUM AYAT : 21</p>
+    </section>
+
+    <!-- SAVE THE DATE -->
+    <section class="std-section">
+      <h3 class="heading aos fade-down" style="font-style:italic">Save the Date</h3>
+      <div class="std-photos aos fade-up">
+        <div class="std-photo left">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=600&fit=crop&q=80" alt="Couple 1" />
+        </div>
+        <div class="std-photo right">
+          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800&h=600&fit=crop&q=80" alt="Couple 2" />
+        </div>
+      </div>
+    </section>
+
+    <!-- WEDDING EVENT -->
+    <section class="we-section">
+      <div class="we-bg-fade" style="background-image:url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1400&q=80')"></div>
+      <div class="we-inner">
+        <div class="we-label-col">
+          <span class="we-label-text">Wedding Event</span>
+        </div>
+        <div class="we-content">
+          <div class="we-event aos fade-up">
+            <p class="label">Akad Nikah</p>
+            <h4 class="event-title">Minggu, 11 Juni 2027</h4>
+            <p class="event-time">08.00 – 09.00 WIB</p>
+            <p class="event-loc">Masjid Ahmad Dahlan UMY<br/>Jl. Brawijaya, Geblagan, Tamantirto<br/>Kasihan, Bantul, DIY 55183</p>
+            <a href="https://maps.app.goo.gl/" target="_blank" rel="noopener" class="btn">Buka Maps</a>
+          </div>
+          <div class="we-event aos fade-up">
+            <p class="label">Resepsi</p>
+            <h4 class="event-title">Minggu, 11 Juni 2027</h4>
+            <p class="event-time">10.00 – 13.00 WIB</p>
+            <p class="event-loc">Masjid Ahmad Dahlan UMY<br/>Jl. Brawijaya, Geblagan, Tamantirto<br/>Kasihan, Bantul, DIY 55183</p>
+            <a href="https://maps.app.goo.gl/" target="_blank" rel="noopener" class="btn">Buka Maps</a>
+          </div>
+          <div class="we-event aos fade-up">
+            <p class="label">Live Streaming</p>
+            <p class="event-loc">Bagi tamu yang berhalangan hadir, silakan menyaksikan siaran langsung pernikahan kami melalui tautan di bawah.</p>
+            <a href="https://instagram.com/" target="_blank" rel="noopener" class="btn">Live Streaming</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RSVP -->
+    <section class="section bg-section text-center">
+      <div class="container" style="max-width:400px">
+        <h3 class="heading aos fade-down">RSVP</h3>
+        <p class="body-text aos fade-up" style="margin-bottom:2rem">
+          Kirimkan Konfirmasi Kehadiran Kepada Mempelai Melalui Form Berikut.
+        </p>
+        <form id="rsvpForm" class="space-y aos fade-up d2" style="text-align:left">
+          <input type="text" name="name" placeholder="Nama Lengkap" required class="form-input" />
+          <select name="attendance" required class="form-input">
+            <option value="">Konfirmasi Kehadiran</option>
+            <option value="hadir">Hadir</option>
+            <option value="tidak">Tidak Dapat Hadir</option>
+          </select>
+          <input type="number" name="guests" placeholder="Jumlah Tamu" min="1" max="5" class="form-input" />
+          <textarea name="message" rows="3" placeholder="Ucapan / Doa (opsional)" class="form-input"></textarea>
+          <button type="submit" class="btn" style="width:100%">Kirim</button>
+        </form>
+        <p id="rsvpSuccess" class="hidden" style="margin-top:1rem;color:var(--accent);font-size:14px">Terima kasih, konfirmasi Anda telah diterima.</p>
+      </div>
+    </section>
+
+    <!-- OUR STORY -->
+    <section class="section story-section">
+      <div class="story-bg active" style="background-image:url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=1600&q=80')"></div>
+      <div class="story-bg" style="background-image:url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=80')"></div>
+      <div class="story-overlay"></div>
+      <div class="story-content container-lg">
+        <h3 class="heading text-center aos fade-down">Our Story</h3>
+        <div class="story-layout">
+          <div class="story-photos aos fade-left">
+            <div class="slide-track">
+              <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&q=80" alt="Story 1" />
+              <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&q=80" alt="Story 2" />
+              <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=600&q=80" alt="Story 3" />
+            </div>
+          </div>
+          <p class="story-vertical aos fade-in">Love Story</p>
+          <div class="story-timeline aos fade-right">
+            <div class="story-item">
+              <p class="story-date">09 September 2016</p>
+              <h4 class="story-title">Awal Bertemu</h4>
+              <p class="story-desc">Awal mula kami bertemu adalah dalam rentetan acara masa orientasi kampus di Jogja saat kami masih mahasiswa baru.</p>
+            </div>
+            <div class="story-item">
+              <p class="story-date">12 Desember 2016</p>
+              <h4 class="story-title">Menjalin Hubungan</h4>
+              <p class="story-desc">Setelah berkomunikasi beberapa bulan dan menemukan kecocokan akhirnya kami memutuskan untuk menjalin sebuah komitmen.</p>
+            </div>
+            <div class="story-item">
+              <p class="story-date">15 Januari 2023</p>
+              <h4 class="story-title">Bertunangan</h4>
+              <p class="story-desc">Setelah menjalin hubungan beberapa tahun, akhirnya kami memantabkan hati untuk membawa hubungan ini ke jenjang yang lebih serius.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section bg-section text-center">
+      <div class="container-lg">
+        <h3 class="heading aos fade-down">Our Gallery</h3>
+        <div class="gallery">
+          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&q=80" alt="1" class="aos fade-up" />
+          <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=600&q=80" alt="2" class="aos fade-up d1" />
+          <img src="https://images.unsplash.com/photo-1460978812857-470ed1c77af0?w=600&q=80" alt="3" class="aos fade-up d2" />
+          <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600&q=80" alt="4" class="aos fade-up d1" />
+          <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&q=80" alt="5" class="aos fade-up d2" />
+          <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&q=80" alt="6" class="aos fade-up d3" />
+        </div>
+      </div>
+    </section>
+
+    <!-- GIFT -->
+    <section class="section text-center">
+      <div class="container" style="max-width:400px">
+        <h3 class="heading aos fade-down">Wedding Gift</h3>
+        <p class="body-text aos fade-up" style="margin-bottom:2rem">
+          Tanpa mengurangi rasa hormat kami, bagi tamu yang ingin mengirimkan hadiah dapat mengirimkannya melalui:
+        </p>
+        <div class="card aos fade-up d2">
+          <p class="label" style="margin-bottom:0.5rem">Transfer Bank</p>
+          <p style="font-weight:500;font-size:1.1rem;margin-bottom:0.25rem">BCA - 123 456 789 10</p>
+          <p class="body-text" style="margin-bottom:1rem;font-size:13px">TIARA TERANG BINTANG</p>
+          <button type="button" class="btn" onclick="navigator.clipboard.writeText('12345678910')">Salin</button>
+        </div>
+        <div class="card aos fade-up d3" style="margin-top:1.25rem">
+          <p class="label" style="margin-bottom:0.5rem">Alamat Pengiriman Hadiah Fisik</p>
+          <p style="font-weight:500;margin-bottom:0.25rem">TIARA TERANG BINTANG</p>
+          <p class="body-text" style="margin-bottom:1rem;font-size:13px">Jl. Wulung No. 14, Papringan, Caturtunggal,<br/>Depok, Sleman, DIY 55281</p>
+          <button type="button" class="btn" onclick="navigator.clipboard.writeText('Jl. Wulung No. 14, Papringan, Caturtunggal, Depok, Sleman, DIY 55281')">Salin</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- WISHES -->
+    <section class="section bg-section text-center">
+      <div class="container" style="max-width:400px">
+        <h3 class="heading aos fade-down">Ucapan Doa Restu</h3>
+        <p class="body-text aos fade-up" style="margin-bottom:2rem">Ucapkan Selamat dan Doa Restu Kepada Mempelai.</p>
+        <form id="wishForm" class="space-y aos fade-up d2" style="text-align:left">
+          <input type="text" name="name" placeholder="Nama Anda" required class="form-input" />
+          <textarea name="wish" rows="4" placeholder="Ucapan & Doa Restu" required class="form-input"></textarea>
+          <button type="submit" class="btn" style="width:100%">Kirim Ucapan</button>
+        </form>
+        <div id="wishesList" style="margin-top:2rem" class="space-y">
+          <div class="wish-item"><p style="font-weight:500;margin-bottom:0.25rem">Ayu & Budi</p><p class="body-text" style="font-size:13px">Semoga menjadi keluarga yang sakinah, mawaddah, warahmah. Barakallah!</p></div>
+          <div class="wish-item"><p style="font-weight:500;margin-bottom:0.25rem">Rina</p><p class="body-text" style="font-size:13px">Selamat menempuh hidup baru. Semoga selalu dilimpahi kebahagiaan.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLOSING / FOOTER -->
+    <section class="closing">
+      <div class="closing-bg active" style="background-image:url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=80')"></div>
+      <div class="closing-bg" style="background-image:url('https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1600&q=80')"></div>
+      <div class="closing-overlay"></div>
+      <div class="closing-content">
+        <h3 class="heading aos fade-down">Doakan kami</h3>
+        <p class="closing-quote aos fade-up">
+          “Semoga Allah menghimpun yang terserak dari keduanya, memberkati mereka berdua dan kiranya
+          Allah meningkatkan kualitas keturunan mereka, menjadikannya pembuka pintu rahmat, sumber ilmu
+          dan hikmah serta pemberi rasa aman bagi umat.”
+        </p>
+        <p class="body-text aos fade-up d1" style="font-size:12px;margin-bottom:2.5rem">
+          (Doa Nabi Muhammad SAW, pada pernikahan putrinya Fatimah Azzahra dengan Ali Bin Abi Thalib)
+        </p>
+        <p class="body-text aos fade-up" style="font-size:13px">Kami yang berbahagia</p>
+        <h4 class="closing-names aos fade-up d2">Tiara & Jati</h4>
+        <p class="body-text aos fade-up d3" style="font-size:13.5px">
+          Merupakan sebuah kehormatan dan kebahagiaan bagi kami jika Bapak/Ibu/Saudara/i berkenan hadir
+          dan memberikan doa restu bagi kami. Terima kasih.
+        </p>
+      </div>
+    </section>
+
+    <footer style="padding:1.75rem;text-align:center;font-size:11px;color:#A39E97;letter-spacing:0.05em">
+      Made with ♥ · Minimalist Elegant · Astro
+    </footer>
+  </div>
+
+  <!-- Audio -->
+  <button id="audioBtn" class="audio-btn" aria-label="Toggle music">
+    <svg id="iconPlay" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+    <svg id="iconPause" class="hidden" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+  </button>
+  <audio id="bgm" loop preload="none">
+    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=soft-background-music-116010.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script is:inline>
+    // Cover open
+    const cover = document.getElementById('cover');
+    const main = document.getElementById('main-content');
+    const bgm = document.getElementById('bgm');
+    let isPlaying = false;
+
+    document.getElementById('openBtn').addEventListener('click', () => {
+      cover.classList.add('hidden');
+      main.classList.add('visible');
+      bgm.play().then(() => { isPlaying = true; updateIcon(); }).catch(()=>{});
+      setTimeout(observe, 350);
+    });
+
+    // Audio
+    const iconPlay = document.getElementById('iconPlay');
+    const iconPause = document.getElementById('iconPause');
+    function updateIcon() {
+      iconPlay.classList.toggle('hidden', isPlaying);
+      iconPause.classList.toggle('hidden', !isPlaying);
+    }
+    document.getElementById('audioBtn').addEventListener('click', () => {
+      if (isPlaying) { bgm.pause(); isPlaying = false; }
+      else { bgm.play(); isPlaying = true; }
+      updateIcon();
+    });
+
+    // Countdown
+    const target = new Date('2027-06-11T08:00:00+07:00').getTime();
+    function tick() {
+      const d = target - Date.now();
+      if (d < 0) return;
+      document.getElementById('days').textContent = String(Math.floor(d/86400000)).padStart(2,'0');
+      document.getElementById('hours').textContent = String(Math.floor((d%86400000)/3600000)).padStart(2,'0');
+      document.getElementById('minutes').textContent = String(Math.floor((d%3600000)/60000)).padStart(2,'0');
+      document.getElementById('seconds').textContent = String(Math.floor((d%60000)/1000)).padStart(2,'0');
+    }
+    tick(); setInterval(tick, 1000);
+
+    // Discrete circular carousel: 4 visible, step 1 every 1.5s (smooth, not marquee)
+    function startCircleCarousel() {
+      const track = document.getElementById('circleTrack');
+      if (!track) return;
+      const imgs = track.querySelectorAll('img');
+      const total = imgs.length;
+      const visible = 4;
+      const maxIdx = total - visible;
+      let idx = 0;
+      setInterval(() => {
+        idx += 1;
+        if (idx > maxIdx) {
+          track.style.transition = 'none';
+          track.style.transform = 'translateX(0)';
+          void track.offsetWidth;
+          track.style.transition = 'transform 1.4s cubic-bezier(0.25, 0.1, 0.25, 1)';
+          idx = 0;
+          return;
+        }
+        // step = one image width + gap (12px)
+        const first = imgs[0];
+        const step = first.getBoundingClientRect().width + 4;
+        track.style.transform = 'translateX(-' + (idx * step) + 'px)';
+      }, 4500);
+    }
+
+    // Bride slides LEFT, Groom slides RIGHT, same timing
+    function startSyncedCoupleSliders(interval = 3200) {
+      const brideEl = document.querySelector('[data-slider="bride"]');
+      const groomEl = document.querySelector('[data-slider="groom"]');
+      const bride = brideEl && brideEl.querySelector('.slide-track');
+      const groom = groomEl && groomEl.querySelector('.slide-track');
+      if (!bride || !groom) return;
+      const nB = bride.querySelectorAll('img').length;
+      const nG = groom.querySelectorAll('img').length;
+      const n = Math.min(nB, nG);
+      if (n < 2) return;
+
+      // For groom to slide RIGHT: reverse image order in DOM once
+      const gImgs = Array.from(groom.querySelectorAll('img'));
+      gImgs.reverse().forEach(img => groom.appendChild(img));
+      // start groom at last (which is original first after reverse... 
+      // after reverse, index 0 is former last. We want to start showing original first.
+      // After reverse, original first is at end. Set initial transform to last index.
+      groom.style.transform = 'translateX(-' + ((n - 1) * 100) + '%)';
+
+      let i = 0;
+      setInterval(() => {
+        i = (i + 1) % n;
+        // Bride → left
+        bride.style.transform = 'translateX(-' + (i * 100) + '%)';
+        // Groom → right: decreasing index after reverse = content moves right
+        const gIdx = (n - 1 - i);
+        groom.style.transform = 'translateX(-' + (gIdx * 100) + '%)';
+      }, interval);
+    }
+
+    function startSlider(containerSelector, interval = 3200) {
+      const containers = document.querySelectorAll(containerSelector);
+      containers.forEach(container => {
+        // skip couple photos (handled by synced)
+        if (container.getAttribute('data-slider') === 'bride' || container.getAttribute('data-slider') === 'groom') return;
+        const track = container.querySelector('.slide-track');
+        if (!track) return;
+        const imgs = track.querySelectorAll('img');
+        if (imgs.length < 2) return;
+        let i = 0;
+        setInterval(() => {
+          i = (i + 1) % imgs.length;
+          track.style.transform = 'translateX(-' + (i * 100) + '%)';
+        }, interval);
+      });
+    }
+
+    // Background slideshow (fade between .active)
+    function startBgSlider(selector, interval = 4000) {
+      const parents = document.querySelectorAll(selector);
+      parents.forEach(parent => {
+        // parent itself holds multiple .xxx-bg children
+      });
+      // Hero — slow horizontal slide
+      const heroTrack = document.getElementById('heroTrack');
+      if (heroTrack) {
+        const slides = heroTrack.querySelectorAll('.hero-bg');
+        const n = slides.length;
+        if (n > 1) {
+          let i = 0;
+          setInterval(() => {
+            i = (i + 1) % n;
+            heroTrack.style.transform = 'translateX(-' + (i * 100) + '%)';
+          }, 5500);
+        }
+      }
+      // Save the Date
+      const stdBgs = document.querySelectorAll('.std-bg');
+      if (stdBgs.length > 1) {
+        let i = 0;
+        setInterval(() => {
+          stdBgs[i].style.opacity = '0';
+          i = (i + 1) % stdBgs.length;
+          stdBgs[i].style.opacity = '0.35';
+        }, 4200);
+        stdBgs.forEach((el, idx) => { el.style.opacity = idx === 0 ? '0.35' : '0'; el.style.position = 'absolute'; el.style.inset = '0'; });
+      }
+      // Story
+      const storyBgs = document.querySelectorAll('.story-bg');
+      if (storyBgs.length > 1) {
+        let i = 0;
+        setInterval(() => {
+          storyBgs[i].style.opacity = '0';
+          i = (i + 1) % storyBgs.length;
+          storyBgs[i].style.opacity = '0.28';
+        }, 3800);
+        storyBgs.forEach((el, idx) => { el.style.opacity = idx === 0 ? '0.28' : '0'; el.style.position = 'absolute'; el.style.inset = '0'; });
+      }
+      // Closing
+      const closeBgs = document.querySelectorAll('.closing-bg');
+      if (closeBgs.length > 1) {
+        let i = 0;
+        setInterval(() => {
+          closeBgs[i].style.opacity = '0';
+          i = (i + 1) % closeBgs.length;
+          closeBgs[i].style.opacity = '0.32';
+        }, 4000);
+        closeBgs.forEach((el, idx) => { el.style.opacity = idx === 0 ? '0.32' : '0'; el.style.position = 'absolute'; el.style.inset = '0'; });
+      }
+    }
+
+    // Start image sliders
+    startCircleCarousel();
+    startSyncedCoupleSliders(5000);
+    startSlider('.story-photos', 5000);
+    startBgSlider();
+
+    // Scroll animations
+    function observe() {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-visible');
+            e.target.classList.add('in-view');
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.aos:not(.is-visible), .anim-from-right, .anim-from-left, .anim-from-bottom, .std-photo').forEach(el => obs.observe(el));
+    }
+
+    // Forms
+    document.getElementById('rsvpForm')?.addEventListener('submit', e => {
+      e.preventDefault();
+      document.getElementById('rsvpSuccess').classList.remove('hidden');
+      e.target.reset();
+    });
+    document.getElementById('wishForm')?.addEventListener('submit', e => {
+      e.preventDefault();
+      const n = e.target.name.value, w = e.target.wish.value;
+      const div = document.createElement('div');
+      div.className = 'wish-item';
+      div.innerHTML = '<p style="font-weight:500;margin-bottom:0.25rem">'+n+'</p><p class="body-text" style="font-size:13px">'+w+'</p>';
+      document.getElementById('wishesList').prepend(div);
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>

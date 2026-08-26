@@ -125,9 +125,59 @@
   .cover-right h1 { font-size: clamp(1.8rem, 8vw, 2.4rem); }
 }
 
-    /* ========== MAIN ========== */
-    #main-content { opacity: 0; transition: opacity 1.1s ease 0.2s; }
-    #main-content.visible { opacity: 1; }
+/* Cover seukuran smartphone di desktop (SEBELUM buka undangan) */
+
+
+/* ========== MAIN ========== */
+#main-content {
+  opacity: 0;
+  transition: opacity 1.1s ease 0.2s;
+}
+#main-content.visible {
+  opacity: 1;
+}
+
+/* ========== DESKTOP SPLIT SCREEN (setelah buka undangan) ========== */
+@media (min-width: 992px) {
+  #main-content {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .main-left {
+    width: 60%;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .main-left .bg {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .main-right {
+    width: 40%;
+    height: 100vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Mobile tetap full width */
+@media (max-width: 991px) {
+  .main-left {
+    display: none;
+  }
+  .main-right {
+    width: 100%;
+  }
+}
 
     /* Animations */
     .aos { opacity: 0; }
@@ -573,73 +623,137 @@
       letter-spacing: 0.2em;
     }
 
-    /* ========== SAVE THE DATE ========== */
-    /* Save the Date — landscape 4:3, aligned with WE column */
-    .std-section {
-      background: #FFFFFF;
-      padding: 1.75rem 0 0; /* tighter to quote above */
-      text-align: center;
-    }
-    .std-section .heading {
-      padding: 0 1.25rem;
-      margin-bottom: 2.5rem; /* wider gap to photos */
-    }
-    .std-photos {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.4rem;
-      max-width: 520px;
-      margin: 0 auto;
-      padding: 0 1.15rem; /* side margin from phone edge */
-      width: 100%;
-      box-sizing: border-box;
-    }
-    .std-photo {
-      overflow: hidden;
-      aspect-ratio: 4 / 3;
-      background: #eee;
-      position: relative;
-    }
-    .std-photo img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-      opacity: 0;
-      will-change: transform, opacity, clip-path;
-    }
-    .std-photo.left {
-      border-radius: 72px 6px 0 0;
-    }
-    .std-photo.right {
-      border-radius: 6px 6px 72px 0;
-    }
-    /* left: fade + rise from bottom */
-    .std-photo.left img {
-      transform: translateY(28px);
-    }
-    .std-photo.left.in-view img {
-      animation: stdFadeUp 1.6s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
-    }
-    /* right: fade + settle from top */
-    .std-photo.right img {
-      transform: translateY(-28px);
-    }
-    .std-photo.right.in-view img {
-      animation: stdFadeDown 1.6s cubic-bezier(0.25, 0.1, 0.25, 1) 0.15s forwards;
-    }
-    @keyframes stdFadeUp {
-      from { opacity: 0; transform: translateY(28px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes stdFadeDown {
-      from { opacity: 0; transform: translateY(-28px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+/* ========== SAVE THE DATE ========== */
+.std-section {
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  padding: 1.75rem 0 0;
+  text-align: center;
+}
+
+/* Wrapper Save the Date + Wedding Event */
+.std-we-wrap {
+  position: relative;
+  overflow: hidden;
+  background: #FFFFFF;
+}
+
+/* Track slide horizontal (mirip hero) */
+.std-slide-track {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  width: 100%;
+  transition: transform 2.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+  will-change: transform;
+}
+
+.std-slide-track .std-bg {
+  position: relative;
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 1;
+}
+
+/* Overlay lebih tipis → foto lebih kelihatan */
+.std-we-wrap > .std-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0.6) 100%
+  );
+  pointer-events: none;
+}
+
+/* Overlay putih transparan (mirip hero) */
+.std-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0.72) 40%,
+    rgba(255, 255, 255, 0.88) 100%
+  );
+  pointer-events: none;
+}
+
+/* Konten di atas background */
+.std-content {
+  position: relative;
+  z-index: 2;
+}
+
+.std-section .heading {
+  padding: 0 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+/* ===== biarkan yang di bawah ini tetap sama ===== */
+.std-photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 0 0.4rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+.std-photo {
+  overflow: hidden;
+  aspect-ratio: 8 / 5;
+  background: #eee;
+  position: relative;
+}
+.std-photo img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  opacity: 0;
+  will-change: transform, opacity, clip-path;
+}
+.std-photo.left {
+  border-radius: 72px 6px 0 0;
+}
+.std-photo.right {
+  border-radius: 6px 6px 72px 0;
+}
+.std-photo.left img {
+  transform: translateY(28px);
+}
+.std-photo.left.in-view img {
+  animation: stdFadeUp 1.6s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+.std-photo.right img {
+  transform: translateY(-28px);
+}
+.std-photo.right.in-view img {
+  animation: stdFadeDown 1.6s cubic-bezier(0.25, 0.1, 0.25, 1) 0.15s forwards;
+}
+@keyframes stdFadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes stdFadeDown {
+  from { opacity: 0; transform: translateY(-28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
     /* Wedding Event — full width, photo bg, vertical label, glass content */
     .we-section {
       position: relative;
       overflow: hidden;
-      padding: 0;
-      background: #e8e2d9;
+      padding: 0 0 3.55rem 0;   /* ruang kosong di bawah */
+      background: transparent;
     }
     .we-bg-fade {
       position: absolute;
@@ -647,7 +761,7 @@
       z-index: 0;
       background-size: cover;
       background-position: center 20%;
-      opacity: 0.35;
+      opacity: 0;
       filter: grayscale(0.15);
       pointer-events: none;
     }
@@ -662,23 +776,25 @@
         rgba(255,255,255,0.82) 100%
       );
     }
-    .we-inner {
-      display: grid;
-      grid-template-columns: 56px 1fr;
-      max-width: 520px;
-      margin: 0 auto;
-      min-height: 480px;
-      position: relative;
-      z-index: 2;
-      /* side inset so vertical bar not flush to screen */
-      width: calc(100% - 2.3rem);
-    }
+.we-inner {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  max-width: 100%;
+  margin: 0 auto;
+  min-height: 480px;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 0 0.35rem;   /* samakan dengan padding .std-photos */
+  box-sizing: border-box;
+}
     .we-label-col {
       background: #C4B8A8;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 2.5rem 0;
+      border-radius: 0 0 0 28px; /* hanya sudut kiri bawah melengkung */
     }
     .we-label-text {
       writing-mode: vertical-rl;
@@ -907,6 +1023,10 @@
 
   <!-- ==================== MAIN ==================== -->
   <div id="main-content">
+   <div class="main-left">
+    <div class="bg" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=80');"></div>
+    </div>
+   <div class="main-right">
 
     <!-- HERO + COUNTDOWN -->
     <section class="hero">
@@ -1014,9 +1134,19 @@
       <p class="quote-source aos fade-up">AR-RUM AYAT : 21</p>
     </section>
 
-    <!-- SAVE THE DATE -->
-    <section class="std-section">
-      <h3 class="heading aos fade-down" style="font-style:italic">Save the Date</h3>
+    <!-- SAVE THE DATE + WEDDING EVENT (satu background) -->
+<div class="std-we-wrap">
+  <!-- Background foto -->
+ <div class="std-slide-track" id="stdTrack">
+  <div class="std-bg" style="background-image:url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=80')"></div>
+  <div class="std-bg" style="background-image:url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1600&q=80')"></div>
+ </div>
+  <div class="std-overlay"></div>
+
+<!-- SAVE THE DATE -->
+  <section class="std-section">
+   <div class="std-content">
+    <h3 class="heading aos fade-down" style="font-style:italic">Save the Date</h3>
       <div class="std-photos aos fade-up">
         <div class="std-photo left">
           <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=600&fit=crop&q=80" alt="Couple 1" />
@@ -1025,11 +1155,11 @@
           <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800&h=600&fit=crop&q=80" alt="Couple 2" />
         </div>
       </div>
-    </section>
+   </div>
+  </section>
 
     <!-- WEDDING EVENT -->
     <section class="we-section">
-      <div class="we-bg-fade" style="background-image:url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1400&q=80')"></div>
       <div class="we-inner">
         <div class="we-label-col">
           <span class="we-label-text">Wedding Event</span>
@@ -1055,8 +1185,8 @@
             <a href="https://instagram.com/" target="_blank" rel="noopener" class="btn">Live Streaming</a>
           </div>
         </div>
-      </div>
     </section>
+       </div>
 
     <!-- RSVP -->
     <section class="section bg-section text-center">
@@ -1198,6 +1328,7 @@
     <footer style="padding:1.75rem;text-align:center;font-size:11px;color:#A39E97;letter-spacing:0.05em">
       Made with ♥ · Minimalist Elegant · Astro
     </footer>
+   </div>
   </div>
 
   <!-- Audio -->
@@ -1341,17 +1472,19 @@
           }, 5500);
         }
       }
-      // Save the Date
-      const stdBgs = document.querySelectorAll('.std-bg');
-      if (stdBgs.length > 1) {
-        let i = 0;
-        setInterval(() => {
-          stdBgs[i].style.opacity = '0';
-          i = (i + 1) % stdBgs.length;
-          stdBgs[i].style.opacity = '0.35';
-        }, 4200);
-        stdBgs.forEach((el, idx) => { el.style.opacity = idx === 0 ? '0.35' : '0'; el.style.position = 'absolute'; el.style.inset = '0'; });
-      }
+// Save the Date + Wedding Event — horizontal slide
+const stdTrack = document.getElementById('stdTrack');
+if (stdTrack) {
+  const slides = stdTrack.querySelectorAll('.std-bg');
+  const n = slides.length;
+  if (n > 1) {
+    let i = 0;
+    setInterval(() => {
+      i = (i + 1) % n;
+      stdTrack.style.transform = 'translateX(-' + (i * 100) + '%)';
+    }, 5000);
+  }
+}
       // Story
       const storyBgs = document.querySelectorAll('.story-bg');
       if (storyBgs.length > 1) {

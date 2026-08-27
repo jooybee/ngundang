@@ -432,46 +432,44 @@
       color: #1E1E1E;
     }
 
-    /* Circular carousel — fully visible, straddling beige/white boundary */
-    .circle-carousel {
-      width: min(320px, 86vw);
-      margin: 0 auto;
-      position: relative;
-      z-index: 5;
-      /* midline of circles = brown/white boundary */
-      transform: translateY(50%);
-      overflow: hidden;
-    }
-    @media (min-width: 768px) {
-      .circle-carousel { width: 340px; }
-    }
-    .circle-carousel-track {
-      display: flex;
-      gap: 4px;
-      transition: transform 1.4s cubic-bezier(0.25, 0.1, 0.25, 1);
-      will-change: transform;
-    }
-    .circle-carousel-track img {
-      width: 78px;
-      height: 78px;
-      border-radius: 50%;
-      object-fit: cover;
-      flex-shrink: 0;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-      border: 3px solid #FFFFFF;
-      background: #FFFFFF;
-      opacity: 1;
-    }
-    @media (min-width: 768px) {
-    .circle-carousel {
-  width: min(300px, 84vw);
-  margin: 0.5rem auto 0;
+/* Circular carousel — tepat 4 lingkaran */
+.circle-carousel {
+  --circle-size: 78px;
+  --circle-gap: 4px;
+  width: calc(var(--circle-size) * 4 + var(--circle-gap) * 3); /* = 324px */
+  max-width: 90vw;          /* jaga-jaga layar sangat kecil */
+  margin: 0 auto;
   position: relative;
   z-index: 5;
   transform: translateY(50%);
   overflow: hidden;
-    }
-    }
+}
+
+/* layar kecil: kecilkan lingkaran supaya tetap pas 4 */
+@media (max-width: 380px) {
+  .circle-carousel {
+    --circle-size: 68px;    /* 68*4 + 4*3 = 284px → muat di HP sempit */
+  }
+}
+
+.circle-carousel-track {
+  display: flex;
+  gap: var(--circle-gap);
+  transition: transform 1.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+  will-change: transform;
+}
+
+.circle-carousel-track img {
+  width: var(--circle-size);
+  height: var(--circle-size);
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  border: 3px solid #FFFFFF;
+  background: #FFFFFF;
+  opacity: 1;
+}
 
     /* Person block — fully centered */
     .person-block {
@@ -626,7 +624,7 @@
 /* ========== SAVE THE DATE ========== */
 .std-section {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   background: transparent;
   padding: 1.75rem 0 0;
   text-align: center;
@@ -700,6 +698,7 @@
 }
 
 /* ===== biarkan yang di bawah ini tetap sama ===== */
+
 .std-photos {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -709,42 +708,51 @@
   padding: 0 0.4rem;
   width: 100%;
   box-sizing: border-box;
+  overflow: visible;
 }
+
 .std-photo {
   overflow: hidden;
   aspect-ratio: 8 / 5;
-  background: #eee;
+  background: transparent;
   position: relative;
-}
-.std-photo img {
-  width: 100%; height: 100%; object-fit: cover; display: block;
   opacity: 0;
-  will-change: transform, opacity, clip-path;
+  will-change: transform, opacity;
 }
+
+.std-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 1;
+}
+
 .std-photo.left {
   border-radius: 72px 6px 0 0;
+  transform: translateY(-80px);
 }
+
 .std-photo.right {
   border-radius: 6px 6px 72px 0;
+  transform: translateY(80px);
 }
-.std-photo.left img {
-  transform: translateY(28px);
+
+.std-photo.left.in-view {
+  animation: stdBoxFromTop 1.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
-.std-photo.left.in-view img {
-  animation: stdFadeUp 1.6s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+
+.std-photo.right.in-view {
+  animation: stdBoxFromBottom 1.8s cubic-bezier(0.25, 0.1, 0.25, 1) 0.12s forwards;
 }
-.std-photo.right img {
-  transform: translateY(-28px);
-}
-.std-photo.right.in-view img {
-  animation: stdFadeDown 1.6s cubic-bezier(0.25, 0.1, 0.25, 1) 0.15s forwards;
-}
-@keyframes stdFadeUp {
-  from { opacity: 0; transform: translateY(28px); }
+
+@keyframes stdBoxFromTop {
+  from { opacity: 0; transform: translateY(-80px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-@keyframes stdFadeDown {
-  from { opacity: 0; transform: translateY(-28px); }
+
+@keyframes stdBoxFromBottom {
+  from { opacity: 0; transform: translateY(80px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
@@ -1080,13 +1088,12 @@
         <h3 class="heading text-center aos fade-down bride-groom-title">Bride & Groom</h3>
 
         <!-- THE BRIDE -->
-        <div class="person-block aos fade-up">
+        <div class="person-block aos fade-right">
           <div class="person-photo-row">
             <div class="person-photo" data-slider="bride">
               <div class="slide-track">
                 <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=600&h=600&fit=crop&q=80" alt="Bride 1" />
                 <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=600&fit=crop&q=80" alt="Bride 2" />
-                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&h=600&fit=crop&q=80" alt="Bride 3" />
               </div>
             </div>
             <span class="person-label bride-label anim-from-right">The Bride</span>
@@ -1102,14 +1109,13 @@
         <p class="person-and aos fade-in">and</p>
 
         <!-- THE GROOM -->
-        <div class="person-block aos fade-up">
+        <div class="person-block aos fade-left">
           <div class="person-photo-row groom-row">
             <span class="person-label groom-label anim-from-left">The Groom</span>
             <div class="person-photo" data-slider="groom">
               <div class="slide-track">
                 <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=600&fit=crop&q=80" alt="Groom 1" />
                 <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&h=600&fit=crop&q=80" alt="Groom 2" />
-                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&h=600&fit=crop&q=80" alt="Groom 3" />
               </div>
             </div>
           </div>
@@ -1147,7 +1153,7 @@
   <section class="std-section">
    <div class="std-content">
     <h3 class="heading aos fade-down" style="font-style:italic">Save the Date</h3>
-      <div class="std-photos aos fade-up">
+      <div class="std-photos">
         <div class="std-photo left">
           <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=600&fit=crop&q=80" alt="Couple 1" />
         </div>
@@ -1165,21 +1171,21 @@
           <span class="we-label-text">Wedding Event</span>
         </div>
         <div class="we-content">
-          <div class="we-event aos fade-up">
+          <div class="we-event">
             <p class="label">Akad Nikah</p>
             <h4 class="event-title">Minggu, 11 Juni 2027</h4>
             <p class="event-time">08.00 – 09.00 WIB</p>
             <p class="event-loc">Masjid Ahmad Dahlan UMY<br/>Jl. Brawijaya, Geblagan, Tamantirto<br/>Kasihan, Bantul, DIY 55183</p>
             <a href="https://maps.app.goo.gl/" target="_blank" rel="noopener" class="btn">Buka Maps</a>
           </div>
-          <div class="we-event aos fade-up">
+          <div class="we-event">
             <p class="label">Resepsi</p>
             <h4 class="event-title">Minggu, 11 Juni 2027</h4>
             <p class="event-time">10.00 – 13.00 WIB</p>
             <p class="event-loc">Masjid Ahmad Dahlan UMY<br/>Jl. Brawijaya, Geblagan, Tamantirto<br/>Kasihan, Bantul, DIY 55183</p>
             <a href="https://maps.app.goo.gl/" target="_blank" rel="noopener" class="btn">Buka Maps</a>
           </div>
-          <div class="we-event aos fade-up">
+          <div class="we-event">
             <p class="label">Live Streaming</p>
             <p class="event-loc">Bagi tamu yang berhalangan hadir, silakan menyaksikan siaran langsung pernikahan kami melalui tautan di bawah.</p>
             <a href="https://instagram.com/" target="_blank" rel="noopener" class="btn">Live Streaming</a>

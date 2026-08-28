@@ -1098,7 +1098,7 @@
   color: #7A736C;
   line-height: 1.8;
   font-weight: 400;
-         }
+}
     
 /* ========== GALLERY ========== */
 .gal {
@@ -1200,6 +1200,129 @@
       background: rgba(255,255,255,0.65); border-radius: 10px;
       padding: 1rem 1.15rem; font-size: 13.5px; text-align: left;
     }
+
+/* ========== UCAPAN DOA RESTU ========== */
+.ucapan-section {
+  background: var(--cream, #F7F3EE);
+  padding: 5rem 1.5rem;
+  text-align: center;
+}
+
+.ucapan-container {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.ucapan-label {
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--accent, #9A7B5A);
+  margin-bottom: 0.75rem;
+}
+
+.ucapan-heading {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.85rem, 4.5vw, 2.5rem);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.03em;
+  margin-bottom: 1rem;
+  color: var(--elegant, #1E1E1E);
+}
+
+.ucapan-desc {
+  font-size: 14.5px;
+  color: var(--muted, #7A736C);
+  line-height: 1.85;
+  margin-bottom: 2rem;
+}
+
+.ucapan-form {
+  text-align: left;
+  margin-bottom: 2.5rem;
+}
+
+.ucapan-form .form-input {
+  width: 100%;
+  padding: 0.85rem 1.1rem;
+  background: #fff;
+  border: 1px solid #E5DFD6;
+  border-radius: 10px;
+  font-size: 14px;
+  color: var(--elegant, #1E1E1E);
+  outline: none;
+  font-family: inherit;
+  margin-bottom: 0.85rem;
+  transition: border 0.25s;
+}
+
+.ucapan-form .form-input:focus {
+  border-color: var(--accent, #9A7B5A);
+}
+
+.ucapan-form textarea.form-input {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.ucapan-btn {
+  width: 100%;
+  padding: 0.85rem 1.5rem;
+  background: transparent;
+  border: 1px solid var(--elegant, #1E1E1E);
+  color: var(--elegant, #1E1E1E);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: inherit;
+  border-radius: 2px;
+}
+
+.ucapan-btn:hover {
+  background: var(--elegant, #1E1E1E);
+  color: var(--cream, #F7F3EE);
+}
+
+.ucapan-status {
+  font-size: 13px;
+  margin-top: 0.9rem;
+  text-align: center;
+  min-height: 20px;
+}
+
+.wish-list {
+  text-align: left;
+}
+
+.wish-item {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(154, 123, 90, 0.12);
+  border-radius: 10px;
+  padding: 1rem 1.15rem;
+  margin-bottom: 0.85rem;
+}
+
+.wish-item strong {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--elegant, #1E1E1E);
+}
+
+.wish-item p {
+  margin: 0.4rem 0 0.3rem;
+  color: var(--muted, #7A736C);
+  font-size: 13.5px;
+  line-height: 1.65;
+}
+
+.wish-item small {
+  color: #a89f94;
+  font-size: 11px;
+}
 
 /* ========== WEDDING GIFT ========== */
 .gift-section {
@@ -1709,6 +1832,44 @@
   </div>
 </section>
 
+<!-- UCAPAN DOA RESTU -->
+<section class="ucapan-section">
+  <div class="ucapan-container">
+    <p class="ucapan-label">Doa Restu</p>
+    <h3 class="ucapan-heading">Ucapan & Doa</h3>
+    <p class="ucapan-desc">
+      Tinggalkan doa dan ucapan terbaik untuk kami.
+    </p>
+
+    <!-- FORM -->
+    <form id="wishForm" class="ucapan-form">
+      <input
+        type="text"
+        id="wishName"
+        class="form-input"
+        placeholder="Nama Anda"
+        required
+        maxlength="60"
+        autocomplete="name"
+      />
+      <textarea
+        id="wishMessage"
+        class="form-input"
+        placeholder="Tulis doa & ucapan..."
+        required
+        maxlength="500"
+      ></textarea>
+      <button type="submit" class="ucapan-btn">Kirim Ucapan</button>
+      <p id="wishStatus" class="ucapan-status"></p>
+    </form>
+
+    <!-- DAFTAR UCAPAN -->
+    <div id="wishList" class="wish-list">
+      <p style="text-align:center;color:#7A736C;font-size:14px;">Memuat ucapan...</p>
+    </div>
+  </div>
+</section>
+
 <!-- GIFT -->
 <section class="section gift-section text-center">
   <div class="container gift-container">
@@ -2123,6 +2284,7 @@
     window.addEventListener('resize', function () { setX(offsetFor(index), false); });
   })();
 
+
   /* ========== 10. GIFT COPY ========== */
   (function () {
     function copyText(text) {
@@ -2205,6 +2367,107 @@
       '.aos:not(.is-visible), .anim-from-right, .anim-from-left, .anim-from-bottom, .std-photo, .story-photo'
     ).forEach(function (el) { obs.observe(el); });
   };
+</script>
+<script is:inline src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script is:inline>
+  // ====== GANTI DENGAN DATA SUPABASE KAMU ======
+  const SUPABASE_URL = 'https://qjuonhqqajuywtnlrupq.supabase.co';
+  const SUPABASE_ANON_KEY = 'sb_publishable_KPsclwO--l39wQV33o_HTQ_XagyCgZS';
+  // =============================================
+
+// PENTING: pakai nama supabaseClient, JANGAN supabase
+  const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text || '';
+    return div.innerHTML;
+  }
+
+  async function loadWishes() {
+    const listEl = document.getElementById('wishList');
+    if (!listEl) return;
+
+    try {
+      const { data, error } = await supabaseClient
+        .from('wishes')
+        .select('name, message, created_at')
+        .order('created_at', { ascending: false })
+        .limit(50);
+
+      if (error) throw error;
+
+      if (!data || data.length === 0) {
+        listEl.innerHTML = '<p style="text-align:center;color:#7A736C;font-size:14px;">Jadilah yang pertama memberi doa 🙏</p>';
+        return;
+      }
+
+      listEl.innerHTML = data.map(w => `
+        <div class="wish-item">
+          <strong>${escapeHtml(w.name)}</strong>
+          <p>${escapeHtml(w.message)}</p>
+          <small>${new Date(w.created_at).toLocaleDateString('id-ID', {
+            day: 'numeric', month: 'long', year: 'numeric'
+          })}</small>
+        </div>
+      `).join('');
+    } catch (err) {
+      console.error(err);
+      listEl.innerHTML = `<p style="text-align:center;color:#c45c5c;font-size:13px;">Gagal memuat: ${err.message}</p>`;
+    }
+  }
+
+  function initForm() {
+    const form = document.getElementById('wishForm');
+    const statusEl = document.getElementById('wishStatus');
+    if (!form) return;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const name = document.getElementById('wishName').value.trim();
+      const message = document.getElementById('wishMessage').value.trim();
+      if (!name || !message) return;
+
+      statusEl.textContent = 'Mengirim...';
+      statusEl.style.color = '#7A736C';
+
+      try {
+        const { error } = await supabaseClient
+          .from('wishes')
+          .insert([{ name, message }]);
+
+        if (error) throw error;
+
+        statusEl.textContent = 'Terima kasih! Doa & ucapanmu sudah terkirim 🙏';
+        statusEl.style.color = '#9A7B5A';
+        form.reset();
+        loadWishes();
+      } catch (err) {
+        console.error(err);
+        statusEl.textContent = 'Gagal: ' + err.message;
+        statusEl.style.color = '#c45c5c';
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      initForm();
+      loadWishes();
+    });
+  } else {
+    initForm();
+    loadWishes();
+  }
+
+  supabaseClient
+    .channel('wishes-channel')
+    .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'wishes' }, () => {
+      loadWishes();
+    })
+    .subscribe();
 </script>
 </body>
 </html>

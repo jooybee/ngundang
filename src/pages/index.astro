@@ -881,20 +881,28 @@
 
     /* ========= RSVP ========= */
     .rsvp-section {
-  background: #C4B8A8;
-}
+      background: #C4B8A8;
+      overflow: visible;
+    }
 
-.rsvp-section .heading {
-  color: #fff !important;
-}
+    .rsvp-section .heading {
+      color: #fff !important;
+    }
 
-.rsvp-section .body-text {
-  color: rgba(255, 255, 255, 0.9) !important;
-}
+    .rsvp-section .body-text {
+      color: rgba(255, 255, 255, 0.9) !important;
+    }
 
-/* Opsional: biar label/teks kecil juga cocok */
-.rsvp-section .label {
-  color: rgba(255, 255, 255, 0.85) !important;
+    .rsvp-section .label {
+      color: rgba(255, 255, 255, 0.85) !important;
+    }
+
+    .rsvp-section iframe {
+      width: 100% !important;
+      min-height: 320px;
+      border: none;
+      display: block;
+      background: transparent;
     }
 
 /* ========== OUR STORY ========== */
@@ -1092,89 +1100,19 @@
   font-weight: 400;
          }
     
-/* ========== GALLERY SLIDESHOW ========== */
-.gslide {
-  max-width: 640px;
-  margin: 0 auto;
-  padding: 0 0.75rem;
-  box-sizing: border-box;
-}
-
-.gslide-main {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  border-radius: 10px;
-  overflow: hidden;          /* foto besar tidak keluar */
-  background: #e8e2d9;
-  margin-bottom: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.10);
-}
-
-.gslide-main img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: opacity 0.35s ease;
-}
-
-.gslide-main img.fade {
-  opacity: 0.3;
-}
-
-/* Viewport strip — WAJIB overflow hidden */
-.gslide-thumbs {
-  width: 100%;
-  overflow: hidden;          /* kunci: foto tidak keluar */
-  touch-action: pan-y;       /* biar vertical scroll halaman tetap jalan, horizontal kita handle */
-  -webkit-user-select: none;
-  user-select: none;
-}
-
-.gslide-track {
-  display: flex;
-  gap: 10px;
-  width: max-content;        /* track selebar semua item */
-  will-change: transform;
-  /* transition di-set via JS saat tidak drag */
-}
-
-.gslide-item {
-  flex: 0 0 auto;
-  width: 72px;               /* ukuran tetap → hitungan slide akurat */
-  height: 72px;
-  border: 0;
-  padding: 0;
-  margin: 0;
-  border-radius: 8px;
-  overflow: hidden;
-  cursor: pointer;
-  background: #ddd;
-  opacity: 0.5;
-  transform: scale(0.92);
-  transition: opacity 0.25s ease, transform 0.25s ease;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.gslide-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  pointer-events: none;
-}
-
-.gslide-item.is-active {
-  opacity: 1;
-  transform: scale(1);
-}
-
-@media (min-width: 480px) {
-  .gslide-item {
-    width: 88px;
-    height: 88px;
-  }
-  }
+/* ========== GALLERY ========== */
+    .gallery {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem;
+    }
+    @media (min-width: 768px) {
+      .gallery { grid-template-columns: 1fr 1fr 1fr; gap: 0.9rem; }
+    }
+    .gallery img {
+      width: 100%; height: 11rem; object-fit: cover; border-radius: 6px;
+      transition: transform 0.45s ease;
+    }
+    @media (min-width: 768px) { .gallery img { height: 15rem; } }
+    .gallery img:hover { transform: scale(1.03); }
 
     /* ========== GIFT / FORMS ========== */
     .card {
@@ -1395,7 +1333,7 @@
   </section>
 
     <!-- WEDDING EVENT -->
-    <class="we-section">
+    <div class="we-section">
       <div class="we-inner">
         <div class="we-label-col">
           <span class="we-label-text">Wedding Event</span>
@@ -1421,21 +1359,21 @@
             <a href="https://instagram.com/" target="_blank" rel="noopener" class="btn">Live Streaming</a>
           </div>
         </div>
-    </section>
-       </div>
+      </div>
+    </div>
+</div><!-- end std-we-wrap -->
 
-    <!-- RSVP -->
-   <section class="section rsvp-section text-center">
+    <!-- RSVP (format yang sama seperti sebelum ubahan gallery) -->
+    <section class="section rsvp-section text-center">
       <div class="container" style="max-width:400px">
         <h3 class="heading aos fade-down">RSVP</h3>
         <p class="body-text aos fade-up" style="margin-bottom:2rem">
           Kirimkan Konfirmasi Kehadiran Kepada Mempelai Melalui Form Berikut.
         </p>
 
-<iframe data-tally-src="https://tally.so/embed/ODMZ1a?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="200" frameborder="0" marginheight="0" marginwidth="0" title="RSVP"></iframe>
-<script is:inline>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
-      
-        
+        <iframe data-tally-src="https://tally.so/embed/ODMZ1a?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="240" frameborder="0" marginheight="0" marginwidth="0" title="RSVP"></iframe>
+        <script is:inline>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+
         <p id="rsvpSuccess" class="hidden" style="margin-top:1rem;color:var(--accent);font-size:14px">Terima kasih, konfirmasi Anda telah diterima.</p>
       </div>
     </section>
@@ -1496,50 +1434,19 @@
 </div>
       
 <!-- GALLERY -->
-<section class="section bg-section text-center">
-  <div class="container-lg">
-    <h3 class="heading aos fade-down">Our Gallery</h3>
-
-    <div class="gslide" id="gslide">
-      <!-- Foto besar -->
-      <div class="gslide-main">
-        <img id="gslideMain"
-          src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1200&q=80"
-          alt="Gallery" />
-      </div>
-
-      <!-- Thumbnail — bisa di-swipe -->
-      <div class="gslide-thumbs" id="gslideThumbs">
-        <div class="gslide-track" id="gslideTrack">
-          <button type="button" class="gslide-item is-active"
-            data-full="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1200&q=80">
-            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400&q=80" alt="" />
-          </button>
-          <button type="button" class="gslide-item"
-            data-full="https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=1200&q=80">
-            <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=400&q=80" alt="" />
-          </button>
-          <button type="button" class="gslide-item"
-            data-full="https://images.unsplash.com/photo-1460978812857-470ed1c77af0?w=1200&q=80">
-            <img src="https://images.unsplash.com/photo-1460978812857-470ed1c77af0?w=400&q=80" alt="" />
-          </button>
-          <button type="button" class="gslide-item"
-            data-full="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=1200&q=80">
-            <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=400&q=80" alt="" />
-          </button>
-          <button type="button" class="gslide-item"
-            data-full="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1200&q=80">
-            <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=400&q=80" alt="" />
-          </button>
-          <button type="button" class="gslide-item"
-            data-full="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1200&q=80">
-            <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=400&q=80" alt="" />
-          </button>
+    <section class="section bg-section text-center">
+      <div class="container-lg">
+        <h3 class="heading aos fade-down">Our Gallery</h3>
+        <div class="gallery">
+          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&q=80" alt="1" class="aos fade-up" />
+          <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=600&q=80" alt="2" class="aos fade-up d1" />
+          <img src="https://images.unsplash.com/photo-1460978812857-470ed1c77af0?w=600&q=80" alt="3" class="aos fade-up d2" />
+          <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600&q=80" alt="4" class="aos fade-up d1" />
+          <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&q=80" alt="5" class="aos fade-up d2" />
+          <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&q=80" alt="6" class="aos fade-up d3" />
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
     <!-- GIFT -->
     <section class="section text-center">
@@ -1842,178 +1749,6 @@ if (storyTrack) {
   }, 4000);
 }
 
-
-// ========== Gallery Slideshow + swipe ==========
-(function () {
-  var thumbs = document.getElementById('gslideThumbs');
-  var track  = document.getElementById('gslideTrack');
-  var main   = document.getElementById('gslideMain');
-  if (!thumbs || !track || !main) return;
-
-  var items = Array.prototype.slice.call(track.querySelectorAll('.gslide-item'));
-  if (!items.length) return;
-
-  var index = 0;
-  var x = 0;                 // posisi translateX saat ini
-  var startX = 0;
-  var startY = 0;
-  var baseX = 0;
-  var dragging = false;
-  var moved = false;
-  var timer = null;
-  var GAP = 10;
-
-  function itemSize() {
-    return items[0].offsetWidth + GAP;
-  }
-
-  function maxX() {
-    var total = items.length * items[0].offsetWidth + (items.length - 1) * GAP;
-    var view = thumbs.offsetWidth;
-    return Math.max(0, total - view);
-  }
-
-  function clamp(v) {
-    var m = maxX();
-    if (v < 0) return 0;
-    if (v > m) return m;
-    return v;
-  }
-
-  // geser supaya item aktif kelihatan (usahakan di tengah)
-  function offsetFor(i) {
-    var size = itemSize();
-    var view = thumbs.offsetWidth;
-    var ideal = i * size - (view / 2 - items[0].offsetWidth / 2);
-    return clamp(ideal);
-  }
-
-  function setX(nx, animate) {
-    x = clamp(nx);
-    track.style.transition = animate
-      ? 'transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1)'
-      : 'none';
-    track.style.transform = 'translate3d(' + (-x) + 'px,0,0)';
-  }
-
-  function go(i, animate) {
-    index = (i + items.length) % items.length;
-
-    for (var n = 0; n < items.length; n++) {
-      if (n === index) items[n].classList.add('is-active');
-      else items[n].classList.remove('is-active');
-    }
-
-    main.classList.add('fade');
-    var src = items[index].getAttribute('data-full');
-    setTimeout(function () {
-      main.src = src;
-      main.classList.remove('fade');
-    }, 160);
-
-    setX(offsetFor(index), animate !== false);
-  }
-
-  function next() { go(index + 1, true); }
-
-  function startAuto() {
-    clearInterval(timer);
-    timer = setInterval(next, 4000);
-  }
-
-  function stopAuto() {
-    clearInterval(timer);
-  }
-
-  // klik thumbnail
-  items.forEach(function (btn, i) {
-    btn.addEventListener('click', function (e) {
-      if (moved) {
-        e.preventDefault();
-        return;
-      }
-      go(i, true);
-      startAuto();
-    });
-  });
-
-  // ---- Touch / pointer swipe ----
-  function onDown(clientX, clientY) {
-    dragging = true;
-    moved = false;
-    startX = clientX;
-    startY = clientY;
-    baseX = x;
-    stopAuto();
-    track.style.transition = 'none';
-  }
-
-  function onMove(clientX, clientY) {
-    if (!dragging) return;
-    var dx = clientX - startX;
-    var dy = clientY - startY;
-
-    // jika geser vertikal lebih besar, biarkan page scroll
-    if (!moved && Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 8) {
-      dragging = false;
-      return;
-    }
-
-    if (Math.abs(dx) > 6) moved = true;
-    setX(baseX - dx, false);
-  }
-
-  function onUp() {
-    if (!dragging) return;
-    dragging = false;
-
-    // snap ke item terdekat
-    var size = itemSize();
-    var nearest = Math.round(x / size);
-    nearest = Math.max(0, Math.min(items.length - 1, nearest));
-
-    // jika swipe cukup jauh, prioritaskan arah swipe
-    // (opsional: tetap pakai nearest saja sudah cukup natural)
-
-    go(nearest, true);
-    startAuto();
-  }
-
-  // Pointer events (cover mouse + touch modern)
-  thumbs.addEventListener('pointerdown', function (e) {
-    if (e.pointerType === 'mouse' && e.button !== 0) return;
-    thumbs.setPointerCapture(e.pointerId);
-    onDown(e.clientX, e.clientY);
-  });
-  thumbs.addEventListener('pointermove', function (e) {
-    onMove(e.clientX, e.clientY);
-  });
-  thumbs.addEventListener('pointerup', onUp);
-  thumbs.addEventListener('pointercancel', onUp);
-
-  // fallback touch lama
-  thumbs.addEventListener('touchstart', function (e) {
-    if (e.touches.length !== 1) return;
-    onDown(e.touches[0].clientX, e.touches[0].clientY);
-  }, { passive: true });
-  thumbs.addEventListener('touchmove', function (e) {
-    if (e.touches.length !== 1) return;
-    onMove(e.touches[0].clientX, e.touches[0].clientY);
-  }, { passive: true });
-  thumbs.addEventListener('touchend', onUp);
-  thumbs.addEventListener('touchcancel', onUp);
-
-  // init
-  setTimeout(function () {
-    go(0, false);
-    startAuto();
-  }, 80);
-
-  window.addEventListener('resize', function () {
-    setX(offsetFor(index), false);
-  });
-})();
-      
       // Closing
       const closeBgs = document.querySelectorAll('.closing-bg');
       if (closeBgs.length > 1) {

@@ -1201,29 +1201,194 @@
       padding: 1rem 1.15rem; font-size: 13.5px; text-align: left;
     }
 
-    /* ========== FOOTER / CLOSING ========== */
-    .closing {
-      position: relative; overflow: hidden; text-align: center;
-      padding: 6.5rem 1.5rem 5rem;
-    }
-    .closing-bg {
-      position: absolute; inset: 0; z-index: 0;
-      background-size: cover; background-position: center;
-      transition: opacity 1.5s ease; opacity: 0.32;
-    }
-    .closing-overlay {
-      position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(180deg, rgba(247,243,238,0.8) 0%, rgba(247,243,238,0.9) 100%);
-    }
-    .closing-content { position: relative; z-index: 2; max-width: 540px; margin: 0 auto; }
-    .closing-quote {
-      font-family: 'Cormorant Garamond', serif; font-style: italic;
-      font-size: 15.5px; color: var(--muted); line-height: 1.85; margin-bottom: 0.75rem;
-    }
-    .closing-names {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 4vw, 2.4rem); margin: 1.5rem 0 1rem;
-    }
+/* ========== WEDDING GIFT ========== */
+.gift-section {
+  background: var(--cream);
+  position: relative;
+  z-index: 2;
+}
+
+.gift-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 0 0.7rem;
+}
+
+.gift-card {
+  background: #FFFFFF;
+  border-radius: 12px;
+  padding: 1.6rem 1.4rem 1.5rem;
+  box-shadow: 0 6px 22px rgba(0,0,0,0.06);
+  border: 1px solid rgba(154, 123, 90, 0.12);
+  text-align: center;
+}
+
+.gift-label {
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+  font-weight: 400;
+}
+
+.gift-bank {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.15rem;
+  color: var(--elegant);
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.04em;
+}
+
+.gift-number {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--elegant);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.35rem;
+}
+
+.gift-name {
+  font-size: 13.5px;
+  color: var(--muted);
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+.gift-address {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.gift-btn {
+  display: inline-block;
+  padding: 0.65rem 1.6rem;
+  background: #8B7355;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 400;
+  transition: background 0.25s, transform 0.2s;
+}
+
+.gift-btn:hover {
+  background: #6F5A42;
+}
+
+.gift-btn.is-copied {
+  background: #5a7a5a;
+}
+
+/* ========== CLOSING ========== */
+.closing {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  /* tinggi mirip hero */
+  min-height: 85vh;
+  /* konten didorong ke bawah */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 1.5rem 4.5rem;
+}
+
+.closing-slide-track {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  will-change: transform;
+}
+
+.closing-slide-track .closing-bg {
+  position: relative;
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Gradasi: foto kelihatan di atas, meredup ke bawah (mirip hero) */
+.closing-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.12) 0%,
+    rgba(0, 0, 0, 0.08) 30%,
+    rgba(217, 208, 196, 0.40) 65%,
+    rgba(217, 208, 196, 0.82) 85%,
+    #D9D0C4 100%
+  );
+}
+
+.closing-content {
+  position: relative;
+  z-index: 2;
+  max-width: 540px;
+  width: 100%;
+  margin: 0 auto;
+  /* sedikit ruang dari ujung bawah section */
+  padding-bottom: 0.5rem;
+}
+
+/* Label: sama seperti "The Wedding of" di hero */
+.closing-label {
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0.6rem;
+  font-weight: 400;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* Nama: sama seperti "Tiara & Jati" di hero */
+.closing-names {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.2rem, 6vw, 3.2rem);  /* sama hero */
+  font-weight: 500;
+  font-style: normal;
+  color: #fff;
+  margin: 0.25rem 0 1rem;
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.3);
+}
+
+/* Ucapan terima kasih — opsional, sedikit lebih kecil dari nama */
+.closing-thanks {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.75;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
+  max-width: 28rem;
+  margin: 0 auto;
+}
+
+.site-footer {
+  background: #D9D0C4;
+  padding: 2.25rem 1.5rem 2.5rem; /* sedikit lebih tinggi */
+  text-align: center;
+  font-size: 11px;
+  color: #7A736C;
+  letter-spacing: 0.05em;
+}
 
     /* Audio */
     .audio-btn {
@@ -1544,55 +1709,63 @@
   </div>
 </section>
 
-    <!-- GIFT -->
-    <section class="section text-center">
-      <div class="container" style="max-width:400px">
-        <h3 class="heading aos fade-down">Wedding Gift</h3>
-        <p class="body-text aos fade-up" style="margin-bottom:2rem">
-          Tanpa mengurangi rasa hormat kami, bagi tamu yang ingin mengirimkan hadiah dapat mengirimkannya melalui:
-        </p>
-        <div class="card aos fade-up d2">
-          <p class="label" style="margin-bottom:0.5rem">Transfer Bank</p>
-          <p style="font-weight:500;font-size:1.1rem;margin-bottom:0.25rem">BCA - 123 456 789 10</p>
-          <p class="body-text" style="margin-bottom:1rem;font-size:13px">TIARA TERANG BINTANG</p>
-          <button type="button" class="btn" onclick="navigator.clipboard.writeText('12345678910')">Salin</button>
-        </div>
-        <div class="card aos fade-up d3" style="margin-top:1.25rem">
-          <p class="label" style="margin-bottom:0.5rem">Alamat Pengiriman Hadiah Fisik</p>
-          <p style="font-weight:500;margin-bottom:0.25rem">TIARA TERANG BINTANG</p>
-          <p class="body-text" style="margin-bottom:1rem;font-size:13px">Jl. Wulung No. 14, Papringan, Caturtunggal,<br/>Depok, Sleman, DIY 55281</p>
-          <button type="button" class="btn" onclick="navigator.clipboard.writeText('Jl. Wulung No. 14, Papringan, Caturtunggal, Depok, Sleman, DIY 55281')">Salin</button>
-        </div>
-      </div>
-    </section>
+<!-- GIFT -->
+<section class="section gift-section text-center">
+  <div class="container gift-container">
+    <h3 class="heading aos fade-down">Wedding Gift</h3>
+    <p class="body-text aos fade-up" style="margin-bottom:2rem">
+      Tanpa mengurangi rasa hormat kami, bagi tamu yang ingin mengirimkan hadiah dapat mengirimkannya melalui:
+    </p>
 
-    <!-- CLOSING / FOOTER -->
-    <section class="closing">
-      <div class="closing-bg active" style="background-image:url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=80')"></div>
-      <div class="closing-bg" style="background-image:url('https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1600&q=80')"></div>
-      <div class="closing-overlay"></div>
-      <div class="closing-content">
-        <h3 class="heading aos fade-down">Doakan kami</h3>
-        <p class="closing-quote aos fade-up">
-          “Semoga Allah menghimpun yang terserak dari keduanya, memberkati mereka berdua dan kiranya
-          Allah meningkatkan kualitas keturunan mereka, menjadikannya pembuka pintu rahmat, sumber ilmu
-          dan hikmah serta pemberi rasa aman bagi umat.”
-        </p>
-        <p class="body-text aos fade-up d1" style="font-size:12px;margin-bottom:2.5rem">
-          (Doa Nabi Muhammad SAW, pada pernikahan putrinya Fatimah Azzahra dengan Ali Bin Abi Thalib)
-        </p>
-        <p class="body-text aos fade-up" style="font-size:13px">Kami yang berbahagia</p>
-        <h4 class="closing-names aos fade-up d2">Tiara & Jati</h4>
-        <p class="body-text aos fade-up d3" style="font-size:13.5px">
-          Merupakan sebuah kehormatan dan kebahagiaan bagi kami jika Bapak/Ibu/Saudara/i berkenan hadir
-          dan memberikan doa restu bagi kami. Terima kasih.
-        </p>
-      </div>
-    </section>
+    <!-- Transfer Bank -->
+    <div class="gift-card aos fade-up d2">
+      <p class="gift-label">Transfer Bank</p>
+      <p class="gift-bank">BCA</p>
+      <p class="gift-number" id="giftRek">12345678910</p>
+      <p class="gift-name">TIARA TERANG BINTANG</p>
+      <button type="button" class="gift-btn" data-copy="12345678910">Salin Rekening</button>
+    </div>
 
-    <footer style="padding:1.75rem;text-align:center;font-size:11px;color:#A39E97;letter-spacing:0.05em">
-      Made with ♥ · Minimalist Elegant · Astro
-    </footer>
+    <!-- Alamat -->
+    <div class="gift-card aos fade-up d3" style="margin-top:1.15rem">
+      <p class="gift-label">Alamat Pengiriman Hadiah Fisik</p>
+      <p class="gift-name">TIARA TERANG BINTANG</p>
+      <p class="gift-address" id="giftAlamat">
+        Jl. Wulung No. 14, Papringan, Caturtunggal,<br/>
+        Depok, Sleman, DIY 55281
+      </p>
+      <button
+        type="button"
+        class="gift-btn"
+        data-copy="Jl. Wulung No. 14, Papringan, Caturtunggal, Depok, Sleman, DIY 55281"
+      >Salin Alamat</button>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing">
+  <div class="closing-slide-track" id="closingTrack">
+    <div class="closing-bg" style="background-image:url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=80')"></div>
+    <div class="closing-bg" style="background-image:url('https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1600&q=80')"></div>
+    <div class="closing-bg" style="background-image:url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1600&q=80')"></div>
+  </div>
+
+  <div class="closing-overlay"></div>
+
+  <div class="closing-content">
+    <p class="closing-label aos fade-up">Kami yang berbahagia</p>
+    <h4 class="closing-names aos fade-up d2">Tiara & Jati</h4>
+    <p class="closing-thanks aos fade-up d3">
+      Merupakan sebuah kehormatan dan kebahagiaan bagi kami jika Bapak/Ibu/Saudara/i berkenan hadir
+      dan memberikan doa restu bagi kami. Terima kasih.
+    </p>
+  </div>
+</section>
+
+<footer class="site-footer">
+  Made with ♥ Undangan Digital Gubug
+</footer>
    </div>
   </div>
 
@@ -1605,455 +1778,433 @@
     <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=soft-background-music-116010.mp3" type="audio/mpeg" />
   </audio>
 
-  <script is:inline>
-    // Cover open
-    const cover = document.getElementById('cover');
-    const main = document.getElementById('main-content');
-    const bgm = document.getElementById('bgm');
-    let isPlaying = false;
+ <script is:inline>
+  /* ========== 1. BUKA UNDANGAN + AUDIO (wajib di atas) ========== */
+  (function () {
+    var cover = document.getElementById('cover');
+    var main = document.getElementById('main-content');
+    var bgm = document.getElementById('bgm');
+    var openBtn = document.getElementById('openBtn');
+    if (!openBtn || !cover || !main) return;
 
-    document.getElementById('openBtn').addEventListener('click', () => {
-      cover.classList.add('hidden');
-      main.classList.add('visible');
-      bgm.play().then(() => { isPlaying = true; updateIcon(); }).catch(()=>{});
-      setTimeout(observe, 350);
-    });
+    var isPlaying = false;
+    var iconPlay = document.getElementById('iconPlay');
+    var iconPause = document.getElementById('iconPause');
 
-    // Audio
-    const iconPlay = document.getElementById('iconPlay');
-    const iconPause = document.getElementById('iconPause');
     function updateIcon() {
+      if (!iconPlay || !iconPause) return;
       iconPlay.classList.toggle('hidden', isPlaying);
       iconPause.classList.toggle('hidden', !isPlaying);
     }
-    document.getElementById('audioBtn').addEventListener('click', () => {
-      if (isPlaying) { bgm.pause(); isPlaying = false; }
-      else { bgm.play(); isPlaying = true; }
-      updateIcon();
-    });
 
-    // Countdown
-    const target = new Date('2027-06-11T08:00:00+07:00').getTime();
-    function tick() {
-      const d = target - Date.now();
-      if (d < 0) return;
-      document.getElementById('days').textContent = String(Math.floor(d/86400000)).padStart(2,'0');
-      document.getElementById('hours').textContent = String(Math.floor((d%86400000)/3600000)).padStart(2,'0');
-      document.getElementById('minutes').textContent = String(Math.floor((d%3600000)/60000)).padStart(2,'0');
-      document.getElementById('seconds').textContent = String(Math.floor((d%60000)/1000)).padStart(2,'0');
-    }
-    tick(); setInterval(tick, 1000);
-
-    // Discrete circular carousel: 4 visible, step 1 every 1.5s (smooth, not marquee)
-    function startCircleCarousel() {
-      const track = document.getElementById('circleTrack');
-      if (!track) return;
-      const imgs = track.querySelectorAll('img');
-      const total = imgs.length;
-      const visible = 4;
-      const maxIdx = total - visible;
-      let idx = 0;
-      setInterval(() => {
-        idx += 1;
-        if (idx > maxIdx) {
-          track.style.transition = 'none';
-          track.style.transform = 'translateX(0)';
-          void track.offsetWidth;
-          track.style.transition = 'transform 1.4s cubic-bezier(0.25, 0.1, 0.25, 1)';
-          idx = 0;
-          return;
-        }
-        // step = one image width + gap (12px)
-        const first = imgs[0];
-        const step = first.getBoundingClientRect().width + 4;
-        track.style.transform = 'translateX(-' + (idx * step) + 'px)';
-      }, 4500);
-    }
-
-    // Bride slides LEFT, Groom slides RIGHT, same timing
-    function startSyncedCoupleSliders(interval = 3200) {
-      const brideEl = document.querySelector('[data-slider="bride"]');
-      const groomEl = document.querySelector('[data-slider="groom"]');
-      const bride = brideEl && brideEl.querySelector('.slide-track');
-      const groom = groomEl && groomEl.querySelector('.slide-track');
-      if (!bride || !groom) return;
-      const nB = bride.querySelectorAll('img').length;
-      const nG = groom.querySelectorAll('img').length;
-      const n = Math.min(nB, nG);
-      if (n < 2) return;
-
-      // For groom to slide RIGHT: reverse image order in DOM once
-      const gImgs = Array.from(groom.querySelectorAll('img'));
-      gImgs.reverse().forEach(img => groom.appendChild(img));
-      // start groom at last (which is original first after reverse... 
-      // after reverse, index 0 is former last. We want to start showing original first.
-      // After reverse, original first is at end. Set initial transform to last index.
-      groom.style.transform = 'translateX(-' + ((n - 1) * 100) + '%)';
-
-      let i = 0;
-      setInterval(() => {
-        i = (i + 1) % n;
-        // Bride → left
-        bride.style.transform = 'translateX(-' + (i * 100) + '%)';
-        // Groom → right: decreasing index after reverse = content moves right
-        const gIdx = (n - 1 - i);
-        groom.style.transform = 'translateX(-' + (gIdx * 100) + '%)';
-      }, interval);
-    }
-
-    function startSlider(containerSelector, interval = 3200) {
-      const containers = document.querySelectorAll(containerSelector);
-      containers.forEach(container => {
-        // skip couple photos (handled by synced)
-        if (container.getAttribute('data-slider') === 'bride' || container.getAttribute('data-slider') === 'groom') return;
-        const track = container.querySelector('.slide-track');
-        if (!track) return;
-        const imgs = track.querySelectorAll('img');
-        if (imgs.length < 2) return;
-        let i = 0;
-        setInterval(() => {
-          i = (i + 1) % imgs.length;
-          track.style.transform = 'translateX(-' + (i * 100) + '%)';
-        }, interval);
-      });
-    }
-
-    // Background slideshow (fade between .active)
-    function startBgSlider(selector, interval = 4000) {
-      const parents = document.querySelectorAll(selector);
-      parents.forEach(parent => {
-        // parent itself holds multiple .xxx-bg children
-      });
-
-      // ===== HERO — infinite horizontal (tanpa loncat) =====
-(function () {
-  const track = document.getElementById('heroTrack');
-  if (!track) return;
-
-  const slides = track.querySelectorAll('.hero-bg');
-  const total = slides.length;
-  if (total < 2) return;
-
-  // Clone slide
-  slides.forEach(function (slide) {
-    track.appendChild(slide.cloneNode(true));
-  });
-
-  var index = 0;
-  setInterval(function () {
-    index++;
-    track.style.transition = 'transform 2.2s cubic-bezier(0.25, 0.1, 0.25, 1)';
-    track.style.transform = 'translateX(-' + (index * 100) + '%)';
-
-    if (index >= total) {
-      setTimeout(function () {
-        track.style.transition = 'none';
-        track.style.transform = 'translateX(0)';
-        index = 0;
-      }, 2300);
-    }
-  }, 5500);
-})();
-
-// ===== SAVE THE DATE — infinite horizontal (tanpa loncat) =====
-(function () {
-  const track = document.getElementById('stdTrack');
-  if (!track) return;
-
-  const slides = track.querySelectorAll('.std-bg');
-  const total = slides.length;
-  if (total < 2) return;
-
-  // Clone slide
-  slides.forEach(function (slide) {
-    track.appendChild(slide.cloneNode(true));
-  });
-
-  var index = 0;
-  setInterval(function () {
-    index++;
-    track.style.transition = 'transform 2.2s cubic-bezier(0.25, 0.1, 0.25, 1)';
-    track.style.transform = 'translateX(-' + (index * 100) + '%)';
-
-    if (index >= total) {
-      setTimeout(function () {
-        track.style.transition = 'none';
-        track.style.transform = 'translateX(0)';
-        index = 0;
-      }, 2300);
-    }
-  }, 5000);
-})();
-
-// Story background slide — infinite ke bawah (tanpa loncat)
-const storyTrack = document.getElementById('storyTrack');
-if (storyTrack) {
-  const slides = storyTrack.querySelectorAll('.story-bg');
-  const total = slides.length;
-
-// Foto Our Story — slide ke bawah (infinite)
-(function () {
-  const track = document.getElementById('storyPhotoTrack');
-  if (!track) return;
-
-  const slides = track.querySelectorAll('.story-photo');
-  const total = slides.length;
-  if (total < 2) return;
-
-  slides.forEach(function (slide) {
-    track.appendChild(slide.cloneNode(true));
-  });
-
-  var index = total;
-  track.style.transform = 'translateY(-' + (index * 100) + '%)';
-
-  setInterval(function () {
-    index--;
-    track.style.transition = 'transform 2.2s cubic-bezier(0.25, 0.1, 0.25, 1)';
-    track.style.transform = 'translateY(-' + (index * 100) + '%)';
-
-    if (index <= 0) {
-      setTimeout(function () {
-        track.style.transition = 'none';
-        index = total;
-        track.style.transform = 'translateY(-' + (index * 100) + '%)';
-      }, 2300);
-    }
-  }, 4000);
-})();
-  
-  // Clone semua slide, tempel di bawah
-  slides.forEach(slide => {
-    storyTrack.appendChild(slide.cloneNode(true));
-  });
-
-  let index = 0;
-
-  setInterval(() => {
-    index++;
-    storyTrack.style.transition = 'transform 2.2s cubic-bezier(0.25, 0.1, 0.25, 1)';
-    storyTrack.style.transform = `translateY(-${index * 100}%)`;
-
-    // Saat sampai di akhir set asli, reset diam-diam ke awal
-    if (index >= total) {
-      setTimeout(() => {
-        storyTrack.style.transition = 'none';
-        storyTrack.style.transform = 'translateY(0)';
-        index = 0;
-      }, 2300); // sedikit lebih lama dari durasi transition
-    }
-  }, 4000);
-}
-
-// ========== Gallery: infinite manual strip ==========
-(function () {
-  var strip = document.getElementById('galStrip');
-  var track = document.getElementById('galTrack');
-  var main  = document.getElementById('galMain');
-  if (!strip || !track || !main) return;
-
-  var originals = Array.prototype.slice.call(track.querySelectorAll('.gal-thumb'));
-  if (originals.length < 2) return;
-
-  var total = originals.length;
-  var GAP = 10;
-
-  // Clone kiri + kanan supaya infinite
-  originals.forEach(function (btn) {
-    track.appendChild(btn.cloneNode(true)); // kanan
-  });
-  for (var i = originals.length - 1; i >= 0; i--) {
-    track.insertBefore(originals[i].cloneNode(true), track.firstChild); // kiri
-  }
-
-  var thumbs = Array.prototype.slice.call(track.querySelectorAll('.gal-thumb'));
-  // set tengah = set asli (bukan clone kiri)
-  var index = total; // mulai di set tengah
-  var x = 0;
-  var startX = 0;
-  var startY = 0;
-  var baseX = 0;
-  var dragging = false;
-  var moved = false;
-
-  function itemSize() {
-    return thumbs[0].offsetWidth + GAP;
-  }
-
-  function setX(nx, animate) {
-    x = nx;
-    track.style.transition = animate
-      ? 'transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1)'
-      : 'none';
-    track.style.transform = 'translate3d(' + (-x) + 'px,0,0)';
-  }
-
-  // posisi supaya thumb index di tengah viewport
-  function offsetFor(i) {
-    var size = itemSize();
-    var view = strip.offsetWidth;
-    return i * size - (view / 2 - thumbs[0].offsetWidth / 2);
-  }
-
-  function realIndex(i) {
-    // map ke 0..total-1
-    var r = i % total;
-    if (r < 0) r += total;
-    return r;
-  }
-
-  function updateMain(i) {
-    var r = realIndex(i);
-    // ambil data-full dari salah satu thumb asli (set tengah)
-    var src = thumbs[total + r].getAttribute('data-full');
-
-    for (var n = 0; n < thumbs.length; n++) {
-      if (realIndex(n) === r && Math.floor(n / total) === 1) {
-        thumbs[n].classList.add('is-active');
-      } else if (realIndex(n) === r) {
-        thumbs[n].classList.add('is-active');
-      } else {
-        thumbs[n].classList.remove('is-active');
+    openBtn.addEventListener('click', function () {
+      cover.classList.add('hidden');
+      main.classList.add('visible');
+      if (bgm) {
+        bgm.play().then(function () {
+          isPlaying = true;
+          updateIcon();
+        }).catch(function () {});
       }
-    }
-    // lebih sederhana: aktifkan semua yang realIndex sama
-    thumbs.forEach(function (t, n) {
-      if (realIndex(n) === r) t.classList.add('is-active');
-      else t.classList.remove('is-active');
+      setTimeout(function () {
+        if (typeof window.__runObserve === 'function') window.__runObserve();
+      }, 350);
     });
 
-    main.classList.add('is-fading');
-    setTimeout(function () {
-      main.src = src;
-      main.classList.remove('is-fading');
-    }, 150);
-  }
-
-  function goTo(i, animate) {
-    index = i;
-    updateMain(index);
-    setX(offsetFor(index), animate !== false);
-  }
-
-  // setelah animasi, kalau sudah di zona clone → lompat diam-diam ke set tengah
-  function normalize() {
-    if (index < total) {
-      index += total;
-      setX(offsetFor(index), false);
-    } else if (index >= total * 2) {
-      index -= total;
-      setX(offsetFor(index), false);
+    var audioBtn = document.getElementById('audioBtn');
+    if (audioBtn && bgm) {
+      audioBtn.addEventListener('click', function () {
+        if (isPlaying) {
+          bgm.pause();
+          isPlaying = false;
+        } else {
+          bgm.play().catch(function () {});
+          isPlaying = true;
+        }
+        updateIcon();
+      });
     }
-  }
+  })();
 
-  // klik
-  thumbs.forEach(function (btn, i) {
-    btn.addEventListener('click', function (e) {
-      if (moved) {
-        e.preventDefault();
+  /* ========== 2. COUNTDOWN ========== */
+  (function () {
+    var target = new Date('2027-06-11T08:00:00+07:00').getTime();
+    function tick() {
+      var d = target - Date.now();
+      if (d < 0) return;
+      var el;
+      el = document.getElementById('days');
+      if (el) el.textContent = String(Math.floor(d / 86400000)).padStart(2, '0');
+      el = document.getElementById('hours');
+      if (el) el.textContent = String(Math.floor((d % 86400000) / 3600000)).padStart(2, '0');
+      el = document.getElementById('minutes');
+      if (el) el.textContent = String(Math.floor((d % 3600000) / 60000)).padStart(2, '0');
+      el = document.getElementById('seconds');
+      if (el) el.textContent = String(Math.floor((d % 60000) / 1000)).padStart(2, '0');
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+
+  /* ========== 3. CIRCLE CAROUSEL ========== */
+  (function () {
+    var track = document.getElementById('circleTrack');
+    if (!track) return;
+    var imgs = track.querySelectorAll('img');
+    var total = imgs.length;
+    var visible = 4;
+    var maxIdx = total - visible;
+    if (maxIdx < 1) return;
+    var idx = 0;
+    setInterval(function () {
+      idx += 1;
+      if (idx > maxIdx) {
+        track.style.transition = 'none';
+        track.style.transform = 'translateX(0)';
+        void track.offsetWidth;
+        track.style.transition = 'transform 1.4s cubic-bezier(0.25, 0.1, 0.25, 1)';
+        idx = 0;
         return;
       }
-      goTo(i, true);
-      setTimeout(normalize, 420);
-    });
-  });
+      var step = imgs[0].getBoundingClientRect().width + 4;
+      track.style.transform = 'translateX(-' + (idx * step) + 'px)';
+    }, 4500);
+  })();
 
-  function onDown(cx, cy) {
-    dragging = true;
-    moved = false;
-    startX = cx;
-    startY = cy;
-    baseX = x;
+  /* ========== 4. BRIDE / GROOM SLIDER ========== */
+  (function () {
+    var brideEl = document.querySelector('[data-slider="bride"]');
+    var groomEl = document.querySelector('[data-slider="groom"]');
+    var bride = brideEl && brideEl.querySelector('.slide-track');
+    var groom = groomEl && groomEl.querySelector('.slide-track');
+    if (!bride || !groom) return;
+    var nB = bride.querySelectorAll('img').length;
+    var nG = groom.querySelectorAll('img').length;
+    var n = Math.min(nB, nG);
+    if (n < 2) return;
+
+    var gImgs = Array.prototype.slice.call(groom.querySelectorAll('img'));
+    gImgs.reverse().forEach(function (img) { groom.appendChild(img); });
+    groom.style.transform = 'translateX(-' + ((n - 1) * 100) + '%)';
+
+    var i = 0;
+    setInterval(function () {
+      i = (i + 1) % n;
+      bride.style.transform = 'translateX(-' + (i * 100) + '%)';
+      groom.style.transform = 'translateX(-' + ((n - 1 - i) * 100) + '%)';
+    }, 5000);
+  })();
+
+  /* ========== 5. HERO SLIDE ========== */
+  (function () {
+    var track = document.getElementById('heroTrack');
+    if (!track) return;
+    var slides = track.querySelectorAll('.hero-bg');
+    var total = slides.length;
+    if (total < 2) return;
+    slides.forEach(function (s) { track.appendChild(s.cloneNode(true)); });
+    var index = 0;
+    setInterval(function () {
+      index++;
+      track.style.transition = 'transform 2.2s cubic-bezier(0.25, 0.1, 0.25, 1)';
+      track.style.transform = 'translateX(-' + (index * 100) + '%)';
+      if (index >= total) {
+        setTimeout(function () {
+          track.style.transition = 'none';
+          track.style.transform = 'translateX(0)';
+          index = 0;
+        }, 2300);
+      }
+    }, 5500);
+  })();
+
+  /* ========== 6. SAVE THE DATE BG ========== */
+  (function () {
+    var track = document.getElementById('stdTrack');
+    if (!track) return;
+    var slides = track.querySelectorAll('.std-bg');
+    var total = slides.length;
+    if (total < 2) return;
+    slides.forEach(function (s) { track.appendChild(s.cloneNode(true)); });
+    var index = 0;
+    setInterval(function () {
+      index++;
+      track.style.transition = 'transform 2.2s cubic-bezier(0.25, 0.1, 0.25, 1)';
+      track.style.transform = 'translateX(-' + (index * 100) + '%)';
+      if (index >= total) {
+        setTimeout(function () {
+          track.style.transition = 'none';
+          track.style.transform = 'translateX(0)';
+          index = 0;
+        }, 2300);
+      }
+    }, 5000);
+  })();
+
+  /* ========== 7. STORY BACKGROUND ========== */
+  (function () {
+    var storyTrack = document.getElementById('storyTrack');
+    if (!storyTrack) return;
+    var slides = storyTrack.querySelectorAll('.story-bg');
+    var total = slides.length;
+    if (total < 2) return;
+    slides.forEach(function (s) { storyTrack.appendChild(s.cloneNode(true)); });
+    var index = 0;
+    setInterval(function () {
+      index++;
+      storyTrack.style.transition = 'transform 2.2s cubic-bezier(0.25, 0.1, 0.25, 1)';
+      storyTrack.style.transform = 'translateY(-' + (index * 100) + '%)';
+      if (index >= total) {
+        setTimeout(function () {
+          storyTrack.style.transition = 'none';
+          storyTrack.style.transform = 'translateY(0)';
+          index = 0;
+        }, 2300);
+      }
+    }, 4000);
+  })();
+
+  /* ========== 8. STORY PHOTO ========== */
+  (function () {
+    var track = document.getElementById('storyPhotoTrack');
+    if (!track) return;
+    var slides = track.querySelectorAll('.story-photo');
+    var total = slides.length;
+    if (total < 2) return;
+    slides.forEach(function (s) { track.appendChild(s.cloneNode(true)); });
+    var index = 0;
+    var started = false;
     track.style.transition = 'none';
-  }
+    track.style.transform = 'translateY(0)';
 
-  function onMove(cx, cy) {
-    if (!dragging) return;
-    var dx = cx - startX;
-    var dy = cy - startY;
-    if (!moved && Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 8) {
-      dragging = false;
-      return;
+    function startSlide() {
+      if (started) return;
+      started = true;
+      setInterval(function () {
+        index++;
+        track.style.transition = 'transform 2.2s cubic-bezier(0.25, 0.1, 0.25, 1)';
+        track.style.transform = 'translateY(-' + (index * 100) + '%)';
+        if (index >= total) {
+          setTimeout(function () {
+            track.style.transition = 'none';
+            index = 0;
+            track.style.transform = 'translateY(0)';
+          }, 2300);
+        }
+      }, 4000);
     }
-    if (Math.abs(dx) > 6) moved = true;
-    setX(baseX - dx, false);
-  }
 
-  function onUp() {
-    if (!dragging) return;
-    dragging = false;
+    var photo = track.querySelector('.story-photo');
+    if (!photo) { startSlide(); return; }
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          setTimeout(startSlide, 1900);
+          obs.disconnect();
+        }
+      });
+    }, { threshold: 0.2 });
+    obs.observe(photo);
+  })();
 
-    var size = itemSize();
-    var center = x + strip.offsetWidth / 2;
-    var nearest = Math.round((center - thumbs[0].offsetWidth / 2) / size);
-    nearest = Math.max(0, Math.min(thumbs.length - 1, nearest));
+  /* ========== 9. GALLERY (manual + infinite) — aman jika HTML belum ada ========== */
+  (function () {
+    var strip = document.getElementById('galStrip');
+    var track = document.getElementById('galTrack');
+    var main = document.getElementById('galMain');
+    if (!strip || !track || !main) return;
 
-    goTo(nearest, true);
-    setTimeout(normalize, 420);
-  }
+    var originals = Array.prototype.slice.call(track.querySelectorAll('.gal-thumb'));
+    if (originals.length < 2) return;
+    var total = originals.length;
+    var GAP = 10;
 
-  strip.addEventListener('pointerdown', function (e) {
-    if (e.pointerType === 'mouse' && e.button !== 0) return;
-    strip.setPointerCapture(e.pointerId);
-    onDown(e.clientX, e.clientY);
-  });
-  strip.addEventListener('pointermove', function (e) { onMove(e.clientX, e.clientY); });
-  strip.addEventListener('pointerup', onUp);
-  strip.addEventListener('pointercancel', onUp);
+    originals.forEach(function (btn) { track.appendChild(btn.cloneNode(true)); });
+    for (var i = originals.length - 1; i >= 0; i--) {
+      track.insertBefore(originals[i].cloneNode(true), track.firstChild);
+    }
 
-  strip.addEventListener('touchstart', function (e) {
-    if (e.touches.length !== 1) return;
-    onDown(e.touches[0].clientX, e.touches[0].clientY);
-  }, { passive: true });
-  strip.addEventListener('touchmove', function (e) {
-    if (e.touches.length !== 1) return;
-    onMove(e.touches[0].clientX, e.touches[0].clientY);
-  }, { passive: true });
-  strip.addEventListener('touchend', onUp);
+    var thumbs = Array.prototype.slice.call(track.querySelectorAll('.gal-thumb'));
+    var index = total;
+    var x = 0, startX = 0, startY = 0, baseX = 0, dragging = false, moved = false;
 
-  // init di set tengah
-  setTimeout(function () {
-    goTo(total, false);
-  }, 50);
-
-  window.addEventListener('resize', function () {
-    setX(offsetFor(index), false);
-  });
-})();
-
-      // Closing
-      const closeBgs = document.querySelectorAll('.closing-bg');
-      if (closeBgs.length > 1) {
-        let i = 0;
-        setInterval(() => {
-          closeBgs[i].style.opacity = '0';
-          i = (i + 1) % closeBgs.length;
-          closeBgs[i].style.opacity = '0.32';
-        }, 4000);
-        closeBgs.forEach((el, idx) => { el.style.opacity = idx === 0 ? '0.32' : '0'; el.style.position = 'absolute'; el.style.inset = '0'; });
+    function itemSize() { return thumbs[0].offsetWidth + GAP; }
+    function setX(nx, animate) {
+      x = nx;
+      track.style.transition = animate ? 'transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1)' : 'none';
+      track.style.transform = 'translate3d(' + (-x) + 'px,0,0)';
+    }
+    function offsetFor(i) {
+      var size = itemSize();
+      return i * size - (strip.offsetWidth / 2 - thumbs[0].offsetWidth / 2);
+    }
+    function realIndex(i) {
+      var r = i % total;
+      return r < 0 ? r + total : r;
+    }
+    function updateMain(i) {
+      var r = realIndex(i);
+      var src = thumbs[total + r].getAttribute('data-full');
+      thumbs.forEach(function (t, n) {
+        if (realIndex(n) === r) t.classList.add('is-active');
+        else t.classList.remove('is-active');
+      });
+      main.classList.add('is-fading');
+      setTimeout(function () {
+        main.src = src;
+        main.classList.remove('is-fading');
+      }, 150);
+    }
+    function goTo(i, animate) {
+      index = i;
+      updateMain(index);
+      setX(offsetFor(index), animate !== false);
+    }
+    function normalize() {
+      if (index < total) {
+        index += total;
+        setX(offsetFor(index), false);
+      } else if (index >= total * 2) {
+        index -= total;
+        setX(offsetFor(index), false);
       }
     }
 
-    // Start image sliders
-    startCircleCarousel();
-    startSyncedCoupleSliders(5000);
-    startSlider('.story-photos', 5000);
-    startBgSlider();
+    thumbs.forEach(function (btn, i) {
+      btn.addEventListener('click', function (e) {
+        if (moved) { e.preventDefault(); return; }
+        goTo(i, true);
+        setTimeout(normalize, 420);
+      });
+    });
 
-    // Scroll animations
-    function observe() {
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('is-visible');
-            e.target.classList.add('in-view');
-            obs.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-      document.querySelectorAll('.aos:not(.is-visible), .anim-from-right, .anim-from-left, .anim-from-bottom, .std-photo, .story-photo').forEach(el => obs.observe(el));
+    function onDown(cx, cy) {
+      dragging = true; moved = false;
+      startX = cx; startY = cy; baseX = x;
+      track.style.transition = 'none';
     }
-    
-  </script>
+    function onMove(cx, cy) {
+      if (!dragging) return;
+      var dx = cx - startX, dy = cy - startY;
+      if (!moved && Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 8) {
+        dragging = false; return;
+      }
+      if (Math.abs(dx) > 6) moved = true;
+      setX(baseX - dx, false);
+    }
+    function onUp() {
+      if (!dragging) return;
+      dragging = false;
+      var size = itemSize();
+      var center = x + strip.offsetWidth / 2;
+      var nearest = Math.round((center - thumbs[0].offsetWidth / 2) / size);
+      nearest = Math.max(0, Math.min(thumbs.length - 1, nearest));
+      goTo(nearest, true);
+      setTimeout(normalize, 420);
+    }
+
+    strip.addEventListener('pointerdown', function (e) {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      try { strip.setPointerCapture(e.pointerId); } catch (err) {}
+      onDown(e.clientX, e.clientY);
+    });
+    strip.addEventListener('pointermove', function (e) { onMove(e.clientX, e.clientY); });
+    strip.addEventListener('pointerup', onUp);
+    strip.addEventListener('pointercancel', onUp);
+    strip.addEventListener('touchstart', function (e) {
+      if (e.touches.length === 1) onDown(e.touches[0].clientX, e.touches[0].clientY);
+    }, { passive: true });
+    strip.addEventListener('touchmove', function (e) {
+      if (e.touches.length === 1) onMove(e.touches[0].clientX, e.touches[0].clientY);
+    }, { passive: true });
+    strip.addEventListener('touchend', onUp);
+
+    setTimeout(function () { goTo(total, false); }, 50);
+    window.addEventListener('resize', function () { setX(offsetFor(index), false); });
+  })();
+
+  /* ========== 10. GIFT COPY ========== */
+  (function () {
+    function copyText(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        return navigator.clipboard.writeText(text);
+      }
+      return new Promise(function (resolve, reject) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        ta.setSelectionRange(0, text.length);
+        try {
+          var ok = document.execCommand('copy');
+          document.body.removeChild(ta);
+          ok ? resolve() : reject();
+        } catch (e) {
+          document.body.removeChild(ta);
+          reject(e);
+        }
+      });
+    }
+    document.querySelectorAll('.gift-btn[data-copy]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var text = btn.getAttribute('data-copy') || '';
+        if (!text) return;
+        copyText(text).then(function () {
+          var old = btn.textContent;
+          btn.textContent = 'Tersalin!';
+          btn.classList.add('is-copied');
+          setTimeout(function () {
+            btn.textContent = old;
+            btn.classList.remove('is-copied');
+          }, 1800);
+        }).catch(function () {
+          alert('Gagal menyalin. Salin manual: ' + text);
+        });
+      });
+    });
+  })();
+
+  /* ========== 11. CLOSING SLIDE (bawah → atas) ========== */
+  (function () {
+    var track = document.getElementById('closingTrack');
+    if (!track) return;
+    var slides = track.querySelectorAll('.closing-bg');
+    var total = slides.length;
+    if (total < 2) return;
+    slides.forEach(function (s) { track.appendChild(s.cloneNode(true)); });
+    var index = 0;
+    setInterval(function () {
+      index++;
+      track.style.transition = 'transform 2.4s cubic-bezier(0.25, 0.1, 0.25, 1)';
+      track.style.transform = 'translateY(-' + (index * 100) + '%)';
+      if (index >= total) {
+        setTimeout(function () {
+          track.style.transition = 'none';
+          index = 0;
+          track.style.transform = 'translateY(0)';
+        }, 2500);
+      }
+    }, 4500);
+  })();
+
+  /* ========== 12. SCROLL ANIMATIONS ========== */
+  window.__runObserve = function () {
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          e.target.classList.add('in-view');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll(
+      '.aos:not(.is-visible), .anim-from-right, .anim-from-left, .anim-from-bottom, .std-photo, .story-photo'
+    ).forEach(function (el) { obs.observe(el); });
+  };
+</script>
 </body>
 </html>

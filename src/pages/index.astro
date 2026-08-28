@@ -654,7 +654,7 @@
   width: 100%;
   height: 100%;
   background-size: cover;
-  background-position: center;
+  background-position: center 30%;
   opacity: 1;
 }
 
@@ -705,7 +705,7 @@
   gap: 0.4rem;
   max-width: 520px;
   margin: 0 auto;
-  padding: 0 0.4rem;
+  padding: 0 0.7rem;
   width: 100%;
   box-sizing: border-box;
   overflow: visible;
@@ -729,12 +729,12 @@
 }
 
 .std-photo.left {
-  border-radius: 72px 6px 0 0;
+  border-radius: 72px 0 0 0;
   transform: translateY(-80px);
 }
 
 .std-photo.right {
-  border-radius: 6px 6px 72px 0;
+  border-radius: 0 0 72px 0;
   transform: translateY(80px);
 }
 
@@ -793,7 +793,7 @@
   position: relative;
   z-index: 2;
   width: 100%;
-  padding: 0 0.35rem;   /* samakan dengan padding .std-photos */
+  padding: 0 0.7rem;   /* samakan dengan padding .std-photos */
   box-sizing: border-box;
 }
     .we-label-col {
@@ -879,59 +879,210 @@
     .event-time { font-size: 14px; color: var(--muted); margin-bottom: 0.6rem; }
     .event-loc { font-size: 13.5px; color: var(--muted); line-height: 1.7; margin-bottom: 1.25rem; }
 
-    /* ========== OUR STORY ========== */
-    .story-section { position: relative; overflow: hidden; }
-    .story-bg {
-      position: absolute; inset: 0; z-index: 0;
-      background-size: cover; background-position: center;
-      transition: opacity 1.4s ease; opacity: 0.28;
-    }
-    .story-overlay {
-      position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(180deg, rgba(247,243,238,0.82) 0%, rgba(247,243,238,0.9) 100%);
-    }
-    .story-content { position: relative; z-index: 2; }
-    .story-layout {
-      display: grid; grid-template-columns: 1fr; gap: 2.5rem;
-      align-items: center;
-    }
-    @media (min-width: 768px) {
-      .story-layout { grid-template-columns: 1fr auto 1fr; gap: 2rem; }
-    }
-    .story-photos {
-      position: relative; width: 100%; max-width: 280px; height: 340px;
-      margin: 0 auto; border-radius: 8px; overflow: hidden;
-      box-shadow: 0 12px 36px rgba(0,0,0,0.12);
-    }
-    .story-photos .slide-track {
-      display: flex; height: 100%; width: 100%;
-      transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .story-photos .slide-track img {
-      flex: 0 0 100%; width: 100%; height: 100%; object-fit: cover;
-    }
-    .story-vertical {
-      writing-mode: vertical-rl; text-orientation: mixed;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem; letter-spacing: 0.35em; text-transform: uppercase;
-      color: var(--muted); text-align: center;
-      display: none;
-    }
-    @media (min-width: 768px) {
-      .story-vertical { display: block; transform: rotate(180deg); }
-    }
-    .story-timeline { text-align: left; }
-    .story-item { margin-bottom: 2.25rem; }
-    .story-item:last-child { margin-bottom: 0; }
-    .story-date {
-      font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 0.3rem;
-    }
-    .story-title {
-      font-family: 'Playfair Display', serif; font-size: 1.15rem; margin-bottom: 0.4rem;
-    }
-    .story-desc { font-size: 13.5px; color: var(--muted); line-height: 1.75; }
+    /* ========= RSVP ========= */
+    .rsvp-section {
+  background: #C4B8A8;
+}
 
+.rsvp-section .heading {
+  color: #fff !important;
+}
+
+.rsvp-section .body-text {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Opsional: biar label/teks kecil juga cocok */
+.rsvp-section .label {
+  color: rgba(255, 255, 255, 0.85) !important;
+    }
+
+/* ========== OUR STORY ========== */
+.story-wrap {
+  position: relative;
+  overflow: hidden;
+  background: #FFFFFF;
+}
+
+.story-slide-track {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;   /* vertikal */
+  height: 100%;
+  width: 100%;
+  transition: transform 2.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+  will-change: transform;
+}
+
+.story-slide-track .story-bg {
+  position: relative;
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.story-wrap > .std-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0.6) 100%
+  );
+  pointer-events: none;
+}
+
+.story-section {
+  position: relative;
+  z-index: 2;
+  overflow: visible;
+  background: transparent;
+  padding: 1.75rem 0 3.55rem 0;
+  text-align: center;
+}
+
+.story-section .heading {
+  padding: 0 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+/* 1 foto di depan */
+.story-photos {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  height: 220px;
+  overflow: hidden;
+  position: relative;
+}
+
+.story-photo-track {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  transition: transform 2.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+  will-change: transform;
+}
+
+.story-photo {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 0 48px 0 0;
+  opacity: 1;
+}
+
+.story-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  }
+
+.story-photo.in-view {
+  animation: storyFromTop 1.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+@keyframes storyFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-80px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+    }
+
+.story-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Timeline + label kanan */
+.story-inner {
+  display: grid;
+  grid-template-columns: 1fr 56px;
+  max-width: 100%;
+  margin: 0 auto;
+  min-height: 420px;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 0 0.7rem;
+  box-sizing: border-box;
+}
+
+.story-content {
+  padding: 2.4rem 1.5rem 3rem 1.55rem;
+  background: rgba(255,255,255,0.78);
+  backdrop-filter: blur(2px);
+  text-align: left;
+}
+
+.story-label-col {
+  background: #C4B8A8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 0;
+  border-radius: 0 0 28px 0;
+}
+
+.story-label-text {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 19px;
+  letter-spacing: 0.3em;
+  color: #FFFFFF;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.story-item { margin-bottom: 2.35rem; }
+.story-item:last-child { margin-bottom: 0; }
+
+.story-item .label {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #9A7B5A;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.story-item .event-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.08rem;
+  font-weight: 500;
+  margin-bottom: 0.35rem;
+  color: #2C2C2C;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+}
+
+.story-item .event-loc {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 15px;
+  color: #7A736C;
+  line-height: 1.8;
+  font-weight: 400;
+         }
+    
     /* ========== GALLERY ========== */
     .gallery {
       display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem;
@@ -1195,64 +1346,74 @@
        </div>
 
     <!-- RSVP -->
-    <section class="section bg-section text-center">
+   <section class="section rsvp-section text-center">
       <div class="container" style="max-width:400px">
         <h3 class="heading aos fade-down">RSVP</h3>
         <p class="body-text aos fade-up" style="margin-bottom:2rem">
           Kirimkan Konfirmasi Kehadiran Kepada Mempelai Melalui Form Berikut.
         </p>
-        <form id="rsvpForm" class="space-y aos fade-up d2" style="text-align:left">
-          <input type="text" name="name" placeholder="Nama Lengkap" required class="form-input" />
-          <select name="attendance" required class="form-input">
-            <option value="">Konfirmasi Kehadiran</option>
-            <option value="hadir">Hadir</option>
-            <option value="tidak">Tidak Dapat Hadir</option>
-          </select>
-          <input type="number" name="guests" placeholder="Jumlah Tamu" min="1" max="5" class="form-input" />
-          <textarea name="message" rows="3" placeholder="Ucapan / Doa (opsional)" class="form-input"></textarea>
-          <button type="submit" class="btn" style="width:100%">Kirim</button>
-        </form>
+
+<iframe data-tally-src="https://tally.so/embed/ODMZ1a?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="200" frameborder="0" marginheight="0" marginwidth="0" title="RSVP"></iframe>
+<script is:inline>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+      
+        
         <p id="rsvpSuccess" class="hidden" style="margin-top:1rem;color:var(--accent);font-size:14px">Terima kasih, konfirmasi Anda telah diterima.</p>
       </div>
     </section>
 
-    <!-- OUR STORY -->
-    <section class="section story-section">
-      <div class="story-bg active" style="background-image:url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=1600&q=80')"></div>
-      <div class="story-bg" style="background-image:url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=80')"></div>
-      <div class="story-overlay"></div>
-      <div class="story-content container-lg">
-        <h3 class="heading text-center aos fade-down">Our Story</h3>
-        <div class="story-layout">
-          <div class="story-photos aos fade-left">
-            <div class="slide-track">
-              <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&q=80" alt="Story 1" />
-              <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&q=80" alt="Story 2" />
-              <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=600&q=80" alt="Story 3" />
-            </div>
-          </div>
-          <p class="story-vertical aos fade-in">Love Story</p>
-          <div class="story-timeline aos fade-right">
-            <div class="story-item">
-              <p class="story-date">09 September 2016</p>
-              <h4 class="story-title">Awal Bertemu</h4>
-              <p class="story-desc">Awal mula kami bertemu adalah dalam rentetan acara masa orientasi kampus di Jogja saat kami masih mahasiswa baru.</p>
-            </div>
-            <div class="story-item">
-              <p class="story-date">12 Desember 2016</p>
-              <h4 class="story-title">Menjalin Hubungan</h4>
-              <p class="story-desc">Setelah berkomunikasi beberapa bulan dan menemukan kecocokan akhirnya kami memutuskan untuk menjalin sebuah komitmen.</p>
-            </div>
-            <div class="story-item">
-              <p class="story-date">15 Januari 2023</p>
-              <h4 class="story-title">Bertunangan</h4>
-              <p class="story-desc">Setelah menjalin hubungan beberapa tahun, akhirnya kami memantabkan hati untuk membawa hubungan ini ke jenjang yang lebih serius.</p>
-            </div>
-          </div>
+<!-- OUR STORY -->
+<div class="story-wrap">
+  <!-- Background sliding -->
+  <div class="story-slide-track" id="storyTrack">
+    <div class="story-bg" style="background-image:url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=80')"></div>
+    <div class="story-bg" style="background-image:url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1600&q=80')"></div>
+  </div>
+  <div class="std-overlay"></div>
+
+  <section class="story-section">
+    <div class="std-content">
+      <h3 class="heading aos fade-down" style="font-style:italic">Our Story</h3>
+
+      <!-- 1 foto -->
+      <div class="story-photos">
+  <div class="story-photo-track" id="storyPhotoTrack">
+    <div class="story-photo">
+      <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=900&h=600&fit=crop&q=80" alt="Story 1" />
+    </div>
+    <div class="story-photo">
+      <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=900&h=600&fit=crop&q=80" alt="Story 2" />
+    </div>
+  </div>
+      </div>
+    </div>
+
+    <!-- Timeline + label kanan -->
+    <div class="story-inner">
+      <div class="story-content">
+        <div class="story-item">
+          <p class="label">09 September 2016</p>
+          <h4 class="event-title">Awal Bertemu</h4>
+          <p class="event-loc">Awal mula kami bertemu adalah dalam rentetan acara masa orientasi kampus di Jogja saat kami masih mahasiswa baru.</p>
+        </div>
+        <div class="story-item">
+          <p class="label">12 Desember 2016</p>
+          <h4 class="event-title">Menjalin Hubungan</h4>
+          <p class="event-loc">Setelah berkomunikasi beberapa bulan dan menemukan kecocokan akhirnya kami memutuskan untuk menjalin sebuah komitmen.</p>
+        </div>
+        <div class="story-item">
+          <p class="label">15 Januari 2023</p>
+          <h4 class="event-title">Bertunangan</h4>
+          <p class="event-loc">Setelah menjalin hubungan beberapa tahun, akhirnya kami memantabkan hati untuk membawa hubungan ini ke jenjang yang lebih serius.</p>
         </div>
       </div>
-    </section>
 
+      <div class="story-label-col">
+        <span class="story-label-text">Love Story</span>
+      </div>
+    </div>
+  </section>
+</div>
+      
     <!-- GALLERY -->
     <section class="section bg-section text-center">
       <div class="container-lg">
@@ -1286,23 +1447,6 @@
           <p style="font-weight:500;margin-bottom:0.25rem">TIARA TERANG BINTANG</p>
           <p class="body-text" style="margin-bottom:1rem;font-size:13px">Jl. Wulung No. 14, Papringan, Caturtunggal,<br/>Depok, Sleman, DIY 55281</p>
           <button type="button" class="btn" onclick="navigator.clipboard.writeText('Jl. Wulung No. 14, Papringan, Caturtunggal, Depok, Sleman, DIY 55281')">Salin</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- WISHES -->
-    <section class="section bg-section text-center">
-      <div class="container" style="max-width:400px">
-        <h3 class="heading aos fade-down">Ucapan Doa Restu</h3>
-        <p class="body-text aos fade-up" style="margin-bottom:2rem">Ucapkan Selamat dan Doa Restu Kepada Mempelai.</p>
-        <form id="wishForm" class="space-y aos fade-up d2" style="text-align:left">
-          <input type="text" name="name" placeholder="Nama Anda" required class="form-input" />
-          <textarea name="wish" rows="4" placeholder="Ucapan & Doa Restu" required class="form-input"></textarea>
-          <button type="submit" class="btn" style="width:100%">Kirim Ucapan</button>
-        </form>
-        <div id="wishesList" style="margin-top:2rem" class="space-y">
-          <div class="wish-item"><p style="font-weight:500;margin-bottom:0.25rem">Ayu & Budi</p><p class="body-text" style="font-size:13px">Semoga menjadi keluarga yang sakinah, mawaddah, warahmah. Barakallah!</p></div>
-          <div class="wish-item"><p style="font-weight:500;margin-bottom:0.25rem">Rina</p><p class="body-text" style="font-size:13px">Selamat menempuh hidup baru. Semoga selalu dilimpahi kebahagiaan.</p></div>
         </div>
       </div>
     </section>
@@ -1465,43 +1609,125 @@
       parents.forEach(parent => {
         // parent itself holds multiple .xxx-bg children
       });
-      // Hero — slow horizontal slide
-      const heroTrack = document.getElementById('heroTrack');
-      if (heroTrack) {
-        const slides = heroTrack.querySelectorAll('.hero-bg');
-        const n = slides.length;
-        if (n > 1) {
-          let i = 0;
-          setInterval(() => {
-            i = (i + 1) % n;
-            heroTrack.style.transform = 'translateX(-' + (i * 100) + '%)';
-          }, 5500);
-        }
-      }
-// Save the Date + Wedding Event — horizontal slide
-const stdTrack = document.getElementById('stdTrack');
-if (stdTrack) {
-  const slides = stdTrack.querySelectorAll('.std-bg');
-  const n = slides.length;
-  if (n > 1) {
-    let i = 0;
-    setInterval(() => {
-      i = (i + 1) % n;
-      stdTrack.style.transform = 'translateX(-' + (i * 100) + '%)';
-    }, 5000);
-  }
+
+      // ===== HERO — infinite horizontal (tanpa loncat) =====
+(function () {
+  const track = document.getElementById('heroTrack');
+  if (!track) return;
+
+  const slides = track.querySelectorAll('.hero-bg');
+  const total = slides.length;
+  if (total < 2) return;
+
+  // Clone slide
+  slides.forEach(function (slide) {
+    track.appendChild(slide.cloneNode(true));
+  });
+
+  var index = 0;
+  setInterval(function () {
+    index++;
+    track.style.transition = 'transform 2.2s cubic-bezier(0.25, 0.1, 0.25, 1)';
+    track.style.transform = 'translateX(-' + (index * 100) + '%)';
+
+    if (index >= total) {
+      setTimeout(function () {
+        track.style.transition = 'none';
+        track.style.transform = 'translateX(0)';
+        index = 0;
+      }, 2300);
+    }
+  }, 5500);
+})();
+
+// ===== SAVE THE DATE — infinite horizontal (tanpa loncat) =====
+(function () {
+  const track = document.getElementById('stdTrack');
+  if (!track) return;
+
+  const slides = track.querySelectorAll('.std-bg');
+  const total = slides.length;
+  if (total < 2) return;
+
+  // Clone slide
+  slides.forEach(function (slide) {
+    track.appendChild(slide.cloneNode(true));
+  });
+
+  var index = 0;
+  setInterval(function () {
+    index++;
+    track.style.transition = 'transform 2.2s cubic-bezier(0.25, 0.1, 0.25, 1)';
+    track.style.transform = 'translateX(-' + (index * 100) + '%)';
+
+    if (index >= total) {
+      setTimeout(function () {
+        track.style.transition = 'none';
+        track.style.transform = 'translateX(0)';
+        index = 0;
+      }, 2300);
+    }
+  }, 5000);
+})();
+
+// Story background slide — infinite ke bawah (tanpa loncat)
+const storyTrack = document.getElementById('storyTrack');
+if (storyTrack) {
+  const slides = storyTrack.querySelectorAll('.story-bg');
+  const total = slides.length;
+
+// Foto Our Story — slide ke atas (infinite)
+(function () {
+  const track = document.getElementById('storyPhotoTrack');
+  if (!track) return;
+
+  const slides = track.querySelectorAll('.story-photo');
+  const total = slides.length;
+  if (total < 2) return;
+
+  slides.forEach(function (slide) {
+    track.appendChild(slide.cloneNode(true));
+  });
+
+  var index = 0;
+  setInterval(function () {
+    index++;
+    track.style.transition = 'transform 2.2s cubic-bezier(0.25, 0.1, 0.25, 1)';
+    track.style.transform = 'translateY(-' + (index * 100) + '%)';
+
+    if (index >= total) {
+      setTimeout(function () {
+        track.style.transition = 'none';
+        track.style.transform = 'translateY(0)';
+        index = 0;
+      }, 2300);
+    }
+  }, 4000);
+})();
+  
+  // Clone semua slide, tempel di bawah
+  slides.forEach(slide => {
+    storyTrack.appendChild(slide.cloneNode(true));
+  });
+
+  let index = 0;
+
+  setInterval(() => {
+    index++;
+    storyTrack.style.transition = 'transform 2.2s cubic-bezier(0.25, 0.1, 0.25, 1)';
+    storyTrack.style.transform = `translateY(-${index * 100}%)`;
+
+    // Saat sampai di akhir set asli, reset diam-diam ke awal
+    if (index >= total) {
+      setTimeout(() => {
+        storyTrack.style.transition = 'none';
+        storyTrack.style.transform = 'translateY(0)';
+        index = 0;
+      }, 2300); // sedikit lebih lama dari durasi transition
+    }
+  }, 4000);
 }
-      // Story
-      const storyBgs = document.querySelectorAll('.story-bg');
-      if (storyBgs.length > 1) {
-        let i = 0;
-        setInterval(() => {
-          storyBgs[i].style.opacity = '0';
-          i = (i + 1) % storyBgs.length;
-          storyBgs[i].style.opacity = '0.28';
-        }, 3800);
-        storyBgs.forEach((el, idx) => { el.style.opacity = idx === 0 ? '0.28' : '0'; el.style.position = 'absolute'; el.style.inset = '0'; });
-      }
+
       // Closing
       const closeBgs = document.querySelectorAll('.closing-bg');
       if (closeBgs.length > 1) {
@@ -1532,24 +1758,9 @@ if (stdTrack) {
           }
         });
       }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-      document.querySelectorAll('.aos:not(.is-visible), .anim-from-right, .anim-from-left, .anim-from-bottom, .std-photo').forEach(el => obs.observe(el));
+      document.querySelectorAll('.aos:not(.is-visible), .anim-from-right, .anim-from-left, .anim-from-bottom, .std-photo, .story-photo').forEach(el => obs.observe(el));
     }
-
-    // Forms
-    document.getElementById('rsvpForm')?.addEventListener('submit', e => {
-      e.preventDefault();
-      document.getElementById('rsvpSuccess').classList.remove('hidden');
-      e.target.reset();
-    });
-    document.getElementById('wishForm')?.addEventListener('submit', e => {
-      e.preventDefault();
-      const n = e.target.name.value, w = e.target.wish.value;
-      const div = document.createElement('div');
-      div.className = 'wish-item';
-      div.innerHTML = '<p style="font-weight:500;margin-bottom:0.25rem">'+n+'</p><p class="body-text" style="font-size:13px">'+w+'</p>';
-      document.getElementById('wishesList').prepend(div);
-      e.target.reset();
-    });
+    
   </script>
 </body>
 </html>

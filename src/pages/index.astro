@@ -1101,18 +1101,87 @@
          }
     
 /* ========== GALLERY ========== */
-    .gallery {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem;
-    }
-    @media (min-width: 768px) {
-      .gallery { grid-template-columns: 1fr 1fr 1fr; gap: 0.9rem; }
-    }
-    .gallery img {
-      width: 100%; height: 11rem; object-fit: cover; border-radius: 6px;
-      transition: transform 0.45s ease;
-    }
-    @media (min-width: 768px) { .gallery img { height: 15rem; } }
-    .gallery img:hover { transform: scale(1.03); }
+.gal {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 0; /* sama Our Story & Save the Date */
+  box-sizing: border-box;
+}
+
+.gal-main {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #e8e2d9;
+  margin-bottom: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+.gal-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.35s ease;
+}
+
+.gal-main img.is-fading {
+  opacity: 0.35;
+}
+
+/* Viewport strip: kiri-kanan terpotong (separuh foto) */
+.gal-strip {
+  width: 100%;
+  overflow: hidden;
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.gal-track {
+  display: flex;
+  gap: 10px;
+  width: max-content;
+  will-change: transform;
+}
+
+.gal-thumb {
+  flex: 0 0 auto;
+  width: 78px;
+  height: 78px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #ddd;
+  opacity: 0.55;
+  transform: scale(0.92);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.gal-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+.gal-thumb.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@media (min-width: 480px) {
+  .gal-thumb {
+    width: 92px;
+    height: 92px;
+  }
+}
 
     /* ========== GIFT / FORMS ========== */
     .card {
@@ -1434,19 +1503,46 @@
 </div>
       
 <!-- GALLERY -->
-    <section class="section bg-section text-center">
-      <div class="container-lg">
-        <h3 class="heading aos fade-down">Our Gallery</h3>
-        <div class="gallery">
-          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&q=80" alt="1" class="aos fade-up" />
-          <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=600&q=80" alt="2" class="aos fade-up d1" />
-          <img src="https://images.unsplash.com/photo-1460978812857-470ed1c77af0?w=600&q=80" alt="3" class="aos fade-up d2" />
-          <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600&q=80" alt="4" class="aos fade-up d1" />
-          <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&q=80" alt="5" class="aos fade-up d2" />
-          <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&q=80" alt="6" class="aos fade-up d3" />
+<section class="section bg-section text-center">
+  <div class="container-lg" style="padding-left:0;padding-right:0;">
+    <h3 class="heading aos fade-down" style="padding:0 1.25rem;">Our Gallery</h3>
+
+    <div class="gal">
+      <!-- Foto besar -->
+      <div class="gal-main">
+        <img
+          id="galMain"
+          src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1200&q=80"
+          alt="Gallery"
+        />
+      </div>
+
+      <!-- Strip foto kecil -->
+      <div class="gal-strip" id="galStrip">
+        <div class="gal-track" id="galTrack">
+          <button type="button" class="gal-thumb is-active" data-full="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1200&q=80">
+            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400&q=80" alt="" />
+          </button>
+          <button type="button" class="gal-thumb" data-full="https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=1200&q=80">
+            <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=400&q=80" alt="" />
+          </button>
+          <button type="button" class="gal-thumb" data-full="https://images.unsplash.com/photo-1460978812857-470ed1c77af0?w=1200&q=80">
+            <img src="https://images.unsplash.com/photo-1460978812857-470ed1c77af0?w=400&q=80" alt="" />
+          </button>
+          <button type="button" class="gal-thumb" data-full="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=1200&q=80">
+            <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=400&q=80" alt="" />
+          </button>
+          <button type="button" class="gal-thumb" data-full="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1200&q=80">
+            <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=400&q=80" alt="" />
+          </button>
+          <button type="button" class="gal-thumb" data-full="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1200&q=80">
+            <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=400&q=80" alt="" />
+          </button>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
     <!-- GIFT -->
     <section class="section text-center">
@@ -1748,6 +1844,182 @@ if (storyTrack) {
     }
   }, 4000);
 }
+
+// ========== Gallery: infinite manual strip ==========
+(function () {
+  var strip = document.getElementById('galStrip');
+  var track = document.getElementById('galTrack');
+  var main  = document.getElementById('galMain');
+  if (!strip || !track || !main) return;
+
+  var originals = Array.prototype.slice.call(track.querySelectorAll('.gal-thumb'));
+  if (originals.length < 2) return;
+
+  var total = originals.length;
+  var GAP = 10;
+
+  // Clone kiri + kanan supaya infinite
+  originals.forEach(function (btn) {
+    track.appendChild(btn.cloneNode(true)); // kanan
+  });
+  for (var i = originals.length - 1; i >= 0; i--) {
+    track.insertBefore(originals[i].cloneNode(true), track.firstChild); // kiri
+  }
+
+  var thumbs = Array.prototype.slice.call(track.querySelectorAll('.gal-thumb'));
+  // set tengah = set asli (bukan clone kiri)
+  var index = total; // mulai di set tengah
+  var x = 0;
+  var startX = 0;
+  var startY = 0;
+  var baseX = 0;
+  var dragging = false;
+  var moved = false;
+
+  function itemSize() {
+    return thumbs[0].offsetWidth + GAP;
+  }
+
+  function setX(nx, animate) {
+    x = nx;
+    track.style.transition = animate
+      ? 'transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1)'
+      : 'none';
+    track.style.transform = 'translate3d(' + (-x) + 'px,0,0)';
+  }
+
+  // posisi supaya thumb index di tengah viewport
+  function offsetFor(i) {
+    var size = itemSize();
+    var view = strip.offsetWidth;
+    return i * size - (view / 2 - thumbs[0].offsetWidth / 2);
+  }
+
+  function realIndex(i) {
+    // map ke 0..total-1
+    var r = i % total;
+    if (r < 0) r += total;
+    return r;
+  }
+
+  function updateMain(i) {
+    var r = realIndex(i);
+    // ambil data-full dari salah satu thumb asli (set tengah)
+    var src = thumbs[total + r].getAttribute('data-full');
+
+    for (var n = 0; n < thumbs.length; n++) {
+      if (realIndex(n) === r && Math.floor(n / total) === 1) {
+        thumbs[n].classList.add('is-active');
+      } else if (realIndex(n) === r) {
+        thumbs[n].classList.add('is-active');
+      } else {
+        thumbs[n].classList.remove('is-active');
+      }
+    }
+    // lebih sederhana: aktifkan semua yang realIndex sama
+    thumbs.forEach(function (t, n) {
+      if (realIndex(n) === r) t.classList.add('is-active');
+      else t.classList.remove('is-active');
+    });
+
+    main.classList.add('is-fading');
+    setTimeout(function () {
+      main.src = src;
+      main.classList.remove('is-fading');
+    }, 150);
+  }
+
+  function goTo(i, animate) {
+    index = i;
+    updateMain(index);
+    setX(offsetFor(index), animate !== false);
+  }
+
+  // setelah animasi, kalau sudah di zona clone → lompat diam-diam ke set tengah
+  function normalize() {
+    if (index < total) {
+      index += total;
+      setX(offsetFor(index), false);
+    } else if (index >= total * 2) {
+      index -= total;
+      setX(offsetFor(index), false);
+    }
+  }
+
+  // klik
+  thumbs.forEach(function (btn, i) {
+    btn.addEventListener('click', function (e) {
+      if (moved) {
+        e.preventDefault();
+        return;
+      }
+      goTo(i, true);
+      setTimeout(normalize, 420);
+    });
+  });
+
+  function onDown(cx, cy) {
+    dragging = true;
+    moved = false;
+    startX = cx;
+    startY = cy;
+    baseX = x;
+    track.style.transition = 'none';
+  }
+
+  function onMove(cx, cy) {
+    if (!dragging) return;
+    var dx = cx - startX;
+    var dy = cy - startY;
+    if (!moved && Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 8) {
+      dragging = false;
+      return;
+    }
+    if (Math.abs(dx) > 6) moved = true;
+    setX(baseX - dx, false);
+  }
+
+  function onUp() {
+    if (!dragging) return;
+    dragging = false;
+
+    var size = itemSize();
+    var center = x + strip.offsetWidth / 2;
+    var nearest = Math.round((center - thumbs[0].offsetWidth / 2) / size);
+    nearest = Math.max(0, Math.min(thumbs.length - 1, nearest));
+
+    goTo(nearest, true);
+    setTimeout(normalize, 420);
+  }
+
+  strip.addEventListener('pointerdown', function (e) {
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    strip.setPointerCapture(e.pointerId);
+    onDown(e.clientX, e.clientY);
+  });
+  strip.addEventListener('pointermove', function (e) { onMove(e.clientX, e.clientY); });
+  strip.addEventListener('pointerup', onUp);
+  strip.addEventListener('pointercancel', onUp);
+
+  strip.addEventListener('touchstart', function (e) {
+    if (e.touches.length !== 1) return;
+    onDown(e.touches[0].clientX, e.touches[0].clientY);
+  }, { passive: true });
+  strip.addEventListener('touchmove', function (e) {
+    if (e.touches.length !== 1) return;
+    onMove(e.touches[0].clientX, e.touches[0].clientY);
+  }, { passive: true });
+  strip.addEventListener('touchend', onUp);
+
+  // init di set tengah
+  setTimeout(function () {
+    goTo(total, false);
+  }, 50);
+
+  window.addEventListener('resize', function () {
+    setX(offsetFor(index), false);
+  });
+})();
 
       // Closing
       const closeBgs = document.querySelectorAll('.closing-bg');

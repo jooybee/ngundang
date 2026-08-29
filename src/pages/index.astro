@@ -73,7 +73,7 @@
 .cover-left h1 {
   font-family: 'Playfair Display', serif;
   font-size: clamp(2.2rem, 5vw, 3.4rem);
-  font-weight: 400; letter-spacing: 0.03em; margin-bottom: 0.45rem;
+  font-weight: 400; letter-spacing: 0.03em; margin-bottom: 0.5rem;
   line-height: 1.15;
 }
 .cover-left .date {
@@ -84,30 +84,54 @@
 .cover-right { flex: 0.85; }
 .cover-right .panel-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(247,243,238,0.55) 0%, rgba(247,243,238,0.75) 50%, rgba(247,243,238,0.88) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.15) 0%,
+    rgba(0,0,0,0.08) 35%,
+    rgba(217,208,196,0.45) 70%,
+    rgba(217,208,196,0.88) 88%,
+    #D9D0C4 100%
+  );
 }
 .cover-right .panel-content {
   position: absolute; inset: 0;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center; padding: 2rem 1.5rem;
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+  text-align: center; padding: 2rem 1.5rem 9.5rem;
   z-index: 2;
 }
 .cover-right .label {
-  font-size: 10px; letter-spacing: 0.38em; text-transform: uppercase;
-  color: var(--muted); margin-bottom: 0.85rem; font-weight: 400;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 11px; letter-spacing: 0.36em; text-transform: uppercase;
+  color: #fff; margin-bottom: 0.35rem; font-weight: 500;
 }
 .cover-right h1 {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(1.9rem, 4.5vw, 2.9rem);
-  font-weight: 400; letter-spacing: 0.03em; margin-bottom: 1.1rem;
-  color: var(--elegant);
+  font-size: clamp(2.4rem, 6.2vw, 3.4rem);
+  font-weight: 600; letter-spacing: 0.02em; margin-bottom: 0;
+  color: #fff;
+  line-height: 1.12;
 }
 .cover-right .guest-label {
-  font-size: 12px; color: var(--muted); margin-bottom: 0.25rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+  margin-top: 1.25rem;
+  margin-bottom: 0.35rem;
+  font-weight: 500;
 }
 .cover-right .guest-name {
-  font-size: 15px; font-weight: 400; margin-bottom: 2rem; letter-spacing: 0.02em;
-  color: var(--elegant);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.35rem, 3.6vw, 1.65rem);
+  font-weight: 500;
+  font-style: normal;
+  color: #fff;
+  letter-spacing: 0.02em;
+  margin-bottom: 1.25rem;
+  line-height: 1.3;
+  max-width: 16rem;
+  word-wrap: break-word;
 }
 .btn-open {
   display: inline-block; padding: 0.8rem 2.1rem;
@@ -122,10 +146,9 @@
 @media (max-width: 768px) {
   .cover-left { display: none; }
   .cover-right { flex: 1; width: 100%; }
-  .cover-right h1 { font-size: clamp(1.8rem, 8vw, 2.4rem); }
+  .cover-right h1 { font-size: clamp(2.2rem, 9vw, 2.8rem); }
+  .cover-right .panel-content { padding-bottom: 7.5rem; }
 }
-
-/* Cover seukuran smartphone di desktop (SEBELUM buka undangan) */
 
 
 /* ========== MAIN ========== */
@@ -1603,7 +1626,8 @@
     <div class="panel-content">
       <p class="label">THE WEDDING OF</p>
       <h1>Tiara & Jati</h1>
-      <p class="guest-label">Tamu Undangan</p>
+      <p class="guest-label">Kepada Yth.</p>
+      <p class="guest-name" id="guestName">Tamu Undangan</p>
       <button id="openBtn" class="btn-open">Buka Undangan</button>
     </div>
   </div>
@@ -2056,6 +2080,23 @@
         updateIcon();
       });
     }
+  })();
+
+
+
+  /* ========== GUEST NAME FROM ?to= ========== */
+  (function () {
+    var el = document.getElementById('guestName');
+    if (!el) return;
+    try {
+      var params = new URLSearchParams(window.location.search);
+      var to = params.get('to');
+      if (to) {
+        // decode + ganti + menjadi spasi (umum di link undangan)
+        to = decodeURIComponent(to.replace(/\+/g, ' ')).trim();
+        if (to) el.textContent = to;
+      }
+    } catch (e) {}
   })();
 
   /* ========== 2. COUNTDOWN ========== */

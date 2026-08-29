@@ -703,9 +703,9 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.4rem;
-  max-width: 520px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 0 0.7rem;
+  padding: 0 0.7rem; /* sama dengan .we-inner di bawahnya */
   width: 100%;
   box-sizing: border-box;
   overflow: visible;
@@ -917,10 +917,9 @@
   inset: 0;
   z-index: 0;
   display: flex;
-  flex-direction: column;   /* vertikal */
+  flex-direction: column;
   height: 100%;
   width: 100%;
-  transition: transform 2.2s cubic-bezier(0.25, 0.1, 0.25, 1);
   will-change: transform;
 }
 
@@ -973,13 +972,22 @@
   position: relative;
 }
 
-/* Wrapper dalam = yang jadi mask (lengkungan tetap di sini) */
+/* Wrapper dalam = mask + animasi muncul (tidak bentrok dengan sliding) */
 .story-photos-inner {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  border-radius: 0 48px 0 0;  /* lengkungan pojok kanan atas */
+  border-radius: 0 48px 0 0;
   position: relative;
+  opacity: 0;
+  transform: translateY(-48px);
+  transition: opacity 1.1s cubic-bezier(0.25, 0.1, 0.25, 1),
+              transform 1.1s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.story-photos-inner.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .story-photo-track {
@@ -987,7 +995,6 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
-  transition: transform 2.2s cubic-bezier(0.25, 0.1, 0.25, 1);
   will-change: transform;
 }
 
@@ -995,7 +1002,6 @@
   flex: 0 0 100%;
   width: 100%;
   height: 100%;
-  /* jangan kasih border-radius di sini */
   opacity: 1;
 }
 
@@ -2080,28 +2086,107 @@
     }, 5000);
   })();
 
-  /* ========== 7. STORY BACKGROUND ========== */
+  /* ========== 7+8. OUR STORY — background KE BAWAH, foto KE ATAS, sinkron ========== */
   (function () {
-    var storyTrack = document.getElementById('storyTrack');
-    if (!storyTrack) return;
-    var slides = storyTrack.querySelectorAll('.story-bg');
-    var total = slides.length;
-    if (total < 2) return;
-    slides.forEach(function (s) { storyTrack.appendChild(s.cloneNode(true)); });
-    var index = 0;
-    setInterval(function () {
-      index++;
-      storyTrack.style.transition = 'transform 2.2s cubic-bezier(0.25, 0.1, 0.25, 1)';
-      storyTrack.style.transform = 'translateY(-' + (index * 100) + '%)';
-      if (index >= total) {
-        setTimeout(function () {
-          storyTrack.style.transition = 'none';
-          storyTrack.style.transform = 'translateY(0)';
-          index = 0;
-        }, 2300);
+    var bgTrack = document.getElementById('storyTrack');
+    var photoTrack = document.getElementById('storyPhotoTrack');
+    var inner = photoTrack && photoTrack.closest('.story-photos-inner');
+
+    var DURATION = 2200;
+    var INTERVAL = 4000;
+    var EASE = 'transform 2.2s cubic-bezier(0.25, 0.1, 0.25, 1)';
+
+    /* ===== FOTO: slide KE ATAS =====
+       clone di BELAKANG, index naik, translateY makin negatif
+       → konten naik, foto baru masuk dari BAWAH */
+    function setupPhoto(track) {
+      if (!track) return null;
+      var slides = Array.prototype.slice.call(track.querySelectorAll('.story-photo'));
+      var total = slides.length;
+      if (total < 2) return null;
+      slides.forEach(function (s) { track.appendChild(s.cloneNode(true)); });
+      track.style.flexDirection = 'column';
+      track.style.transition = 'none';
+      track.style.transform = 'translateY(0%)';
+      return { track: track, total: total, index: 0 };
+    }
+
+    /* ===== BACKGROUND: slide KE BAWAH =====
+       clone di DEPAN, mulai di index=total, index turun, translateY makin ke 0
+       → konten turun, foto baru masuk dari ATAS */
+    function setupBg(track) {
+      if (!track) return null;
+      var slides = Array.prototype.slice.call(track.querySelectorAll('.story-bg'));
+      var total = slides.length;
+      if (total < 2) return null;
+      // prepend clones (urutan terbalik supaya loop mulus)
+      for (var i = slides.length - 1; i >= 0; i--) {
+        track.insertBefore(slides[i].cloneNode(true), track.firstChild);
       }
-    }, 4000);
+      track.style.flexDirection = 'column';
+      track.style.transition = 'none';
+      // mulai di slide asli pertama (setelah blok clone)
+      track.style.transform = 'translateY(-' + (total * 100) + '%)';
+      return { track: track, total: total, index: total };
+    }
+
+    var photo = setupPhoto(photoTrack);
+    var bg = setupBg(bgTrack);
+
+    function stepPhoto(s) {
+      if (!s) return;
+      s.index += 1;
+      s.track.style.transition = EASE;
+      s.track.style.transform = 'translateY(-' + (s.index * 100) + '%)';
+      if (s.index >= s.total) {
+        setTimeout(function () {
+          s.track.style.transition = 'none';
+          s.index = 0;
+          s.track.style.transform = 'translateY(0%)';
+        }, DURATION + 80);
+      }
+    }
+
+    function stepBg(s) {
+      if (!s) return;
+      s.index -= 1;
+      s.track.style.transition = EASE;
+      s.track.style.transform = 'translateY(-' + (s.index * 100) + '%)';
+      if (s.index <= 0) {
+        setTimeout(function () {
+          s.track.style.transition = 'none';
+          s.index = s.total;
+          s.track.style.transform = 'translateY(-' + (s.total * 100) + '%)';
+        }, DURATION + 80);
+      }
+    }
+
+    var started = false;
+    function startSyncedSlide() {
+      if (started) return;
+      started = true;
+      setInterval(function () {
+        stepBg(bg);       // background: ke bawah
+        stepPhoto(photo); // foto: ke atas
+      }, INTERVAL);
+    }
+
+    if (inner) {
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            inner.classList.add('is-visible');
+            setTimeout(startSyncedSlide, 1200);
+            obs.disconnect();
+          }
+        });
+      }, { threshold: 0.25 });
+      obs.observe(inner);
+    } else {
+      startSyncedSlide();
+    }
   })();
+
 
 
   /* ========== 9. GALLERY (manual + infinite) — aman jika HTML belum ada ========== */

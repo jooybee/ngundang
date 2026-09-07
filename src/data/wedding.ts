@@ -137,7 +137,7 @@ export const wedding = {
     openButton: "Buka Undangan",
   },
   meta: {
-    title: "The Wedding of Tiara & Jati",
+    title: "The Wedding of Aji & Ayu",
     footer: "Made with ♥ Undangan Digital Gubug",
   },
 

@@ -180,9 +180,9 @@ export const wedding = {
    */
   photos: {
     /* Ganti ke "/photos/nama-file.jpg" setelah upload ke public/photos/ */
-    coverLeft: "/src/img/background1.jpg?w=1200&q=65",
-    coverRight: "/src/img/background4.jpg?w=1200&q=65",
-    mainSticky: "/src/img/coverkanan.jpg?w=1200&q=65",
+    coverLeft: "/img/background1.jpg?w=1200&q=65",
+    coverRight: "/img/background4.jpg?w=1200&q=65",
+    mainSticky: "/img/coverkanan.jpg?w=1200&q=65",
 
     hero: [
       "/img/background.jpg?w=1200&q=65",

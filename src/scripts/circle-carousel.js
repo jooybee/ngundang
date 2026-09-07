@@ -21,5 +21,5 @@ export function initCircleCarousel() {
         idx = 0;
       }, 1450);
     }
-  }, 3000);
+  }, 4000);
 }

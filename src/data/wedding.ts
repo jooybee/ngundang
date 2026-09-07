@@ -139,6 +139,7 @@ export const wedding = {
   meta: {
     title: "The Wedding of Aji & Ayu",
     footer: "Made with ♥ Undangan Digital Gubug",
+    ogImage: "/img/background.jpg",
   },
 
   /* ---------- TEMA / WARNA (ganti di sini saja untuk ubah vibe) ---------- */

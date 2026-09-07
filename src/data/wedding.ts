@@ -1,0 +1,249 @@
+/**
+ * ============================================================
+ *  WEDDING CONFIG — edit file ini saja untuk undangan baru
+ * ============================================================
+ *  Foto  → letakkan di public/photos/  (lihat nama file di bawah)
+ *  Musik → letakkan di public/music/bgm.mp3
+ * ============================================================
+ */
+
+export const wedding = {
+  /* ---------- PASANGAN ---------- */
+  couple: {
+    /** Ditampilkan di cover, hero, closing, title */
+    short: "Aji & Ayu",
+    bride: {
+      fullName: "Ardiyah Ayu Rahmawati",
+      parents: "Putri Pertama Bapak Sunardi Noto\n& Ibu Anis Rohmawati",
+      instagram: "@instagram",
+      instagramUrl: "https://instagram.com/",
+    },
+    groom: {
+      fullName: "Aji Sasmito",
+      parents: "Putra Pertama Bapak Marwoto\n& Ibu Ruharyati",
+      instagram: "@jooybee_",
+      instagramUrl: "https://instagram.com/jooybee_",
+    },
+  },
+
+  /* ---------- TANGGAL & WAKTU ---------- */
+  /** ISO untuk countdown — format: YYYY-MM-DDTHH:mm:ss+07:00 */
+  datetime: "2026-10-29T08:00:00+07:00",
+  /** Teks tanggal di cover & event */
+  dateLabel: "29 Oktober 2026",
+  dateLabelLong: "Kamis,29 Oktober 2026",
+
+  /* ---------- ACARA ---------- */
+  events: [
+    {
+      label: "Akad Nikah",
+      title: "Kamis, 29 Oktober 2026",
+      time: "07.00 – 09.00 WIB",
+      location: "Rumah kediaman mempelai wanita\nGg. parianom mlilir\nKasihan, Bantul, DIY 55183",
+      mapsUrl: "https://maps.app.goo.gl/",
+    },
+    {
+      label: "Resepsi",
+      title: "Kamis, 29 Oktober 2026",
+      time: "09.00 – 13.00 WIB",
+      location: "Rumah kediaman mempelai wanita\nGg. Parianom Mlilir\nKasihan, Bantul, DIY 55183",
+      mapsUrl: "https://maps.app.goo.gl/",
+    },
+    {
+      label: "Live Streaming",
+      title: "",
+      time: "",
+      location:
+        "Bagi tamu yang berhalangan hadir, silakan menyaksikan siaran langsung pernikahan kami melalui tautan di bawah.",
+      mapsUrl: "",
+      streamingUrl: "https://instagram.com/",
+    },
+  ],
+
+  /* ---------- TEKS ---------- */
+  salam: {
+    heading: "Assalamu'alaikum wr wb",
+    body: "Segala Puji Bagi Allah SWT yang telah menjadikan hambanya hidup berpasang-pasangan. Dengan memohon Ridho, Rahmat, dan Berkah Allah SWT, kami bermaksud untuk mengundang Saudara/i dalam acara pernikahan yang kami selenggarakan.",
+  },
+  quote: {
+    text: "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang",
+    source: "AR-RUM AYAT : 21",
+  },
+  rsvp: {
+    heading: "RSVP",
+    body: "Kirimkan Konfirmasi Kehadiran Kepada Mempelai Melalui Form Berikut.",
+    /** Ganti dengan embed Tally / Google Form Anda */
+    tallyEmbed:
+      "https://tally.so/embed/ODMZ1a?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1",
+  },
+  story: {
+    heading: "Our Story",
+    items: [
+      {
+        date: "09 September 2021",
+        title: "Awal Bertemu",
+        body: "Awal mula kami bertemu adalah dalam rentetan acara masa orientasi kampus di Jogja saat kami masih mahasiswa baru.",
+      },
+      {
+        date: "20 Mei 20026",
+        title: "Menjalin Hubungan",
+        body: "Setelah berkomunikasi beberapa bulan dan menemukan kecocokan akhirnya kami memutuskan untuk menjalin sebuah komitmen.",
+      },
+      {
+        date: "29 Oktober 2026",
+        title: "Menikah",
+        body: "Setelah menjalin hubungan beberapa tahun, akhirnya kami memantabkan hati untuk membawa hubungan ini ke jenjang yang lebih serius.",
+      },
+    ],
+  },
+  ucapan: {
+    heading: "Ucapan & Doa",
+    body: "Tinggalkan doa dan ucapan terbaik untuk kami.",
+  },
+  gift: {
+    heading: "Wedding Gift",
+    body: "Tanpa mengurangi rasa hormat, bagi Bapak/Ibu/Saudara/i yang ingin memberikan tanda kasih dapat menyampaikannya melalui:",
+    bank: [
+      {
+      label: "Transfer Bank",
+      bankName: "Bank Rakyat Indonesia (BRI)",
+      number: "0083 0113 7850 506",
+      numberCopy: "008301137850506",
+      holder: "a.n. Ardiyah Ayu Rahmawati",
+    },
+      {
+        label: "Transfer Bank",
+        bankName: "Bank Rakyat Indonesia (BRI)",
+        number: "1360 0100 2950 507",
+        numberCopy: "136001002950507",
+        holder: "a.n. Aji Sasmito",
+      },
+      ],
+    address: {
+      label: "Kirim Hadiah Fisik",
+      name: "Ardiyah Ayu Rahmawati",
+      lines: "Jl. Wulung No. 14, Papringan,\nCaturtunggal, Depok, Sleman,\nDIY 55281",
+      copy: "Jl. Wulung No. 14, Papringan, Caturtunggal, Depok, Sleman, DIY 55281",
+    },
+  },
+  closing: {
+    label: "Kami yang berbahagia",
+    thanks:
+      "Merupakan sebuah kehormatan dan kebahagiaan bagi kami jika Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu bagi kami. Terima kasih.",
+  },
+  cover: {
+    label: "THE WEDDING OF",
+    guestFallback: "Tamu Undangan",
+    openButton: "Buka Undangan",
+  },
+  meta: {
+    title: "The Wedding of Tiara & Jati",
+    footer: "Made with ♥ Undangan Digital Gubug",
+  },
+
+  /* ---------- TEMA / WARNA (ganti di sini saja untuk ubah vibe) ---------- */
+  theme: {
+    /** Nama tema (hanya untuk dokumentasi) */
+    name: "Elegant Cream",
+    colors: {
+      /** Background utama */
+      cream: "#F7F3EE",
+      /** Background sekunder / section soft */
+      soft: "#EFEAE3",
+      /** Teks utama & heading */
+      elegant: "#1E1E1E",
+      /** Teks sekunder / body */
+      muted: "#7A736C",
+      /** Aksen utama (tombol, highlight, garis) */
+      accent: "#9A7B5A",
+      /** Aksen hover / lebih gelap */
+      accentHover: "#7A6B5A",
+      /** Aksen alternatif (IG button, label) */
+      accentAlt: "#8B7355",
+      /** Aksen lembut (garis, badge) */
+      accentSoft: "#C4B8A8",
+      /** Panel soft (cover kanan, salam bg) */
+      panelSoft: "#D9D0C4",
+      /** Putih / kontras */
+      light: "#FFFFFF",
+    },
+  },
+
+  /* ---------- MUSIK ---------- */
+  /** Path relatif dari public/ — ganti file di public/music/bgm.mp3 */
+  music: "/src/music/nyidamsari.mp3",
+  /** Setelah upload file: music: "/music/bgm.mp3", */
+
+  /* ---------- FOTO (public/photos/) ----------
+   *  Letakkan file dengan nama di bawah, atau biarkan URL Unsplash sebagai fallback.
+   *  Format disarankan: JPG/WebP, landscape untuk hero/cover, square untuk bride/groom.
+   */
+  photos: {
+    /* Ganti ke "/photos/nama-file.jpg" setelah upload ke public/photos/ */
+    coverLeft: "/src/img/background1.jpg?w=1200&q=65",
+    coverRight: "/src/img/background4.jpg?w=1200&q=65",
+    mainSticky: "/src/img/coverkanan.jpg?w=1200&q=65",
+
+    hero: [
+      "/src/img/background.jpg?w=1200&q=65",
+      "/src/img/background3.jpg?w=1200&q=65",
+    ],
+
+    circle: [
+      "/src/img/crsl.jpg?w=200&h=200&fit=crop&q=65",
+      "/src/img/crsl2.jpg?w=200&h=200&fit=crop&q=65",
+      "/src/img/crsl1.jpg?w=200&h=200&fit=crop&q=65",
+      "/src/img/background5.jpg?w=200&h=200&fit=crop&q=65",
+    ],
+
+    bride: [
+      "/src/img/bride.jpg?w=600&h=600&fit=crop&q=65",
+      "/src/img/bride1.jpg?w=600&h=600&fit=crop&q=65",
+    ],
+    groom: [
+      "/src/img/groom.jpg?w=600&h=600&fit=crop&q=65",
+      "/src/img/groom1.jpg?w=600&h=600&fit=crop&q=65",
+    ],
+
+    std: [
+      "/src/img/std-kiri.jpg?w=800&h=600&fit=crop&q=65",
+      "/src/img/std-kanan.jpg?w=800&h=600&fit=crop&q=65",
+    ],
+    stdBg: [
+      "/src/img/background3.jpg?w=1200&q=65",
+      "/src/img/coverkanan.jpg?w=1200&q=65",
+    ],
+
+    story: [
+      "/src/img/story.jpg?w=900&h=600&fit=crop&q=65",
+      "/src/img/story1.jpg?w=900&h=600&fit=crop&q=65",
+    ],
+    storyBg: [
+      "/src/img/background5.jpg?w=1200&q=65",
+      "/src/img/background2.jpg?w=1200&q=65",
+    ],
+
+    gallery: [
+      "/src/img/background5.jpg?w=1200&q=65",
+      "/src/img/background1.jpg?w=1200&q=65",
+      "/src/img/background2.jpg?w=1200&q=65",
+      "/src/img/background3.jpg?w=1200&q=65",
+      "/src/img/background4.jpg?w=1200&q=65",
+      "/src/img/coverkanan.jpg?w=1200&q=65",
+      "/src/img/crsl2.jpg?w=1200&q=65",
+    ],
+
+    closing: [
+      "/src/img/background.jpg?w=1200&q=65",
+      "/src/img/background3.jpg?w=1200&q=65",
+    ],
+  },
+
+  /* ---------- SUPABASE (ucapan) — opsional ---------- */
+  supabase: {
+    url: "https://qjuonhqqajuywtnlrupq.supabase.co",
+    anonKey: "sb_publishable_KPsclwO--l39wQV33o_HTQ_XagyCgZS",
+  },
+} as const;
+
+export type WeddingConfig = typeof wedding;

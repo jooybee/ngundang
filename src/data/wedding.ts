@@ -171,7 +171,7 @@ export const wedding = {
 
   /* ---------- MUSIK ---------- */
   /** Path relatif dari public/ — ganti file di public/music/bgm.mp3 */
-  music: "/src/music/nyidamsari.mp3",
+  music: "/music/nyidamsari.mp3",
   /** Setelah upload file: music: "/music/bgm.mp3", */
 
   /* ---------- FOTO (public/photos/) ----------
@@ -185,57 +185,57 @@ export const wedding = {
     mainSticky: "/src/img/coverkanan.jpg?w=1200&q=65",
 
     hero: [
-      "/src/img/background.jpg?w=1200&q=65",
-      "/src/img/background3.jpg?w=1200&q=65",
+      "/img/background.jpg?w=1200&q=65",
+      "/img/background3.jpg?w=1200&q=65",
     ],
 
     circle: [
-      "/src/img/crsl.jpg?w=200&h=200&fit=crop&q=65",
-      "/src/img/crsl2.jpg?w=200&h=200&fit=crop&q=65",
-      "/src/img/crsl1.jpg?w=200&h=200&fit=crop&q=65",
-      "/src/img/background5.jpg?w=200&h=200&fit=crop&q=65",
+      "/img/crsl.jpg?w=200&h=200&fit=crop&q=65",
+      "/img/crsl2.jpg?w=200&h=200&fit=crop&q=65",
+      "/img/crsl1.jpg?w=200&h=200&fit=crop&q=65",
+      "/img/background5.jpg?w=200&h=200&fit=crop&q=65",
     ],
 
     bride: [
-      "/src/img/bride.jpg?w=600&h=600&fit=crop&q=65",
-      "/src/img/bride1.jpg?w=600&h=600&fit=crop&q=65",
+      "/img/bride.jpg?w=600&h=600&fit=crop&q=65",
+      "/img/bride1.jpg?w=600&h=600&fit=crop&q=65",
     ],
     groom: [
-      "/src/img/groom.jpg?w=600&h=600&fit=crop&q=65",
-      "/src/img/groom1.jpg?w=600&h=600&fit=crop&q=65",
+      "/img/groom.jpg?w=600&h=600&fit=crop&q=65",
+      "/img/groom1.jpg?w=600&h=600&fit=crop&q=65",
     ],
 
     std: [
-      "/src/img/std-kiri.jpg?w=800&h=600&fit=crop&q=65",
-      "/src/img/std-kanan.jpg?w=800&h=600&fit=crop&q=65",
+      "/img/std-kiri.jpg?w=800&h=600&fit=crop&q=65",
+      "/img/std-kanan.jpg?w=800&h=600&fit=crop&q=65",
     ],
     stdBg: [
-      "/src/img/background3.jpg?w=1200&q=65",
-      "/src/img/coverkanan.jpg?w=1200&q=65",
+      "/img/background3.jpg?w=1200&q=65",
+      "/img/coverkanan.jpg?w=1200&q=65",
     ],
 
     story: [
-      "/src/img/story.jpg?w=900&h=600&fit=crop&q=65",
-      "/src/img/story1.jpg?w=900&h=600&fit=crop&q=65",
+      "/img/story.jpg?w=900&h=600&fit=crop&q=65",
+      "/img/story1.jpg?w=900&h=600&fit=crop&q=65",
     ],
     storyBg: [
-      "/src/img/background5.jpg?w=1200&q=65",
-      "/src/img/background2.jpg?w=1200&q=65",
+      "/img/background5.jpg?w=1200&q=65",
+      "/img/background2.jpg?w=1200&q=65",
     ],
 
     gallery: [
-      "/src/img/background5.jpg?w=1200&q=65",
-      "/src/img/background1.jpg?w=1200&q=65",
-      "/src/img/background2.jpg?w=1200&q=65",
-      "/src/img/background3.jpg?w=1200&q=65",
-      "/src/img/background4.jpg?w=1200&q=65",
-      "/src/img/coverkanan.jpg?w=1200&q=65",
-      "/src/img/crsl2.jpg?w=1200&q=65",
+      "/img/background5.jpg?w=1200&q=65",
+      "/img/background1.jpg?w=1200&q=65",
+      "/img/background2.jpg?w=1200&q=65",
+      "/img/background3.jpg?w=1200&q=65",
+      "/img/background4.jpg?w=1200&q=65",
+      "/img/coverkanan.jpg?w=1200&q=65",
+      "/img/crsl2.jpg?w=1200&q=65",
     ],
 
     closing: [
-      "/src/img/background.jpg?w=1200&q=65",
-      "/src/img/background3.jpg?w=1200&q=65",
+      "/img/background.jpg?w=1200&q=65",
+      "/img/background3.jpg?w=1200&q=65",
     ],
   },
 

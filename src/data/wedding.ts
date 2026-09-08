@@ -148,23 +148,23 @@ export const wedding = {
     name: "Elegant Cream",
     colors: {
       /** Background utama */
-      cream: "#F7F3EE",
+      cream: "#F8F1EB",
       /** Background sekunder / section soft */
-      soft: "#EFEAE3",
+      soft: "#F0E6DC",
       /** Teks utama & heading */
-      elegant: "#1E1E1E",
+      elegant: "#2C1810",
       /** Teks sekunder / body */
-      muted: "#7A736C",
+      muted: "#6B4E3D",
       /** Aksen utama (tombol, highlight, garis) */
-      accent: "#9A7B5A",
+      accent: "#8B3A3A",
       /** Aksen hover / lebih gelap */
-      accentHover: "#7A6B5A",
+      accentHover: "#6B2A2A",
       /** Aksen alternatif (IG button, label) */
-      accentAlt: "#8B7355",
+      accentAlt: "#A0522D",
       /** Aksen lembut (garis, badge) */
-      accentSoft: "#C4B8A8",
+      accentSoft: "#C4A484",
       /** Panel soft (cover kanan, salam bg) */
-      panelSoft: "#D9D0C4",
+      panelSoft: "#D4C4B0",
       /** Putih / kontras */
       light: "#FFFFFF",
     },

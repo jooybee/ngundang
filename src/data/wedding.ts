@@ -148,23 +148,23 @@ export const wedding = {
     name: "Jawa Maroon",
     colors: {
       /** Background utama */
-      cream: "#F7F0EA",
+      cream: "#F8F1EC",
       /** Background sekunder / section soft */
-      soft: "#F0E6DC",
+      soft: "#F1E6DE",
       /** Teks utama & heading */
       elegant: "#2A1810",
       /** Teks sekunder / body */
-      muted: "#6B5344",
+      muted: "#7A5C50",
       /** Aksen utama (tombol, highlight, garis) */
       accent: "#8B3A3A",
       /** Aksen hover / lebih gelap */
       accentHover: "#6F2E2E",
       /** Aksen alternatif (IG button, label) */
-      accentAlt: "#A0522D",
+      accentAlt: "#9A4A42",
       /** Aksen lembut (garis, badge) */
-      accentSoft: "#C4A484",
+      accentSoft: "#C4A090",
       /** Panel soft (cover kanan, salam bg) */
-      panelSoft: "#E2C8B8",
+      panelSoft: "#E5D0C0",
       /** Putih / kontras */
       light: "#FFFFFF",
     },

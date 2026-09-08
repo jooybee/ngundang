@@ -3,7 +3,7 @@ export function initWishes(config) {
   if (!window.supabase) return;
 
   const supabaseClient = window.supabase.createClient(config.supabaseUrl, config.supabaseAnonKey);
-  const PAGE_SIZE = 3;
+  const PAGE_SIZE = 5;
 
   function escapeHtml(text) {
     const div = document.createElement('div');
@@ -26,70 +26,52 @@ export function initWishes(config) {
     </div>`;
   }
 
-  function setupPaging(listEl, dotsEl, pageCount) {
-  if (pageCount <= 1) {
-    dotsEl.innerHTML = '';
-    return;
-  }
+  function setupNav(listEl, navEl, pageCount) {
+    if (pageCount <= 1) {
+      navEl.innerHTML = '';
+      return;
+    }
 
-  const goTo = (page) => {
-    listEl.scrollTo({ left: page * listEl.clientWidth, behavior: 'smooth' });
-  };
+    navEl.innerHTML = `
+      <div class="wish-nav">
+        <button type="button" class="wish-nav-btn" id="wishPrev" aria-label="Sebelumnya">&#8249;</button>
+        <span class="wish-nav-count" id="wishCount">1 / ${pageCount}</span>
+        <button type="button" class="wish-nav-btn" id="wishNext" aria-label="Berikutnya">&#8250;</button>
+      </div>`;
 
-  if (pageCount <= 7) {
-    dotsEl.innerHTML = Array.from({ length: pageCount }, (_, i) =>
-      `<button type="button" class="wish-dot${i === 0 ? ' is-active' : ''}" data-page="${i}" aria-label="Halaman ${i + 1}"></button>`
-    ).join('');
+    const prevBtn = navEl.querySelector('#wishPrev');
+    const nextBtn = navEl.querySelector('#wishNext');
+    const countEl = navEl.querySelector('#wishCount');
 
-    const dots = dotsEl.querySelectorAll('.wish-dot');
-    dots.forEach((dot) => {
-      dot.addEventListener('click', () => goTo(Number(dot.dataset.page)));
+    const goTo = (page) => {
+      listEl.scrollTo({ left: page * listEl.clientWidth, behavior: 'smooth' });
+    };
+
+    const updateButtons = (page) => {
+      countEl.textContent = `${page + 1} / ${pageCount}`;
+      prevBtn.disabled = page === 0;
+      nextBtn.disabled = page === pageCount - 1;
+    };
+
+    prevBtn.addEventListener('click', () => {
+      const page = Math.max(0, Math.round(listEl.scrollLeft / listEl.clientWidth) - 1);
+      goTo(page);
+    });
+    nextBtn.addEventListener('click', () => {
+      const page = Math.min(pageCount - 1, Math.round(listEl.scrollLeft / listEl.clientWidth) + 1);
+      goTo(page);
     });
 
     listEl.addEventListener('scroll', () => {
-      const page = Math.round(listEl.scrollLeft / listEl.clientWidth);
-      dots.forEach((dot, i) => dot.classList.toggle('is-active', i === page));
+      updateButtons(Math.round(listEl.scrollLeft / listEl.clientWidth));
     });
-    return;
+
+    updateButtons(0);
   }
-
-  // Banyak halaman: pakai panah + counter
-  dotsEl.innerHTML = `
-    <div class="wish-nav">
-      <button type="button" class="wish-nav-btn" id="wishPrev" aria-label="Sebelumnya">&#8249;</button>
-      <span class="wish-nav-count" id="wishCount">1 / ${pageCount}</span>
-      <button type="button" class="wish-nav-btn" id="wishNext" aria-label="Berikutnya">&#8250;</button>
-    </div>`;
-
-  const prevBtn = dotsEl.querySelector('#wishPrev');
-  const nextBtn = dotsEl.querySelector('#wishNext');
-  const countEl = dotsEl.querySelector('#wishCount');
-
-  const updateButtons = (page) => {
-    countEl.textContent = `${page + 1} / ${pageCount}`;
-    prevBtn.disabled = page === 0;
-    nextBtn.disabled = page === pageCount - 1;
-  };
-
-  prevBtn.addEventListener('click', () => {
-    const page = Math.max(0, Math.round(listEl.scrollLeft / listEl.clientWidth) - 1);
-    goTo(page);
-  });
-  nextBtn.addEventListener('click', () => {
-    const page = Math.min(pageCount - 1, Math.round(listEl.scrollLeft / listEl.clientWidth) + 1);
-    goTo(page);
-  });
-
-  listEl.addEventListener('scroll', () => {
-    updateButtons(Math.round(listEl.scrollLeft / listEl.clientWidth));
-  });
-
-  updateButtons(0);
-      }
 
   async function loadWishes() {
     const listEl = document.getElementById('wishList');
-    const dotsEl = document.getElementById('wishDots');
+    const navEl = document.getElementById('wishDots');
     if (!listEl) return;
 
     try {
@@ -97,13 +79,13 @@ export function initWishes(config) {
         .from('wishes')
         .select('name, message, created_at')
         .order('created_at', { ascending: false })
-        .limit(100);
+        .limit(1000);
 
       if (error) throw error;
 
       if (!data || data.length === 0) {
         listEl.innerHTML = '<p style="text-align:center;color:#7A736C;font-size:14px;">Jadilah yang pertama memberi doa 🙏</p>';
-        if (dotsEl) dotsEl.innerHTML = '';
+        if (navEl) navEl.innerHTML = '';
         return;
       }
 
@@ -116,12 +98,12 @@ export function initWishes(config) {
         .map((page) => `<div class="wish-page">${page.map(bubbleHtml).join('')}</div>`)
         .join('');
 
-      if (dotsEl) setupPaging(listEl, dotsEl, pages.length);
+      if (navEl) setupNav(listEl, navEl, pages.length);
 
     } catch (err) {
       console.error(err);
       listEl.innerHTML = `<p style="text-align:center;color:#c45c5c;font-size:13px;">Gagal memuat: ${err.message}</p>`;
-      if (dotsEl) dotsEl.innerHTML = '';
+      if (navEl) navEl.innerHTML = '';
     }
   }
 
@@ -169,4 +151,4 @@ export function initWishes(config) {
       loadWishes();
     })
     .subscribe();
-    }
+}

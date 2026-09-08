@@ -39,14 +39,14 @@ export const wedding = {
       label: "Akad Nikah",
       title: "Kamis, 29 Oktober 2026",
       time: "07.00 – 09.00 WIB",
-      location: "Rumah kediaman mempelai wanita\nGg. parianom mlilir\nKasihan, Bantul, DIY 55183",
+      location: "Rumah kediaman mempelai wanita\n Jalan Jetis Rejo, RT.4/RW.4,\n Desa Mlilir, Gubug\n Kab. Grobogan, Jawa Tengah 58164",
       mapsUrl: "https://maps.app.goo.gl/",
     },
     {
       label: "Resepsi",
       title: "Kamis, 29 Oktober 2026",
       time: "09.00 – 13.00 WIB",
-      location: "Rumah kediaman mempelai wanita\nGg. Parianom Mlilir\nKasihan, Bantul, DIY 55183",
+      location: "Rumah kediaman mempelai wanita\n Jalan Jetis Rejo, RT.4/RW.4,\n Desa Mlilir, Gubug\n Kab. Grobogan, Jawa Tengah 58164",
       mapsUrl: "https://maps.app.goo.gl/",
     },
     {
@@ -85,7 +85,7 @@ export const wedding = {
         body: "Awal mula kami bertemu adalah dalam rentetan acara masa orientasi kampus di Jogja saat kami masih mahasiswa baru.",
       },
       {
-        date: "20 Mei 20026",
+        date: "20 Mei 2026",
         title: "Menjalin Hubungan",
         body: "Setelah berkomunikasi beberapa bulan dan menemukan kecocokan akhirnya kami memutuskan untuk menjalin sebuah komitmen.",
       },
@@ -122,8 +122,8 @@ export const wedding = {
     address: {
       label: "Kirim Hadiah Fisik",
       name: "Ardiyah Ayu Rahmawati",
-      lines: "Jl. Wulung No. 14, Papringan,\nCaturtunggal, Depok, Sleman,\nDIY 55281",
-      copy: "Jl. Wulung No. 14, Papringan, Caturtunggal, Depok, Sleman, DIY 55281",
+      lines: "Jalan Jetis Rejo, RT.4/RW.4, Desa Mlilir, Gubug\n Kab. Grobogan, Jawa Tengah 58164",
+      copy: "Jalan Jetis Rejo, RT.4/RW.4, Desa Mlilir, Gubug, Kab. Grobogan, Jawa Tengah 58164",
     },
   },
   closing: {

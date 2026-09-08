@@ -1321,7 +1321,7 @@ const giftLines = w.gift.address.lines.split('\n');
 }
 
 /* ===== Chat Bubble List ===== */
-.wish-list {
+:global(.wish-list) {
   display: flex;
   flex-direction: column;
   gap: 1.15rem;
@@ -1333,18 +1333,18 @@ const giftLines = w.gift.address.lines.split('\n');
   scrollbar-color: color-mix(in srgb, var(--accent) 35%, transparent) transparent;
 }
 
-.wish-list::-webkit-scrollbar {
+:global(.wish-list::-webkit-scrollbar) {
   width: 5px;
 }
-.wish-list::-webkit-scrollbar-track {
+:global(.wish-list::-webkit-scrollbar-track) {
   background: transparent;
 }
-.wish-list::-webkit-scrollbar-thumb {
+:global(.wish-list::-webkit-scrollbar-thumb) {
   background: color-mix(in srgb, var(--accent) 30%, transparent);
   border-radius: 10px;
 }
 
-.wish-bubble {
+:global(.wish-bubble) {
   display: flex;
   gap: 0.7rem;
   max-width: 94%;
@@ -1363,7 +1363,7 @@ const giftLines = w.gift.address.lines.split('\n');
 }
 
 /* Avatar inisial */
-.wish-avatar {
+:global(.wish-avatar) {
   flex-shrink: 0;
   width: 36px;
   height: 36px;
@@ -1384,12 +1384,12 @@ const giftLines = w.gift.address.lines.split('\n');
   margin-top: 2px;
 }
 
-.wish-content {
+:global(.wish-content) {
   flex: 1;
   min-width: 0;
 }
 
-.wish-name {
+:global(.wish-name) {
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 0.95rem;
   font-style: italic;
@@ -1400,7 +1400,7 @@ const giftLines = w.gift.address.lines.split('\n');
 }
 
 /* Bubble chat utama */
-.wish-msg {
+:global(.wish-msg) {
   position: relative;
   background: color-mix(in srgb, var(--soft, #F0E6DC) 75%, #fff);
   color: var(--elegant, #2A1810);
@@ -1416,7 +1416,7 @@ const giftLines = w.gift.address.lines.split('\n');
 }
 
 /* Ekor bubble kecil di kiri atas */
-.wish-msg::before {
+:global(.wish-msg::before) {
   content: "";
   position: absolute;
   left: -6px;
@@ -1430,7 +1430,7 @@ const giftLines = w.gift.address.lines.split('\n');
   border-radius: 1px;
 }
 
-.wish-time {
+:global(.wish-time) {
   font-size: 10.5px;
   color: var(--muted, #6B5344);
   margin-top: 0.35rem;

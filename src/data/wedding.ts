@@ -145,20 +145,20 @@ export const wedding = {
   /* ---------- TEMA / WARNA (ganti di sini saja untuk ubah vibe) ---------- */
   theme: {
     /** Nama tema (hanya untuk dokumentasi) */
-    name: "Elegant Cream",
+    name: "Jawa Maroon",
     colors: {
       /** Background utama */
-      cream: "#F8F1EB",
+      cream: "#F7F0EA",
       /** Background sekunder / section soft */
       soft: "#F0E6DC",
       /** Teks utama & heading */
-      elegant: "#2C1810",
+      elegant: "#2A1810",
       /** Teks sekunder / body */
-      muted: "#6B4E3D",
+      muted: "#6B5344",
       /** Aksen utama (tombol, highlight, garis) */
       accent: "#8B3A3A",
       /** Aksen hover / lebih gelap */
-      accentHover: "#6B2A2A",
+      accentHover: "#6F2E2E",
       /** Aksen alternatif (IG button, label) */
       accentAlt: "#A0522D",
       /** Aksen lembut (garis, badge) */

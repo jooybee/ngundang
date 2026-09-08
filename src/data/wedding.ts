@@ -15,8 +15,8 @@ export const wedding = {
     bride: {
       fullName: "Ardiyah Ayu Rahmawati",
       parents: "Putri Pertama Bapak Sunardi Noto\n& Ibu Anis Rohmawati",
-      instagram: "@instagram",
-      instagramUrl: "https://instagram.com/",
+      instagram: "",
+      instagramUrl: "",
       tiktok: "@rahmaaaa808",
       tiktokUrl: "https://www.tiktok.com/@rahmaaaa808",
     },

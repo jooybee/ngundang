@@ -3,8 +3,8 @@ export function initStorySlide() {
   const photoTrack = document.getElementById('storyPhotoTrack');
   const inner = photoTrack && photoTrack.closest('.story-photos-inner');
 
-  const DURATION = 2200;
-  const INTERVAL = 4000;
+  const DURATION = 2500;
+  const INTERVAL = 5500;
   const EASE = 'transform 2.2s cubic-bezier(0.25, 0.1, 0.25, 1)';
 
   function setupPhoto(track) {

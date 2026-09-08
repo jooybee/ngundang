@@ -17,12 +17,16 @@ export const wedding = {
       parents: "Putri Pertama Bapak Sunardi Noto\n& Ibu Anis Rohmawati",
       instagram: "@instagram",
       instagramUrl: "https://instagram.com/",
+      tiktok: "@rahmaaaa808",
+      tiktokUrl: "https://www.tiktok.com/@rahmaaaa808",
     },
     groom: {
       fullName: "Aji Sasmito",
       parents: "Putra Pertama Bapak Marwoto\n& Ibu Ruharyati",
-      instagram: "@jooybee_",
-      instagramUrl: "https://instagram.com/jooybee_",
+      instagram: "@jooybee__",
+      instagramUrl: "https://instagram.com/jooybee__",
+      tiktok: "@jooybee__",
+      tiktokUrl: "https://www.tiktok.com/@jooybee__",
     },
   },
 

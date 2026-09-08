@@ -19,7 +19,7 @@ export function initCircleCarousel() {
         track.style.transition = 'none';
         track.style.transform = 'translateX(0)';
         idx = 0;
-      }, 1450);
+      }, 1600);
     }
-  }, 4000);
+  }, 5000);
 }

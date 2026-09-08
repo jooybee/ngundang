@@ -142,7 +142,9 @@ export const wedding = {
   },
   meta: {
     title: "The Wedding of Aji & Ayu",
-    footer: "Made with ♥ Undangan Digital Gubug",
+    footer: "Made with ♥ ",
+    footerLinkText: "Undangan Digital Gubug",
+    footerLinkUrl: "https://jooybee.my.id",
     ogImage: "/img/og-image.jpg",
   },
 

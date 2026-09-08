@@ -86,12 +86,12 @@ export const wedding = {
       {
         date: "09 September 2021",
         title: "Awal Bertemu",
-        body: "Awal mula kami bertemu adalah dalam rentetan acara masa orientasi kampus di Jogja saat kami masih mahasiswa baru.",
+        body: "Awal mula kami bertemu di tempat kerja kami, tiap hari ketemu hingga akhirnya bertukaran kontak WhatsApp.",
       },
       {
         date: "20 Mei 2026",
         title: "Menjalin Hubungan",
-        body: "Setelah berkomunikasi beberapa bulan dan menemukan kecocokan akhirnya kami memutuskan untuk menjalin sebuah komitmen.",
+        body: "Setelah berkomunikasi beberapa bulan dan menemukan kecocokan akhirnya kami memantapkan diri dan memutuskan untuk menjalin sebuah komitmen.",
       },
       {
         date: "29 Oktober 2026",

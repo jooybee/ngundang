@@ -3,6 +3,7 @@ export function initWishes(config) {
   if (!window.supabase) return;
 
   const supabaseClient = window.supabase.createClient(config.supabaseUrl, config.supabaseAnonKey);
+  const PAGE_SIZE = 3;
 
   function escapeHtml(text) {
     const div = document.createElement('div');
@@ -10,8 +11,48 @@ export function initWishes(config) {
     return div.innerHTML;
   }
 
+  function bubbleHtml(w) {
+    const initial = (w.name || '?').trim().charAt(0).toUpperCase();
+    return `
+    <div class="wish-bubble">
+      <div class="wish-avatar" aria-hidden="true">${escapeHtml(initial)}</div>
+      <div class="wish-content">
+        <div class="wish-name">${escapeHtml(w.name)}</div>
+        <div class="wish-msg">${escapeHtml(w.message)}</div>
+        <div class="wish-time">${new Date(w.created_at).toLocaleDateString('id-ID', {
+          day: 'numeric', month: 'short', year: 'numeric'
+        })}</div>
+      </div>
+    </div>`;
+  }
+
+  function setupPaging(listEl, dotsEl, pageCount) {
+    if (pageCount <= 1) {
+      dotsEl.innerHTML = '';
+      return;
+    }
+    dotsEl.innerHTML = Array.from({ length: pageCount }, (_, i) =>
+      `<button type="button" class="wish-dot${i === 0 ? ' is-active' : ''}" data-page="${i}" aria-label="Halaman ${i + 1}"></button>`
+    ).join('');
+
+    const dots = dotsEl.querySelectorAll('.wish-dot');
+
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const page = Number(dot.dataset.page);
+        listEl.scrollTo({ left: page * listEl.clientWidth, behavior: 'smooth' });
+      });
+    });
+
+    listEl.addEventListener('scroll', () => {
+      const page = Math.round(listEl.scrollLeft / listEl.clientWidth);
+      dots.forEach((dot, i) => dot.classList.toggle('is-active', i === page));
+    });
+  }
+
   async function loadWishes() {
     const listEl = document.getElementById('wishList');
+    const dotsEl = document.getElementById('wishDots');
     if (!listEl) return;
 
     try {
@@ -25,26 +66,25 @@ export function initWishes(config) {
 
       if (!data || data.length === 0) {
         listEl.innerHTML = '<p style="text-align:center;color:#7A736C;font-size:14px;">Jadilah yang pertama memberi doa 🙏</p>';
+        if (dotsEl) dotsEl.innerHTML = '';
         return;
       }
-listEl.innerHTML = data.map((w) => {
-  const initial = (w.name || '?').trim().charAt(0).toUpperCase();
-  return `
-  <div class="wish-bubble">
-    <div class="wish-avatar" aria-hidden="true">${escapeHtml(initial)}</div>
-    <div class="wish-content">
-      <div class="wish-name">${escapeHtml(w.name)}</div>
-      <div class="wish-msg">${escapeHtml(w.message)}</div>
-      <div class="wish-time">${new Date(w.created_at).toLocaleDateString('id-ID', {
-        day: 'numeric', month: 'short', year: 'numeric'
-      })}</div>
-    </div>
-  </div>`;
-}).join('');
-      
+
+      const pages = [];
+      for (let i = 0; i < data.length; i += PAGE_SIZE) {
+        pages.push(data.slice(i, i + PAGE_SIZE));
+      }
+
+      listEl.innerHTML = pages
+        .map((page) => `<div class="wish-page">${page.map(bubbleHtml).join('')}</div>`)
+        .join('');
+
+      if (dotsEl) setupPaging(listEl, dotsEl, pages.length);
+
     } catch (err) {
       console.error(err);
       listEl.innerHTML = `<p style="text-align:center;color:#c45c5c;font-size:13px;">Gagal memuat: ${err.message}</p>`;
+      if (dotsEl) dotsEl.innerHTML = '';
     }
   }
 
@@ -92,4 +132,4 @@ listEl.innerHTML = data.map((w) => {
       loadWishes();
     })
     .subscribe();
-}
+    }

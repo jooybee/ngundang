@@ -9,7 +9,7 @@ export function initClosingSlide() {
   let index = 0;
   setInterval(() => {
     index++;
-    track.style.transition = 'transform 2.4s cubic-bezier(0.25, 0.1, 0.25, 1)';
+    track.style.transition = 'transform 2.5s cubic-bezier(0.25, 0.1, 0.25, 1)';
     track.style.transform = 'translateY(-' + (index * 100) + '%)';
     if (index >= total) {
       setTimeout(() => {
@@ -18,5 +18,5 @@ export function initClosingSlide() {
         track.style.transform = 'translateY(0)';
       }, 2500);
     }
-  }, 4500);
+  }, 5500);
 }

@@ -40,14 +40,14 @@ export const wedding = {
       title: "Kamis, 29 Oktober 2026",
       time: "07.00 – 09.00 WIB",
       location: "Rumah kediaman mempelai wanita\n Jalan Jetis Rejo, RT.4/RW.4,\n Desa Mlilir, Gubug\n Kab. Grobogan, Jawa Tengah 58164",
-      mapsUrl: "https://maps.app.goo.gl/",
+      mapsUrl: "https://maps.app.goo.gl/PmifQbQ5TLFpVyUx9",
     },
     {
       label: "Resepsi",
       title: "Kamis, 29 Oktober 2026",
       time: "09.00 – 13.00 WIB",
       location: "Rumah kediaman mempelai wanita\n Jalan Jetis Rejo, RT.4/RW.4,\n Desa Mlilir, Gubug\n Kab. Grobogan, Jawa Tengah 58164",
-      mapsUrl: "https://maps.app.goo.gl/",
+      mapsUrl: "https://maps.app.goo.gl/TJRnFygjuPuYie2r6?g_st=ac",
     },
     {
       label: "Live Streaming",

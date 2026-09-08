@@ -2,8 +2,7 @@ export function initCountdown() {
   const target = new Date(document.body.getAttribute('data-wedding-date')).getTime();
 
   function tick() {
-    const d = target - Date.now();
-    if (d < 0) return;
+    const d = Math.max(0, target - Date.now());
     setText('days', Math.floor(d / 86400000));
     setText('hours', Math.floor((d % 86400000) / 3600000));
     setText('minutes', Math.floor((d % 3600000) / 60000));

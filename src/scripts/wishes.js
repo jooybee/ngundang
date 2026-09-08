@@ -27,28 +27,65 @@ export function initWishes(config) {
   }
 
   function setupPaging(listEl, dotsEl, pageCount) {
-    if (pageCount <= 1) {
-      dotsEl.innerHTML = '';
-      return;
-    }
+  if (pageCount <= 1) {
+    dotsEl.innerHTML = '';
+    return;
+  }
+
+  const goTo = (page) => {
+    listEl.scrollTo({ left: page * listEl.clientWidth, behavior: 'smooth' });
+  };
+
+  if (pageCount <= 7) {
     dotsEl.innerHTML = Array.from({ length: pageCount }, (_, i) =>
       `<button type="button" class="wish-dot${i === 0 ? ' is-active' : ''}" data-page="${i}" aria-label="Halaman ${i + 1}"></button>`
     ).join('');
 
     const dots = dotsEl.querySelectorAll('.wish-dot');
-
     dots.forEach((dot) => {
-      dot.addEventListener('click', () => {
-        const page = Number(dot.dataset.page);
-        listEl.scrollTo({ left: page * listEl.clientWidth, behavior: 'smooth' });
-      });
+      dot.addEventListener('click', () => goTo(Number(dot.dataset.page)));
     });
 
     listEl.addEventListener('scroll', () => {
       const page = Math.round(listEl.scrollLeft / listEl.clientWidth);
       dots.forEach((dot, i) => dot.classList.toggle('is-active', i === page));
     });
+    return;
   }
+
+  // Banyak halaman: pakai panah + counter
+  dotsEl.innerHTML = `
+    <div class="wish-nav">
+      <button type="button" class="wish-nav-btn" id="wishPrev" aria-label="Sebelumnya">&#8249;</button>
+      <span class="wish-nav-count" id="wishCount">1 / ${pageCount}</span>
+      <button type="button" class="wish-nav-btn" id="wishNext" aria-label="Berikutnya">&#8250;</button>
+    </div>`;
+
+  const prevBtn = dotsEl.querySelector('#wishPrev');
+  const nextBtn = dotsEl.querySelector('#wishNext');
+  const countEl = dotsEl.querySelector('#wishCount');
+
+  const updateButtons = (page) => {
+    countEl.textContent = `${page + 1} / ${pageCount}`;
+    prevBtn.disabled = page === 0;
+    nextBtn.disabled = page === pageCount - 1;
+  };
+
+  prevBtn.addEventListener('click', () => {
+    const page = Math.max(0, Math.round(listEl.scrollLeft / listEl.clientWidth) - 1);
+    goTo(page);
+  });
+  nextBtn.addEventListener('click', () => {
+    const page = Math.min(pageCount - 1, Math.round(listEl.scrollLeft / listEl.clientWidth) + 1);
+    goTo(page);
+  });
+
+  listEl.addEventListener('scroll', () => {
+    updateButtons(Math.round(listEl.scrollLeft / listEl.clientWidth));
+  });
+
+  updateButtons(0);
+      }
 
   async function loadWishes() {
     const listEl = document.getElementById('wishList');

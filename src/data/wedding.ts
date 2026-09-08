@@ -164,7 +164,7 @@ export const wedding = {
       /** Aksen lembut (garis, badge) */
       accentSoft: "#C4A484",
       /** Panel soft (cover kanan, salam bg) */
-      panelSoft: "#E5D0C0",
+      panelSoft: "#E2C8B8",
       /** Putih / kontras */
       light: "#FFFFFF",
     },

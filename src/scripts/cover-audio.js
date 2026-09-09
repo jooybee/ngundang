@@ -6,14 +6,12 @@ export function initCoverAudio() {
   if (!openBtn || !cover || !main) return;
 
   let isPlaying = false;
-  const iconPlay = document.getElementById('iconPlay');
-  const iconPause = document.getElementById('iconPause');
+const audioFlower = document.getElementById('audioFlower');
 
-  function updateIcon() {
-    if (!iconPlay || !iconPause) return;
-    iconPlay.classList.toggle('hidden', isPlaying);
-    iconPause.classList.toggle('hidden', !isPlaying);
-  }
+function updateIcon() {
+  if (!audioFlower) return;
+  audioFlower.classList.toggle('bloom', isPlaying);
+}
 
   openBtn.addEventListener('click', () => {
     cover.classList.add('hidden');

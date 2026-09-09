@@ -200,7 +200,7 @@ export const wedding = {
       "/img/crsl.webp?w=250&h=250&fit=crop",
       "/img/crsl1.webp?w=250&h=250&fit=crop",
       "/img/crsl2.webp?w=250&h=250&fit=crop",
-      "/img/crsl35.webp?w=250&h=250&fit=crop",
+      "/img/crsl3.webp?w=250&h=250&fit=crop",
     ],
 
     bride: [

@@ -2073,21 +2073,17 @@ const giftLines = w.gift.address.lines.split('\n');
     <div class="gal">
       <!-- Foto besar -->
       <div class="gal-main">
-        <img
-          id="galMain"
-          src={w.photos.gallery[0]}
-          alt="Gallery"
-        />
+        <img id="galMain" src={w.photos.gallery[0].full} alt="Gallery" />
       </div>
 
       <!-- Strip foto kecil -->
       <div class="gal-strip" id="galStrip">
         <div class="gal-track" id="galTrack">
-          {w.photos.gallery.map((src, i) => (
-            <button type="button" class:list={['gal-thumb', { 'is-active': i === 0 }]} data-full={src}>
-              <img src={src} alt="" />
-            </button>
-          ))}
+          {w.photos.gallery.map((photo, i) => (
+  <button type="button" class:list={['gal-thumb', { 'is-active': i === 0 }]} data-full={photo.full}>
+    <img src={photo.thumb} alt="" loading="lazy" decoding="async" />
+  </button>
+))}
         </div>
       </div>
     </div>

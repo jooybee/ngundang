@@ -236,10 +236,11 @@ export const wedding = {
     { thumb: "/img/thumb2.webp", full: "/img/gal2.webp" },
     { thumb: "/img/thumb3.webp", full: "/img/gal3.webp" },
     { thumb: "/img/thumb4.webp", full: "/img/gal4.webp" },
+    { thumb: "/img/thumb5.webp", full: "/img/gal5.webp" },
     ],
 
     closing: [
-      "/img/bg.webp?w=1200",
+      "/img/bg4.webp?w=1200",
       "/img/bg3.webp?w=1200",
     ],
   },

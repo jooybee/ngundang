@@ -187,20 +187,20 @@ export const wedding = {
    */
   photos: {
     /* Ganti ke "/photos/nama-file.jpg" setelah upload ke public/photos/ */
-    coverLeft: "/img/background1.webp?w=1200",
-    coverRight: "/img/background4.webp?w=1200",
-    mainSticky: "/img/coverkanan.webp?w=1200",
+    coverLeft: "/img/coverkiri.webp?w=1200",
+    coverRight: "/img/coverkanan.webp?w=1200",
+    mainSticky: "/img/coverkiri1.webp?w=1200",
 
     hero: [
-      "/img/background.webp?w=1200",
-      "/img/background3.webp?w=1200",
+      "/img/bg.webp?w=1200",
+      "/img/bg3.webp?w=1200",
     ],
 
     circle: [
-      "/img/crsl.webp?w=200&h=200&fit=crop",
-      "/img/crsl2.webp?w=200&h=200&fit=crop",
-      "/img/crsl1.webp?w=200&h=200&fit=crop",
-      "/img/background5.webp?w=200&h=200&fit=crop",
+      "/img/crsl.webp?w=250&h=250&fit=crop",
+      "/img/crsl1.webp?w=250&h=250&fit=crop",
+      "/img/crsl2.webp?w=250&h=250&fit=crop",
+      "/img/crsl35.webp?w=250&h=250&fit=crop",
     ],
 
     bride: [
@@ -217,8 +217,8 @@ export const wedding = {
       "/img/std-kanan.webp?w=800&h=600&fit=crop",
     ],
     stdBg: [
-      "/img/background3.webp?w=1200",
-      "/img/coverkanan.webp?w=1200",
+      "/img/bg3.webp?w=1200",
+      "/img/bg2.webp?w=1200",
     ],
 
     story: [
@@ -226,23 +226,21 @@ export const wedding = {
       "/img/story1.webp?w=900&h=600&fit=crop",
     ],
     storyBg: [
-      "/img/background5.webp?w=1200",
-      "/img/background2.webp?w=1200",
+      "/img/bg5.webp?w=1200",
+      "/img/bg2.webp?w=1200",
     ],
 
     gallery: [
-      "/img/background5.webp?w=1200",
-      "/img/background1.webp?w=1200",
-      "/img/background2.webp?w=1200",
-      "/img/background3.webp?w=1200",
-      "/img/background4.webp?w=1200",
-      "/img/coverkanan.webp?w=1200",
-      "/img/crsl2.webp?w=1200",
+    { thumb: "/img/thumb.webp", full: "/img/gal.webp" },
+    { thumb: "/img/thumb1.webp", full: "/img/gal1.webp" },
+    { thumb: "/img/thumb2.webp", full: "/img/gal2.webp" },
+    { thumb: "/img/thumb3.webp", full: "/img/gal3.webp" },
+    { thumb: "/img/thumb4.webp", full: "/img/gal4.webp" },
     ],
 
     closing: [
-      "/img/background.webp?w=1200",
-      "/img/background3.webp?w=1200",
+      "/img/bg.webp?w=1200",
+      "/img/bg3.webp?w=1200",
     ],
   },
 
